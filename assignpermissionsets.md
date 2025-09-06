@@ -18,6 +18,6 @@ For external access via API or Power BI:
 
 - TMA API Permissions Set
 
-![Setup Image](pics/assignpermission1.png)
+![Setup Image](resources/assignpermissionset/pics/assignpermission1.png)
 
-![Setup Image](pics/assignpermission2.png)
+![Setup Image](resources/assignpermissionset/pics/assignpermission2.png)

@@ -10,34 +10,34 @@ Services are used in TMS for the LSP scenario to issue invoices to the customer 
 
 Possible relations between TMS Services and Items of the Business Central
 
-![Setup Image](pics/services1.png)
+![Setup Image](resources/services/pics/services1.png)
 
 - Mapping TMS services to BC items means that within the TMS module, we operate and work with TMS services, but when invoicing or allocating costs in standard BC documents, items will appear instead.
 - Business Central is unaware of the TMS module and cannot interact with its entities.
-
-## Prerequisites
-
-To change or create status profiles user must have TMS Admin Permissions.
 
 ## Where to find
 
 using main menu of the TMS
 
-![Setup Image](pics/services2.png)
+![Setup Image](resources/services/pics/services2.png)
 
 using search
 
-![Setup Image](pics/services3.png)
+![Setup Image](resources/services/pics/services3.png)
 
 TMS Services list page
 
-![Setup Image](pics/services4.png)
+![Setup Image](resources/services/pics/services4.png)
 
 Set link to the Business Central entity
 
-![Setup Image](pics/services5.png)
+![Setup Image](resources/services/pics/services5.png)
 
 - Create a product that will serve as a reflection of the TMS service in the standard Business Central module.
 - Establish the link.
 
 p.s. The entity type corresponds to the type of purchase or sales order line.
+
+## Prerequisites
+
+To change or create status profiles user must have TMS Admin Permissions.
