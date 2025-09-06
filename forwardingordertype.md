@@ -37,7 +37,6 @@ Before configuring forwarding order types, you must create the required entities
 
 - Default Content Set - a default set of contents for transportation. It's possible to create a set of standard contents and add them automatically when an order of this type is created. This is convenient for LSPs with abstract cargo descriptions like SHIPMENT (cargo space).
 
-
 ![Setup Image](resources/forwardingordertype/pics/fwotype4.png)
 
 - Default values - specific default values for the ordering party, shipper, and consignee can be set for regular transportation orders. Fill in the type value and then select the value in the “… No." field.

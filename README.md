@@ -1,5 +1,7 @@
 # Transportation Management System for Microsoft Dynamics 365 Business Central
 
+Help and Documentation.
+
 ## Introduction
 
 TMS is a comprehensive solution intended to streamline the transportation processes, including order management, scheduling, and tracking of shipments.
@@ -57,5 +59,3 @@ After installing the TMS extension, several steps must be completed to make TMS 
 - Freight Classes. The Freight Class Directory is a standardized classification system for less-than-container load (LCL) freight shipments, categorizing them based on specific attributes. The classification of cargo freight is established using various criteria, such as value, weight, length, density, and additional factors.
 
 ## Use cases
-
-
