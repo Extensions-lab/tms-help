@@ -100,6 +100,18 @@ Important notes:
 - Get Transport Requests only adds Released Transport Requests to the Delivery Order.
 - If the Delivery Order card contains values for Route No., Geographic Zone Code, or Transport Conditions (e.g., “Frozen only”), these fields are used as filters when selecting eligible Transport Requests.
 
+### Show Route
+
+This function allows you to view the resulting route on the map at any time. Path: Delivery Order → Route → Show Route.
+For it to work correctly, integration with MAP Providers must be configured [details](googlemapintegration.md).
+
+### Get Transport Time & Distance
+
+This function works only for an open (planned) Delivery Order. It sequentially processes the route points in the order defined in the Sequence field, calculates the distance and transportation duration between the previous point and the current one, and updates the fields "Transportation Duration" and "Transportation Distance". These fields always show the values calculated relative to the previous point.
+It is useful to run this function whenever you make changes to the route.
+
+For it to work correctly, integration with MAP Providers must be configured [details](googlemapintegration.md).
+
 ## Fields Description
 
 - **No.** Specifies the unique number for this delivery order, used to track and manage shipping stages.

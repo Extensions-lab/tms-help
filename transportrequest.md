@@ -8,6 +8,7 @@ The Transport Request document covers the following functional areas of the TMS:
 
 - Order Grouping
 - Routes and Zones
+- Transportation Conditions
 
 To transport something from one place to another in the TMS module, you need to create a Transport Request. The request can be created for any document (sales, purchase, transfer), whether it has been posted or not. A Transport Request serves as an assignment or instruction, indicating that these specific items need to be delivered from this location to that destination.
 
