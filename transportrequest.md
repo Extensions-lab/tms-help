@@ -76,6 +76,10 @@ The simplest way to send orders for transportation is by selecting one or more d
 
 Result: one transport request will be created for each selected order (if all line items have the same warehouse).
 
+From any list of source documents, the Transportation Status and Transportation Documents fields allow you to determine whether the document has been sent to the TMS module for transportation, if a delivery order has been created, and whether this applies to the entire document or only certain lines.
+
+![Setup Image](resources/transportrequest/pics/tr14.png)
+
 ### Create Manually from Card
 
 This method is useful when it’s clear that a large order cannot be delivered all at once and needs to be split into parts that will be delivered at different times or by different carriers. In this case, the order is manually divided into parts and assigned to different Transport Requests, which in turn are assigned to different Delivery Orders.
@@ -86,9 +90,6 @@ Document Card -> TMS -> Transport and Delivery -> Transportation Request Plannin
 
 ![Setup Image](resources/transportrequest/pics/tr12.png)
 
-From any list of source documents, the Transportation Status and Transportation Documents fields allow you to determine whether the document has been sent to the TMS module for transportation, if a delivery order has been created, and whether this applies to the entire document or only certain lines.
-
-![Setup Image](resources/transportrequest/pics/tr14.png)
 
 ### Create Manually for Grouping
 
