@@ -45,10 +45,10 @@ After installing the TMS extension, several steps must be completed to make TMS 
 - **Content Set**. Predefined set of content automatically added to an order upon its creation.
 - **Forwarding Order Types**. Templates for forwarding orders that establish the structure of the order and the business process for handling said order, as well as setting default values. Mandatory for LSP scenario [details](forwardingordertype.md).
 - **Freight Order Types**. Templates for freight orders define order parameters, including the status structure and the model for order numbering.
-- **Logistic Unit Typeм. Templates for logistics units, such as pallets, containers, and boxes, define dimensional parameters: length, width, height, as well as fill control parameters: by weight or volume.
+- **Logistic Unit Type**. Templates for logistics units, such as pallets, containers, and boxes, define dimensional parameters: length, width, height, as well as fill control parameters: by weight or volume.
 - **Map Locations**. Map Locations is a directory of map-based locations utilized for precise pinpointing using geolocation services. Map Locations are employed for route mapping, distance calculations, and estimating transportation durations. Map Locations can be linked to the addresses of clients and suppliers. Useful if we have our own fleet.
 - **Map Location Types**. A directory of location types on the map, such as Client, Vendor, Port, Gateway, Hub, etc.
-- **Map Provider services** integration. Configuration of Google Maps and TMS integration. It' needed for distance and duration estimation.
+- **Map Provider services** integration. Configuration of Google Maps and TMS integration. It' needed for distance and duration estimation  [details](googlemapintegration.md)
 - **Carriers**. A directory of third-party carriers that provide transportation services to our company.
 - **Vehicles**. A directory of transportation vehicles, either owned by our company or by third-party carriers.
 - **Drivers**. Configuration of the directory for drivers, whether from our company or external.
@@ -56,5 +56,20 @@ After installing the TMS extension, several steps must be completed to make TMS 
 - **Units of measure**. The TMS module's measurement units directory defines the primary linear, volumetric, and weight measurement units, along with their interrelationships and conversion coefficients.
 - **Freight Classes**. The Freight Class Directory is a standardized classification system for less-than-container load (LCL) freight shipments, categorizing them based on specific attributes. The classification of cargo freight is established using various criteria, such as value, weight, length, density, and additional factors.
 - **Setup** General settings of the TMS  [details](setup.md).
+
+## Shipper Scenario
+
+if you are a Shipper company that manages the transportation process of its sales (and purchase) orders and uses either its own transport with its drivers or hires, as well as uses third-party carriers.
+
+- **Transport Request** is a transportation request based on internal company documents, such as purchase orders, sales orders, or transfer orders. It defines WHAT needs to be transported, where the goods are to be picked up, and where they need to be delivered, while also specifying the shipper and the consignee.
+- **Logistic Units** is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets.
+- **Delivery Order** is a document that details HOW the transportation will be carried out. It specifies the carrier, driver, and vehicle. The Delivery Order represents the actual journey of the truck, outlining the stops where loading or unloading will take place.
+
+
+
+## Logistics Service Provider scenario (LSP)
+
+
+
 
 ## Use cases
