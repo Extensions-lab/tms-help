@@ -78,7 +78,7 @@ Result: one transport request will be created for each selected order (if all li
 
 From any list of source documents, the Transportation Status and Transportation Documents fields allow you to determine whether the document has been sent to the TMS module for transportation, if a delivery order has been created, and whether this applies to the entire document or only certain lines.
 
-![Setup Image](resources/transportrequest/pics/tr14.png)
+![Setup Image](resources/transportrequest/pics/tr15.png)
 
 ### Create Manually from Card
 
