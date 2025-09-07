@@ -20,7 +20,7 @@ using search
 
 ## Main Fields
 
-- Code. Unique identifier of the status profile.
+- Code. Unique identifier of the status profile that will be used in the Forwarding Order Types.
 - Description. Name of the status profile.
 - Action Control System. Displays whether the system for monitoring specific actions is activated at each status.
 - Enhanced system for monitoring additional actions that the system can control for documents with a selected status.

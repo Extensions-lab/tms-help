@@ -12,16 +12,11 @@ It serves as a blueprint that automates the creation of forwarding orders by pre
 - Numbering: Number series for unique order identification
 - This entity enables standardization of transportation processes while providing flexibility through configurable templates for different types of shipments (e.g., domestic, international, express, standard freight).
 
-## Prerequisites
-
-To change “Forwarding Order Types” user must have TMS Admin or Super Permissions.
-Before configuring forwarding order types, you must create the required entities: a set of services, a number series, a shipper and consignee, status profiles, and stages profiles.
-
-## Process Management field description
+## Fields description
 
  Status profiles and stage profiles that define the workflow and transportation stages.
 
-- Default Status Profile - the status profile that will be set for an order upon its creation for the selected order type. A status profile is a set of statuses that a document can have within the business process of its handling. Default status code - the status value that a document will have upon creation, thereby allowing for the automatic advancement of the document to a specific stage of its processing.
+- Default Status Profile - the status profile that will be set for an order upon its creation for the selected order type. A status profile is a set of statuses that a document can have within the business process of its handling. Default status code - the status value that a document will have upon creation, thereby allowing for the automatic advancement of the document to a specific stage of its processing [See details](statuses.md).
 
 ![Setup Image](resources/forwardingordertype/pics/fwotype1.png)
 
@@ -43,10 +38,11 @@ Before configuring forwarding order types, you must create the required entities
 
 ![Setup Image](resources/forwardingordertype/pics/fwotype5.png)
 
-- Other parameters.
--- Default Incoterm code.
--- Number series for numbering the created Forwarding Orders.
--- A flag in the field determines whether the shipper and consignee fields can be edited in the forwarding order or if they are only set in the corresponding counterparty's card.
+## Other parameters
+
+- Default Incoterm code.
+- Number series for numbering the created Forwarding Orders of this type.
+- A flag in the field determines whether the shipper and consignee fields can be edited in the forwarding order or if they are only set in the corresponding counterparty's card.
 
 ![Setup Image](resources/forwardingordertype/pics/fwotype6.png)
 
@@ -57,3 +53,8 @@ For better productivity, always make sure to fill in all the fields:
 - Default Status Profile
 - Default Status Profile
 - No. Series
+
+## Prerequisites
+
+To change “Forwarding Order Types” user must have TMS Admin or Super Permissions.
+Before configuring forwarding order types, you must create the required entities: a set of services, a number series, a shipper and consignee, status profiles, and stages profiles.
