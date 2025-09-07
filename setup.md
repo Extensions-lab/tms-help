@@ -16,7 +16,7 @@ or through Manual Setup in Advanced settings
 
 ![Setup Image](resources/setup/pics/setup3.png)
 
-### General Settings Block
+### General
 
 - **Status Control**. Enabling/disabling the action control system for statuses across all profiles. Gloval control.
 - **Transport Condition Attribute**. Transport Condition Attribute defines a product attribute that determines transportation conditions. For example, you can create a product attribute called “Transport Conditions” to be assigned to each item—or selected items—that require special handling (such as frozen or chilled goods), which cannot be transported together with regular items. Specifying transport conditions will result in order splitting and grouping based on these conditions.
@@ -134,4 +134,3 @@ There are additional functions available in the TMS Setup window for working wit
 ## Additional Setup Functions
 
 - **Set default reports** Reset default reports settings (if you have problems with TMS reports). Path. "TMS Setup" > "Default Settings" > "Set default reports"
-

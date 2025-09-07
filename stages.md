@@ -1,6 +1,6 @@
 # Stages
 
-The Stage Profile defines the sequence of steps (legs) that will occur during the transportation process. Stages are used in Forwarding Order to define steps, schedule, and duration of the transportation. The profile may include both mandatory steps executed via the Freight Order and additional steps that are manually added to the transportation process.';
+The Stage Profile defines the sequence of steps (legs) that will occur during the transportation process. Stages are used in Forwarding Order to define steps, schedule, and duration of the transportation. The profile may include both mandatory steps executed via the Freight Order and additional steps that are manually added to the transportation process.
 
 ![Stages](resources/stages/pics/stages2.png)
 
@@ -50,5 +50,3 @@ Stages are used in Forwarding Orders Types page. By assigning a stage profile to
 ## Prerequisites
 
 To change or create status profiles user must have TMS Admin or Super Permissions.
-
-
