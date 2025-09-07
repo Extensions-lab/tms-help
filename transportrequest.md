@@ -8,7 +8,6 @@ The Transport Request document covers the following functional areas of the TMS:
 
 - Order Grouping
 - Routes and Zones
-- Load Management
 
 To transport something from one place to another in the TMS module, you need to create a Transport Request. The request can be created for any document (sales, purchase, transfer), whether it has been posted or not. A Transport Request serves as an assignment or instruction, indicating that these specific items need to be delivered from this location to that destination.
 
@@ -70,7 +69,7 @@ When the document is released — that is, when the order status is changed to "
 
 Result: one order – one transport request (if all line items have the same warehouse).
 
-### Create Manually from List
+### Create manually from document list
 
 The simplest way to send orders for transportation is by selecting one or more documents directly from the list of source documents and invoking the appropriate function: Create Transport Request.
 
@@ -82,7 +81,7 @@ From any list of source documents, the Transportation Status and Transportation 
 
 ![Setup Image](resources/transportrequest/pics/tr15.png)
 
-### Create Manually from Card
+### Create manually from card
 
 This approach is useful when handling large orders that cannot be delivered all at once or need to be delivered on a regular schedule.
 
@@ -94,7 +93,7 @@ Document Card → TMS → Transport and Delivery → Transportation Request Plan
 
 ![Setup Image](resources/transportrequest/pics/tr12.png)
 
-### Create Manually for Order Grouping
+### Create manually for order grouping
 
 This approach is convenient when there are a large number of orders for the same customer that need to be grouped by customer.
 
