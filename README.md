@@ -65,11 +65,6 @@ if you are a Shipper company that manages the transportation process of its sale
 - **Logistic Units** is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets.
 - **Delivery Order** is a document that details HOW the transportation will be carried out. It specifies the carrier, driver, and vehicle. The Delivery Order represents the actual journey of the truck, outlining the stops where loading or unloading will take place.
 
-
-
 ## Logistics Service Provider scenario (LSP)
-
-
-
 
 ## Use cases

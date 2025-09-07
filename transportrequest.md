@@ -64,6 +64,8 @@ A Transport Request is used in the shipper scenario to initiate and manage the t
 
 ### Create automatically
 
+This approach is convenient when dealing with relatively small and similar orders that can be easily grouped together for transportation.
+
 When the document is released — that is, when the order status is changed to "Release" - one or more Transport Requests will be generated automatically. This means the order is handed over to transportation and can be included in a Delivery Order. To enable this, make sure the "Auto Create Transport Request for Sale" option is activated in the TMS Settings [details](setup.md).
 
 Result: one order – one transport request (if all line items have the same warehouse).
@@ -82,16 +84,19 @@ From any list of source documents, the Transportation Status and Transportation 
 
 ### Create Manually from Card
 
+This approach is useful when handling large orders that cannot be delivered all at once or need to be delivered on a regular schedule.
+
 This method is useful when it’s clear that a large order cannot be delivered all at once and needs to be split into parts that will be delivered at different times or by different carriers. In this case, the order is manually divided into parts and assigned to different Transport Requests, which in turn are assigned to different Delivery Orders.
 
 Menu path:
 
-Document Card -> TMS -> Transport and Delivery -> Transportation Request Planning
+Document Card → TMS → Transport and Delivery → Transportation Request Planning
 
 ![Setup Image](resources/transportrequest/pics/tr12.png)
 
+### Create Manually for Order Grouping
 
-### Create Manually for Grouping
+This approach is convenient when there are a large number of orders for the same customer that need to be grouped by customer.
 
 This method differs in that we don't start from the original document to create a Transport Request — instead, we create the Transport Request first and then assign to it a set of documents (or parts of documents) that can be combined. A typical case would be creating a Transport Request for a specific customer and grouping all orders for that customer into a single Transport Request.
 
@@ -99,7 +104,7 @@ Step-by-step process:
 
 - Create a new Transport Request. Navigate to: Business Central Main Menu → TMS → Transport & Delivery → Transport Requests → + New
 - Define the shipper and consignee. At minimum, specify the type of the shipper or consignee. This is necessary so that the system only shows compatible documents for selection based on the source and destination. If a specific Customer, Vendor, or Warehouse is selected, the system will filter documents accordingly.
-- Click: Menu → Prepare → Get Documents. Select the relevant documents using CTRL and click OK. Note: If the selected documents cannot be combined into a single Transport Request, the system will display an error—for example, if they have different customers or shipping warehouses.
+- Path: Menu → Prepare → Get Documents. Select the relevant documents using CTRL and click OK. Note: If the selected documents cannot be combined into a single Transport Request, the system will display an error—for example, if they have different customers or shipping warehouses.
 
 Main rule for combining documents: One origin point – one destination point.
 
