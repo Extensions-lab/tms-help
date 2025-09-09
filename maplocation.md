@@ -88,7 +88,7 @@ You can create a MAP Location from the Customer, Ship-to Address, Vendor, Order 
 In this case, the system will automatically link the MAP Location to the main entity, fill in the Source Type, Source No., etc., and set the created MAP Location as the default.
 To do this, go to the Transportation Management System section in the card and fill in the Default MAP Location field, then use Drilldown and click New.
 
-![Setup Image](resources/maplocation/pics/maplocationnew.png)
+![Setup Image](resources/maplocation/pics/maplocationNew.png)
 
 If this field is filled in, the MAP Location value will be automatically added to related documents.
 

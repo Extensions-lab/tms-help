@@ -67,7 +67,7 @@ You can activate verification by setting a flag in the field of the correspondin
 
 Extended Control for a status allows you to enhance the requirements for transitioning to that status. It enables the creation of a document control system (attachments) that must be present in the transportation process for the order to move to the selected status.
 
-To activate this control, you can define the types of attachments that must be uploaded to the document—for example, before it can be posted. In other words, you set rules requiring that, at a certain status, specific documents (such as MAWB, Invoice, Delivery Note, etc.) must be attached in the system.
+To activate this control, you can define the types of attachments that must be uploaded to the document—for example, before it can be posted. In other words, you set rules requiring that, at a certain status, specific documents (such as MAWB, Invoice, Delivery Note, etc.) must be attached in the system [details](attachmentcontrol.md).
 
 ## Additional
 
