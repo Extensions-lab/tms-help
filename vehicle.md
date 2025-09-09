@@ -12,7 +12,7 @@ It contains extensive vehicle information including:
 - fixed asset integration for financial tracking
 - operational settings (scheduler preferences and blocking status)
 
-The entity supports multiple vehicle types (car, truck, trailer, container) and engine types (diesel, petrol, electric, unknown) through extensible enums, includes photo management capabilities, and features comprehensive card and list pages for vehicle management. 
+The entity supports multiple vehicle types (car, truck, trailer, container) and engine types (diesel, petrol, electric, unknown) through extensible enums, includes photo management capabilities, and features comprehensive card and list pages for vehicle management.
 
 The Vehicle entity serves as the central repository for fleet management within the TMS, enabling effective vehicle assignment, capacity planning, maintenance scheduling, compliance tracking, and operational management while supporting integration with financial systems through fixed asset linkage and providing detailed technical specifications for transportation planning and execution.
 

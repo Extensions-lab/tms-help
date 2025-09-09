@@ -41,4 +41,3 @@ Audit Fields:
 ## Page
 
 ![Setup Image](resources/maplocationtype/pics/maplocationtype.png)
-
