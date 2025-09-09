@@ -49,22 +49,31 @@ After installing the TMS extension, several steps must be completed to make TMS 
 - **Map Locations**. Map Locations is a directory of map-based locations utilized for precise pinpointing using geolocation services. Map Locations are employed for route mapping, distance calculations, and estimating transportation durations. Map Locations can be linked to the addresses of clients and suppliers. Useful if we have our own fleet.
 - **Map Location Types**. A directory of location types on the map, such as Client, Vendor, Port, Gateway, Hub, etc.
 - **Map Provider services** integration. Configuration of Google Maps and TMS integration. It' needed for distance and duration estimation  [details](googlemapintegration.md)
-- **Carriers**. A directory of third-party carriers that provide transportation services to our company.
-- **Vehicles**. A directory of transportation vehicles, either owned by our company or by third-party carriers.
-- **Drivers**. Configuration of the directory for drivers, whether from our company or external.
+- **Carriers**. A directory of third-party carriers that provide transportation services to our company [details](carrier.md).
+- **Vehicles**. A directory of transportation vehicles, either owned by our company or by third-party carriers [details](vehicle.md).
+- **Drivers**. Configuration of the directory for drivers, whether from our company or external [details](driver.md).
 - **Routes**. Routes are used for the logical grouping of customer addresses by geographical attribute to facilitate the assignment of a set of customer orders to a specific truck or carrier.
 - **Units of measure**. The TMS module's measurement units directory defines the primary linear, volumetric, and weight measurement units, along with their interrelationships and conversion coefficients.
 - **Freight Classes**. The Freight Class Directory is a standardized classification system for less-than-container load (LCL) freight shipments, categorizing them based on specific attributes. The classification of cargo freight is established using various criteria, such as value, weight, length, density, and additional factors.
 - **Setup** General settings of the TMS  [details](setup.md).
 
+## Arcitecture
+
 ## Shipper Scenario
 
 if you are a Shipper company that manages the transportation process of its sales (and purchase) orders and uses either its own transport with its drivers or hires, as well as uses third-party carriers.
 
-- **Transport Request** is a transportation request based on internal company documents, such as purchase orders, sales orders, or transfer orders. It defines WHAT needs to be transported, where the goods are to be picked up, and where they need to be delivered, while also specifying the shipper and the consignee.
+- **Transport Request** is a transportation request based on internal company documents, such as purchase orders, sales orders, or transfer orders. It defines **WHAT** needs to be transported, where the goods are to be picked up, and where they need to be delivered, while also specifying the shipper and the consignee [details](transportrequest.md).
 - **Logistic Units** is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets.
-- **Delivery Order** is a document that details HOW the transportation will be carried out. It specifies the carrier, driver, and vehicle. The Delivery Order represents the actual journey of the truck, outlining the stops where loading or unloading will take place.
+- **Delivery Order** is a document that details **HOW** the transportation will be carried out. It specifies the carrier, driver, and vehicle. The Delivery Order represents the actual journey of the truck, outlining the stops where loading or unloading will take place [details](deliveryorder.md).
 
 ## Logistics Service Provider scenario (LSP)
+
+If you are a Logistic Service Provider (LSP) whose business involves the delivery of third-party goods, managing the transportation process and may also have its own fleet of vehicles and drivers or use services of third-party carriers. In this scenario, the mechanism for cost control and transparency in the invoicing process for transportation is crucial.
+
+- **Forwardinfg Order** The central document in TMS for LSP, it is a request for transportation from either an external client or the company itself. It specifies **WHAT** needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
+- **Logistic Units** is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets.
+- **Freight Order** This document details **HOW** the transportation will be executed, indicating who will actually carry it out. It specifies the carrier and the driver involved. The Freight Order reflects the actual journey of a truck or carrier.
+- **Settlement** TMS supports a process of reconciling and finalizing all financial transactions associated with a particular service or operation.
 
 ## Use cases
