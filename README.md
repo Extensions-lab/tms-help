@@ -43,13 +43,12 @@ TMS supports two operation modes: Shipper and LSP. Some configurations and the d
 
 - **Setup** General settings of the TMS  [details](setup.md).
 - **Logistic Unit Type**. Templates for logistics units, such as pallets, containers, and boxes, define dimensional parameters: length, width, height, as well as fill control parameters: by weight or volume.
-- **Map Locations**. Map Locations is a directory of map-based locations utilized for precise pinpointing using geolocation services. Map Locations are employed for route mapping, distance calculations, and estimating transportation durations. Map Locations can be linked to the addresses of clients and suppliers. Useful if we have our own fleet.
-- **Map Location Types**. A directory of location types on the map, such as Client, Vendor, Port, Gateway, Hub, etc.
+- **Map Locations**. Map Locations is a directory of map-based locations utilized for precise pinpointing using geolocation services. Map Locations are employed for route mapping, distance calculations, and estimating transportation durations. Map Locations can be linked to the addresses of clients and suppliers. Useful if we have our own fleet [details](maplocation.md).
+- **Map Location Types**. A directory of location types on the map, such as Client, Vendor, Port, Gateway, Hub, etc [details](maplocationtype.md).
 - **Map Provider services** integration. Configuration of Google Maps and TMS integration. It' needed for distance and duration estimation  [details](googlemapintegration.md)
 - **Carriers**. A directory of third-party carriers that provide transportation services to our company [details](carrier.md).
 - **Vehicles**. A directory of transportation vehicles, either owned by our company or by third-party carriers [details](vehicle.md).
 - **Drivers**. Configuration of the directory for drivers, whether from our company or external [details](driver.md).
-- **Units of measure**. The TMS module's measurement units directory defines the primary linear, volumetric, and weight measurement units, along with their interrelationships and conversion coefficients.
 
 ### Shipper Scenario
 
@@ -64,6 +63,7 @@ if you are a Shipper company that manages the transportation process of its sale
 
 If you are a Logistic Service Provider (LSP) whose business involves the delivery of third-party goods, managing the transportation process and may also have its own fleet of vehicles and drivers or use services of third-party carriers. In this scenario, the mechanism for cost control and transparency in the invoicing process for transportation is crucial.
 
+- **Forwarding Order Types**. Templates for forwarding orders that establish the structure of the order and the business process for handling said order, as well as setting default values. Mandatory for LSP scenario [details](forwardingordertype.md).
 - **Forwardinfg Order** The central document in TMS for LSP, it is a request for transportation from either an external client or the company itself. It specifies **WHAT** needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
 - **Logistic Units** is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets.
 - **Freight Order** This document details **HOW** the transportation will be executed, indicating who will actually carry it out. It specifies the carrier and the driver involved. The Freight Order reflects the actual journey of a truck or carrier.
@@ -75,7 +75,6 @@ If you are a Logistic Service Provider (LSP) whose business involves the deliver
 - **Charges**. The Charges directory is a reference within the TMS system intended for the recording and allocation of costs to orders and the calculation of profitability for transportation orders. Required for profit calculation [details](charges.md).
 - **Service Set**. This setting allows for the definition of sets of services and costs that can be added automatically when creating orders, or for the use of restrictions on the sets of services and costs that can be utilized in an order.
 - **Content Set**. Predefined set of content automatically added to an order upon its creation.
-- **Forwarding Order Types**. Templates for forwarding orders that establish the structure of the order and the business process for handling said order, as well as setting default values. Mandatory for LSP scenario [details](forwardingordertype.md).
 - **Freight Order Types**. Templates for freight orders define order parameters, including the status structure and the model for order numbering.
 - **Freight Classes**. The Freight Class Directory is a standardized classification system for less-than-container load (LCL) freight shipments, categorizing them based on specific attributes. The classification of cargo freight is established using various criteria, such as value, weight, length, density, and additional factors.
 
