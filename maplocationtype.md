@@ -16,27 +16,27 @@ The Map Location Type List page provides a simple administrative interface for m
 
 Primary Fields:
 
-- **Code** Unique identifier for the map location type
-- **Description** Descriptive text for the location type
+- **Code**: Unique identifier for the map location type
+- **Description**: Descriptive text for the location type
 
 Default Assignment Fields:
 
-- **Default For Location** Sets this type as default for standard Location entities
-- **Default for Customer** Sets this type as default for Customer-related map locations
-- **Default for Ship-to Address** Sets this type as default for customer ship-to addresses
-- **Default for Vendor**  Sets this type as default for Vendor-based map locations
-- **Default for Order Address** Sets this type as default for vendor order addresses
-- **Default for Contact** Sets this type as default for Contact-related map locations
+- **Default For Location**: Sets this type as default for standard Location entities
+- **Default for Customer**: Sets this type as default for Customer-related map locations
+- **Default for Ship-to Address**: Sets this type as default for customer ship-to addresses
+- **Default for Vendor**:  Sets this type as default for Vendor-based map locations
+- **Default for Order Address**: Sets this type as default for vendor order addresses
+- **Default for Contact**: Sets this type as default for Contact-related map locations
 
 Specialization Fields:
 
-- **Airport** Indicates if this type represents an airport, enabling specialized TMS logic
+- **Airport**: Indicates if this type represents an airport, enabling specialized TMS logic
 
 Audit Fields:
 
-- **Last Modified Date Time** Local timestamp of last record modification
-- **Last Modified Date Time (UTC)** - UTC timestamp of last record modification
-- **Last Modified UserID** - User who last modified the record
+- **Last Modified Date Time**: Local timestamp of last record modification
+- **Last Modified Date Time (UTC)**: - UTC timestamp of last record modification
+- **Last Modified UserID**: - User who last modified the record
 
 ## Page
 
