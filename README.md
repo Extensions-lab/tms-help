@@ -79,14 +79,16 @@ If you are a Logistic Service Provider (LSP) whose business involves the deliver
 
 ## Use cases
 
-**Delivery of a simple sales order. Selling own goods. Delivery using own transport.**
+### Delivery of a simple sales order. Selling own goods. Delivery using own transport
+
 Shipper scenario. In this case, the sequence of steps is as follows:
 
 1. A [Transport Request](transportrequest.md) is created for the sales order—either manually from the sales order card or automatically when the document is released. This way, the document is handed over for transportation.
 2. The [Transport Request](transportrequest.md) is then added to a new or existing [Delivery Order](deliveryorder.md) by selecting it directly in the Delivery Order document via Prepare → Get Transport Requests, or by using the Load Management tool.
 3. Define Vehicle and Driver in Delivery order.
 
-**Customer’s international freight order. Transport the cargo. Collect the costs. Invoice the customer. Using third-party carriers.**
+### Customer’s international freight order. Transport the cargo. Collect the costs. Invoice the customer. Using third-party carriers
+
 LSP scenario. We use the combination of Forwarding Orders and Freight Orders.
 Preparation: Create a Forwarding Order Type with:
 
