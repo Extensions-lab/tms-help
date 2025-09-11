@@ -33,4 +33,3 @@ Expense control/charges in Freight Order.
 Freight Order includes a tool for optimal route creation by identifying the shortest total distance or delivery time.
 
 ![Setup Image](resources/freightorder/pics/freightorder5.png)
-

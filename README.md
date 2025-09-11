@@ -106,3 +106,5 @@ Steps:
 8. In Settlement, add Income lines for the services to be billed to the Ordering Party.
 9. Issue the customer invoice.
 10. Post related documents in settlement (sales and purchase documents) and post the Forwarding Order.
+
+# Notes
