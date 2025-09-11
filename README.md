@@ -89,8 +89,7 @@ Shipper scenario. In this case, the sequence of steps is as follows:
 
 ### Customer’s international freight order. Transport the cargo. Collect the costs. Invoice the customer. Using third-party carriers
 
-LSP scenario. We use the combination of Forwarding Orders and Freight Orders.
-Preparation: Create a Forwarding Order Type with:
+LSP scenario. Use the combination of [Forwarding Orders](forwardingorder.md) and [Freight Orders](freightorder.md). Preparation: Create a Forwarding Order Type with:
 
 - A stage structure reflecting the actual transport (e.g., pickup → main carriage by sea → delivery to consignee).
 - A status profile aligned with the company’s order handling process.
