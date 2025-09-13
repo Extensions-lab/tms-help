@@ -57,6 +57,7 @@ If you are a Shipper company that manages the transportation process of its sale
 - **Logistic Units Types**: is an item of any composition intended for transportation. Logistic units take many forms: a single box containing a limited number of products, a pallet with multiple products, or an intermodal container containing multiple pallets [details](logisticunittype.md).
 - **Delivery Order**: is a document that details **HOW**: the transportation will be carried out. It specifies the carrier, driver, and vehicle. The Delivery Order represents the actual journey of the truck, outlining the stops where loading or unloading will take place [details](deliveryorder.md).
 - **Routes**. Routes are used for the logical grouping of customer addresses by geographical attribute to facilitate the assignment of a set of customer orders to a specific truck or carrier [details](route.md).
+- **Load Management** Load Management is a tool designed for planning and scheduling cargo delivery. It allows users to allocate transportation requests to specific vehicles and routes, ensuring efficient delivery operations [deails](shipperloadmanagement.md).
 
 ### Logistics Service Provider scenario (LSP)
 

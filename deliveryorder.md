@@ -48,6 +48,29 @@ Automatically checks the loading and unloading schedule for the entire route, ac
 
 ![Elements of the Delivery Order](resources/deliveryorder/pics/deliveryorder8.png)
 
+## Fields Description
+
+- **No.**: Specifies the unique number for this delivery order, used to track and manage shipping stages.
+- **Geographic Zone Code**: Specifies the geographic zone or region for this delivery, aiding route categorization.
+- **Route No.**: Specifies the route identifier that outlines the planned path for this delivery. The Route Code is used as a geographical grouping attribute for consolidating customers and orders. What is considered a “route” is defined and interpreted by your organization. For example, a route code may represent a highway, a major road, or a city district. This route code is assigned in the Customer Card and is then inherited by all subsequent documents — Sales Order → Transport Request — and can later be used when creating a Delivery Order.
+- **Carrier No.**: Specifies the carrier code responsible for transporting goods in this delivery. If you are delivering with your own transport, you can create a Carrier with the code OWN LOGISTICS.
+- **Carrier Name**: Specifies the carrier name responsible for transporting goods in this delivery. If the Delivery Order card is displayed in compact view, only the carrier’s name (without the code) is shown. By clicking the Assist Button, you can select the required carrier.
+- **Mode of Transport**: Specifies the primary transport method, such as road, sea, or air, for the delivery. This field can be set by default in the carrier’s card.
+- **Vehicle No.**: Specifies the unique vehicle number or license plate used for this delivery.
+- **Vehicle Name**: Specifies the labeled vehicle name or identifier for dispatch and scheduling. If the Delivery Order card is displayed in compact view, only the vehicle’s name (without the code) is shown. By clicking the Assist Button, you can select the required vehicle.
+- **Driver No.**: Specifies the driver code operating the vehicle, used for scheduling and compliance.
+- **Driver Name**: Specifies the driver's full name responsible for operating the assigned vehicle. If the Delivery Order card is displayed in compact view, only the driver’s name (without the code) is shown. By clicking the Assist Button, you can select the required driver.
+- **Status**: - Specifies the current status of the delivery order, such as Open or Released.
+- **Vehicle Type**: Specifies the code that defines the vehicle's type, capacity, or dimension limits. All dimensional and weight parameters of any logistics units in TMS are defined using Logistic Units Type. Even a truck has its own size, volume, and weight limitations, so it is considered a logistics unit that can be described with a Logistic Units Type. The Vehicle Type is inherited by default from the Vehicle, if specified. Typically, for each truck type used for deliveries, a separate Logistic Units Type is created with its own weight and/or volume limits and then assigned to the Vehicle.
+- **Vehicle Type Description**: Specifies a descriptive name for the chosen vehicle type or logistic unit definition.
+- **Comment**: Specifies any additional notes or instructions relevant to this delivery order. This field is filled in only on the Delivery Order card and is not inherited from anywhere.
+- **Master Waybill**: Specifies the master waybill reference (e.g. MAWB or MBL) used by the carrier.
+- **Consol Number**: Specifies the consolidation number for grouping multiple shipments under one reference.
+- **Pay-to Vendor No.**: Specifies the vendor code to whom costs or invoices will be assigned for billing.
+- **Pay-to Vendor Name**: Specifies the vendor's name designated to receive payment for this delivery's costs.
+- **Total Distance**: Specifies the summed travel distance from all delivery order lines in this order.
+- **Total Duration**: Specifies the total duration of travel and handling across all stops for this order.
+
 ## Delivery Order and Transport Requests
 
 Transport Requests in a Delivery Order are always represented as two lines: one for loading and one for unloading. These two points—typically shown on the map using MAP Location—are locations where specific actions need to be performed (loading, unloading, picking up pallets, collecting documents, etc.).
@@ -56,7 +79,7 @@ The sequence of these points can be configured in any way. For example, you can 
 
 Representing a Transport Request as two lines provides the flexibility to organize any transportation model.
 
-## Delivery Order functions
+## Functions
 
 ### Delivery Order and Warehouse Shipments
 
@@ -112,29 +135,6 @@ It is useful to run this function whenever you make changes to the route.
 
 For it to work correctly, integration with MAP Providers must be configured [details](googlemapintegration.md).
 
-## Fields Description
-
-- **No.**: Specifies the unique number for this delivery order, used to track and manage shipping stages.
-- **Geographic Zone Code**: Specifies the geographic zone or region for this delivery, aiding route categorization.
-- **Route No.**: Specifies the route identifier that outlines the planned path for this delivery. The Route Code is used as a geographical grouping attribute for consolidating customers and orders. What is considered a “route” is defined and interpreted by your organization. For example, a route code may represent a highway, a major road, or a city district. This route code is assigned in the Customer Card and is then inherited by all subsequent documents — Sales Order → Transport Request — and can later be used when creating a Delivery Order.
-- **Carrier No.**: Specifies the carrier code responsible for transporting goods in this delivery. If you are delivering with your own transport, you can create a Carrier with the code OWN LOGISTICS.
-- **Carrier Name**: Specifies the carrier name responsible for transporting goods in this delivery. If the Delivery Order card is displayed in compact view, only the carrier’s name (without the code) is shown. By clicking the Assist Button, you can select the required carrier.
-- **Mode of Transport**: Specifies the primary transport method, such as road, sea, or air, for the delivery. This field can be set by default in the carrier’s card.
-- **Vehicle No.**: Specifies the unique vehicle number or license plate used for this delivery.
-- **Vehicle Name**: Specifies the labeled vehicle name or identifier for dispatch and scheduling. If the Delivery Order card is displayed in compact view, only the vehicle’s name (without the code) is shown. By clicking the Assist Button, you can select the required vehicle.
-- **Driver No.**: Specifies the driver code operating the vehicle, used for scheduling and compliance.
-- **Driver Name**: Specifies the driver's full name responsible for operating the assigned vehicle. If the Delivery Order card is displayed in compact view, only the driver’s name (without the code) is shown. By clicking the Assist Button, you can select the required driver.
-- **Status**: - Specifies the current status of the delivery order, such as Open or Released.
-- **Vehicle Type**: Specifies the code that defines the vehicle's type, capacity, or dimension limits. All dimensional and weight parameters of any logistics units in TMS are defined using Logistic Units Type. Even a truck has its own size, volume, and weight limitations, so it is considered a logistics unit that can be described with a Logistic Units Type. The Vehicle Type is inherited by default from the Vehicle, if specified. Typically, for each truck type used for deliveries, a separate Logistic Units Type is created with its own weight and/or volume limits and then assigned to the Vehicle.
-- **Vehicle Type Description**: Specifies a descriptive name for the chosen vehicle type or logistic unit definition.
-- **Comment**: Specifies any additional notes or instructions relevant to this delivery order. This field is filled in only on the Delivery Order card and is not inherited from anywhere.
-- **Master Waybill**: Specifies the master waybill reference (e.g. MAWB or MBL) used by the carrier.
-- **Consol Number**: Specifies the consolidation number for grouping multiple shipments under one reference.
-- **Pay-to Vendor No.**: Specifies the vendor code to whom costs or invoices will be assigned for billing.
-- **Pay-to Vendor Name**: Specifies the vendor's name designated to receive payment for this delivery's costs.
-- **Total Distance**: Specifies the summed travel distance from all delivery order lines in this order.
-- **Total Duration**: Specifies the total duration of travel and handling across all stops for this order.
-
 ## FAQ
 
 ### How to add additional stop in Delivery Order Route
@@ -155,4 +155,13 @@ Key requirement when changing a Waypoint in a Delivery Order line:
 
 - The MAP Location must belong to the Shipper entity for a loading line.
 - The MAP Location must belong to the Consignee entity for an unloading line.
- 
+
+### How to manage delivery planning and scheduled deliveries
+
+For planning purposes, it’s better not to work directly with documents like Transport Requests and Delivery Orders, but instead to use the dedicated [Load Management](shipperloadmanagement.md) tool.
+Load Management allows you to:
+
+- Work within a selected or planned time period
+- Manage truck capacity and workload
+- Assign and distribute Transport Requests across trucks.
+

@@ -24,5 +24,3 @@ The permissions—that is, when posting is allowed—are controlled by the [stat
 ## Use cases
 
 This table is used when a transport history for a customer is needed. Typically, the customer is the party paying for the transport, meaning the value is stored in Order Party No. (Order Party Name).
-
-

@@ -32,24 +32,26 @@ This system enables logistics service providers to efficiently manage complex tr
 
 ## Fields Description
 
-Document Identification Fields:
-
 - **No.**: Unique identifier for the forwarding order
-- **Forwarding Order Type Code**: Type definition controlling order structure, stages, and services [about Forwarding Order Type](forwardingordertype.md)
 - **Posting Date** Date used for posting transactions to the ledger
 - **Document Date** Date when the order was created or became valid
-Configuration Fields:
-- **Stage Profile Code** Defines sequential steps for the order's route [details](stages.md)
-- **Status Profile Code** Controls permitted statuses and transitions
+
+### Workflow Fields
+
+- **Forwarding Order Type Code**: Type definition controlling order structure, stages, and services [about Forwarding Order Type](forwardingordertype.md)
 - **Status Code** Current status controlling actions and changes [details](statuses.md)
-Reference Fields:
+
+### Reference Fields
+
 - **External Tracking Number** External system's reference number
 - **Master Waybill** Main carrier's waybill reference (MBL/MAWB)
 - **House Waybill** Forwarder's waybill reference (HAWB/HBL)
 - **Consol Number** Consolidation reference number
 - **Reference No.** Additional internal or customer reference
 - **Comment** Additional remarks or instructions
-Ordering Party:
+
+### Ordering Party
+
 - **Order Party Type** Who pays/requests the service (Company itself/Customer)
 - **Order Party No.** Customer or entity code
 - **Order Party Name** Name of ordering party
@@ -59,7 +61,9 @@ Ordering Party:
 - **Salesperson Code** Responsible salesperson
 - **Order Party Currency Code** Currency for invoicing. Value from Customer card.
 - **Responsibility Center** Specifies the distribution or warehouse center handling this order.
-Shipper Fields:
+
+### Shipper Fields
+
 - **Shipper Type** Whether shipper is Company/Customer/Vendor/Contact
 - **Shipper No.** Shipper code/number
 - **Shipper Name** Shipper entity name
@@ -78,7 +82,9 @@ Shipper Fields:
 - **Shipper Map Location No.** Map reference for TMS display
 - **Shipper VAT No.** Shipper's VAT registration number
 - **Shipper Notes** Additional shipper instructions
-Consignee Fields:
+
+### Consignee Fields
+
 - **Consignee Type** Whether consignee is Company/Customer/Vendor/Contact
 - **Consignee No.** Consignee code/number
 - **Consignee Name/Name 2** Consignee entity name
@@ -97,14 +103,18 @@ Consignee Fields:
 - **Consignee Map Location No.** Map reference for TMS display
 - **Consignee VAT No.** Consignee's VAT registration number
 - **Consignee Notes** Additional consignee instructions
-Planning Fields:
+
+### Planning Fields
+
 - **Requested Pick-up Datetime** Requested pickup date/time
 - **Planned Pick-up Datetime** Scheduled pickup date/time
 - **Requested Delivery Datetime** Requested delivery date/time
 - **Planned Delivery Datetime** Scheduled delivery date/time
 - **Actual Start Date** When transportation actually began
 - **Actual End Date** When transportation was completed
-Calculated Fields:
+
+### Calculated Fields
+
 - **Gross Weight (base)** Total gross weight in base units
 - **Net Weight (base)** Net weight excluding packaging
 - **Volume (base)** Total volume in base units
@@ -122,12 +132,16 @@ Calculated Fields:
 - **Uninvoiced Amount (LCY)** Amount not tied to invoices
 - **Profit % (LCY)** Profit margin percentage in LCY
 - **Profit % (ACY)** Profit margin percentage in ACY
-Freight Order Allocation Fields:
+
+### Freight Order Allocation Fields
+
 - **Planned Reserved Weight** Weight allocated to freight orders
 - **Planned Reserved Volume** Volume shared with freight orders
 - **Planned Reserved Footage** Footage allocated to freight orders
 - **Attachments** Count of attached documents
-Additional Fields:
+
+### Additional Fields
+
 - **Incoterm** - Shipping terms (FOB, etc.)
 - **Additional Terms** - Extra shipping/commercial terms
 
