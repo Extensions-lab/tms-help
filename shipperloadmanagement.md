@@ -4,8 +4,8 @@ The Load Management Tool is a comprehensive planning and optimization system des
 This tool serves as a centralized platform for logistics managers to allocate transportation requests to specific vehicles and routes, ensuring optimal resource utilization and timely delivery operations.
 The system operates on two primary entities:
 
-- Transport Requests (representing purchase or sales orders that need to be fulfilled)
-- Delivery Orders (representing the delivery vehicles/trucks along with their associated routes and capacity constraints).
+- [Transport Requests](transportrequest.md) (representing purchase or sales orders that need to be fulfilled)
+- [Delivery Orders](deliveryorder.md) (representing the delivery vehicles/trucks along with their associated routes and capacity constraints).
 
 The Load Management interface features a three-panel layout:
 
