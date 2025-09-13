@@ -1,4 +1,4 @@
-# Transportation Management System (TMS) - Assign Permissions to Uses
+# Assign Permission Sets to Users
 
 ## Assign user permissions
 

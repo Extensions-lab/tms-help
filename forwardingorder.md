@@ -30,12 +30,6 @@ The Forwarding Order provides sophisticated functionality including:
 The Forwarding Order seamlessly integrates with Business Central's core functionality, automatically generating sales invoices and purchase documents, maintaining currency conversion with exchange rate management, supporting multi-company scenarios, providing extensive reporting capabilities, and offering flexible customization through configurable order types that define default behaviors, allowed services, and workflow rules.
 This system enables logistics service providers to efficiently manage complex transportation operations while maintaining full integration with standard Business Central financial and operational processes, providing a complete solution for modern transportation management needs.
 
-## Use case
-
-Request for transportation from either an external client or the company itself. It specifies WHAT needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
-
-![Setup Image](resources/forwardingorder/pics/forwardingorder.png)
-
 ## Fields Description
 
 Document Identification Fields:
@@ -157,4 +151,9 @@ The TMS attachment control system allows for the configuration of types of docum
 
 ![Content](resources/forwardingorder/pics/DocumentsControl.png)
 
+## Use case
+
+Request for transportation from either an external client or the company itself. It specifies WHAT needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
+
+![Setup Image](resources/forwardingorder/pics/forwardingorder.png)
 
