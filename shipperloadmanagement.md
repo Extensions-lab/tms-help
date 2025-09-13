@@ -11,8 +11,8 @@ The Load Management interface features a three-panel layout:
 
 - filter panel displays the selected planning period.
 - the main panel displays available Delivery Orders (trucks) with their current capacity status (loaded weight, volume, footage, and logistic units), vehicle specifications, assigned carriers, drivers, and routes.
-- The "In Truck" panel displays transport requests that have already been allocated to the selected delivery vehicle, allowing for capacity monitoring and load optimization.
-- The "Pending Transport Requests" panel shows unassigned transportation demands with detailed pickup and delivery information, cargo specifications, and scheduling requirements (document ready for delivery).
+- The **In Truck** panel displays transport requests that have already been allocated to the selected delivery vehicle, allowing for capacity monitoring and load optimization.
+- The **Pending Transport Requests** panel shows unassigned transportation demands with detailed pickup and delivery information, cargo specifications, and scheduling requirements (document ready for delivery).
 
 The tool includes advanced filtering capabilities by date periods, geographic zones, and item attributes, enabling users to focus on specific timeframes or cargo requirements. Users can seamlessly move transport requests between pending and assigned status usin dedicated actions, with real-time capacity validation to prevent overloading.
 
