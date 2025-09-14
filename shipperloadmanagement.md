@@ -65,3 +65,5 @@ To place requests into a Delivery Order:
 - Click **Add To Delivery Order**.
 
 ![Setup Image](resources/shipperloadmanagement/pics/loadmanagement5.png)
+
+

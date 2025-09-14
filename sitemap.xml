@@ -3,125 +3,90 @@
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>1.00</priority>
+  <loc>https://tms.extensions-lab.com/</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/installation.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/installation.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/buylicenses.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/buylicenses.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/assignpermissionsets.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/assignpermissionsets.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/setup.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/setup.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/maplocation.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/maplocation.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/maplocationtype.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/maplocationtype.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/googlemapintegration.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/googlemapintegration.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/carrier.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/carrier.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/vehicle.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/vehicle.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/driver.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/driver.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/transportrequest.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/transportrequest.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/logisticunittype.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/logisticunittype.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/deliveryorder.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/deliveryorder.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/route.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/route.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/forwardingordertype.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/shipperloadmanagement.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/forwardingorder.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/forwardingordertype.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/freightorder.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/forwardingorder.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/settlement.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/freightorder.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/attachmentcontrol.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/settlement.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/stages.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/attachmentcontrol.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/statuses.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/stages.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/services.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/statuses.html</loc>
 </url>
 <url>
-  <loc>https://extensions-lab.github.io/tms-help/charges.html</loc>
-  <lastmod>2025-09-11T07:09:13+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://tms.extensions-lab.com/services.html</loc>
+</url>
+<url>
+  <loc>https://tms.extensions-lab.com/charges.html</loc>
+</url>
+<url>
+  <loc>https://tms.extensions-lab.com/forwardingagreement.html</loc>
+</url>
+<url>
+  <loc>https://tms.extensions-lab.com/postedforwardingorder.html</loc>
+</url>
+<url>
+  <loc>https://tms.extensions-lab.com/product.html</loc>
 </url>
 </urlset>
