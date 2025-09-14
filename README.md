@@ -8,7 +8,7 @@ TMS is a comprehensive solution intended to streamline the transportation proces
 
 The TMS solution is ideal for two usage scenarios:
 
-- if you are a Shipper company that manages the transportation process of its sales, purchase and transfer orders and uses either its own transport with its drivers or hires, as well as uses third-party carriers.
+- if you are a Shipper company that manages the transportation process of its sales, purchase and transfer orders and uses either its own transport with its drivers or hires, as well as uses third-party carriers [details](shipperscenario.md).
 - if you are a Logistic Service Provider (LSP) whose business involves the delivery of third-party goods, managing the transportation process and may also have its own fleet of vehicles and drivers or utilize services of third-party carriers. In this scenario, the mechanism for cost control and transparency in the invoicing process for transportation is crucial.
 
 ## Prerequisites
