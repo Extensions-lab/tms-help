@@ -15,19 +15,19 @@ The Routes page provides capabilities, displaying route information alongside a 
 
 Primary Identification Fields:
 
-- **Code**: Unique route code used to group customers geographically for TMS deliveries
-- **Description**: Descriptive label for the route to help identify its coverage in TMS
+- **Code** : Unique route code used to group customers geographically for TMS deliveries
+- **Description** : Descriptive label for the route to help identify its coverage in TMS
 
 Default Resource Assignment Fields:
 
-- **Def. Carrier No.**: Default carrier assigned to shipments along this TMS route [about carrier](carrier.md)
-- **Def. Vehicle No.**: Vehicle typically handling deliveries for this route [about vehicle](vehicle.md)
-- **Def. Driver No.**: Driver commonly responsible for shipments on this route [about driver](driver.md)
+- **Def. Carrier No.** : Default carrier assigned to shipments along this TMS route [about carrier](carrier.md)
+- **Def. Vehicle No.** : Vehicle typically handling deliveries for this route [about vehicle](vehicle.md)
+- **Def. Driver No.** : Driver commonly responsible for shipments on this route [about driver](driver.md)
 
 Scheduling Control Fields:
 
-- **Scheduler Sort Order**: Numerical order used to sort resources in the TMS scheduler
-- **Block for Scheduling**: Whether this route is blocked from TMS scheduling activities
+- **Scheduler Sort Order** : Numerical order used to sort resources in the TMS scheduler
+- **Block for Scheduling** : Whether this route is blocked from TMS scheduling activities
 
 The table includes automatic validation logic in the "Def. Carrier No." field that cascades default vehicle and driver assignments from the carrier when a carrier is selected.
 

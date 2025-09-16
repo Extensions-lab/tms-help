@@ -42,24 +42,24 @@ You can activate verification by setting a flag in the field of the correspondin
 
 ### Action Control Description for Statuses
 
-- **Change Order Type**: Specifies if the user can switch the order type at this status.
-- **Shipper/Consignee Change**: Specifies if shipper or consignee details can be edited when the order is at this status.
-- **Lines Change**: Specifies if lines (content of the Forwarding Order) can be added, removed, or modified at this status.
-- **Date Planning**: Specifies if planning dates can be changed for an order at this status.
-- **Rount Planning**: Specifies if the route (stages) can be adjusted at this status.
-- **Delete Document**: Specifies if the order can be fully deleted at this status.
-- **Logistic Units Build**: Specifies if logistic units can be built or assembled at this status.
-- **Create Freight Order**: Specifies if a freight order can be created from the forwarding order at this status. This means that the system allows you to assign a performer (carrier) to the stages of a Forwarding Order—that is, the party who will actually carry out the transportation.
-- **Invoicing**: Specifies if the order can be invoiced at this status.
-- **Settlement Document Posted**: Specifies if all documents in the settlement must be posted at this status. Requires that all documents in the Settlement (customer invoices and invoices from carriers/service providers) are posted before the Forwarding Order can be moved to this status [details](settlement.md).
-- **Settlement Posting Date Control**: Specifies if the settlement posting dates must be earlier than the forwarding order's posting date to move Forwarding Order at this status.
-- **Post**: Specifies if the order can be posted at this status.
-- **Copy**: Specifies if data can be copied from or to another order at this status.
-- **Settlement**: Specifies if settlement lines can be added at this status [details](settlement.md).
-- **Settlement Invoice Lines**: Specifies if invoice settlement lines can be created at this status.
-- **Settlement Cost Lines**: Specifies if cost settlement lines can be created at this status.
-- **Line Style**: Specifies the visual style used to display or highlight documents in Forwarding Order Lisp page at this status.
-- **Extended Control**: Specifies if additional document controls or attachments are enforced at this status [details](attachmentcontrol.md).
+- **Change Order Type** : Specifies if the user can switch the order type at this status.
+- **Shipper/Consignee Change** : Specifies if shipper or consignee details can be edited when the order is at this status.
+- **Lines Change** : Specifies if lines (content of the Forwarding Order) can be added, removed, or modified at this status.
+- **Date Planning** : Specifies if planning dates can be changed for an order at this status.
+- **Rount Planning** : Specifies if the route (stages) can be adjusted at this status.
+- **Delete Document** : Specifies if the order can be fully deleted at this status.
+- **Logistic Units Build** : Specifies if logistic units can be built or assembled at this status.
+- **Create Freight Order** : Specifies if a freight order can be created from the forwarding order at this status. This means that the system allows you to assign a performer (carrier) to the stages of a Forwarding Order—that is, the party who will actually carry out the transportation.
+- **Invoicing** : Specifies if the order can be invoiced at this status.
+- **Settlement Document Posted** : Specifies if all documents in the settlement must be posted at this status. Requires that all documents in the Settlement (customer invoices and invoices from carriers/service providers) are posted before the Forwarding Order can be moved to this status [details](settlement.md).
+- **Settlement Posting Date Control** : Specifies if the settlement posting dates must be earlier than the forwarding order's posting date to move Forwarding Order at this status.
+- **Post** : Specifies if the order can be posted at this status.
+- **Copy** : Specifies if data can be copied from or to another order at this status.
+- **Settlement** : Specifies if settlement lines can be added at this status [details](settlement.md).
+- **Settlement Invoice Lines** : Specifies if invoice settlement lines can be created at this status.
+- **Settlement Cost Lines** : Specifies if cost settlement lines can be created at this status.
+- **Line Style** : Specifies the visual style used to display or highlight documents in Forwarding Order Lisp page at this status.
+- **Extended Control** : Specifies if additional document controls or attachments are enforced at this status [details](attachmentcontrol.md).
 
 ![Setup Image](resources/statuses/pics/statuses6.png)
 

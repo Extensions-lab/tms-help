@@ -14,7 +14,7 @@ The user interface includes specialized pages for order management, list views, 
 
 ## Freight Order and Forwarding Order link
 
-This Freight ORder details **HOW**: the Forwarding Order will be executed, indicating who will actually carry it out. It specifies the carrier and the driver involved. The Freight Order reflects the actual journey of a truck or carrier.
+This Freight ORder details **HOW** : the Forwarding Order will be executed, indicating who will actually carry it out. It specifies the carrier and the driver involved. The Freight Order reflects the actual journey of a truck or carrier.
 
 Each stage of a Forwarding Order is carried out either by the company itself or by third-party carriers. Therefore, a Freight Order must be created for each stage. A Freight Order is the tool used to monitor the execution of Forwarding Order stages.
 

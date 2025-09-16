@@ -33,19 +33,19 @@ This system enables logistics service providers to efficiently manage complex tr
 
 ## Fields Description
 
-- **No.**: Unique identifier for the forwarding order
+- **No.** : Unique identifier for the forwarding order
 - **Posting Date** Date used for posting transactions to the ledger
 - **Document Date** Date when the order was created or became valid
 
 ### Workflow Fields
 
-- **Forwarding Order Type Code**: Type definition controlling order structure, stages, and services [about Forwarding Order Type](forwardingordertype.md)
+- **Forwarding Order Type Code** : Type definition controlling order structure, stages, and services [about Forwarding Order Type](forwardingordertype.md)
 - **Status Code** Current status controlling actions and changes [details](statuses.md)
 
 ### Reference Fields
 
 - **External Tracking Number** External system's reference number
-- **Master Waybill** Main carrier's waybill reference (MBL/MAWB)
+- **Master Waybill** Main carrier's waybill reference (MBL/MAWB/AWB)
 - **House Waybill** Forwarder's waybill reference (HAWB/HBL)
 - **Consol Number** Consolidation reference number
 - **Reference No.** Additional internal or customer reference
@@ -69,6 +69,9 @@ This system enables logistics service providers to efficiently manage complex tr
 - **Shipper No.** Shipper code/number
 - **Shipper Name** Shipper entity name
 - **Shipper Address** Shipper street address
+- **Shipper Map Location No.** Map reference for TMS display
+- **Shipper VAT No.** Shipper's VAT registration number
+- **Shipper Notes** Additional shipper instructions
 - **Load Address Code** Predefined pickup location code
 - **Load Address Name** Label for pickup location
 - **Load Address** Primary pickup street address
@@ -80,9 +83,6 @@ This system enables logistics service providers to efficiently manage complex tr
 - **Load Address County** County/region name
 - **Load Address E-Mail** Email for pickup location
 - **Load Address GLN** GLN for EDI/location references
-- **Shipper Map Location No.** Map reference for TMS display
-- **Shipper VAT No.** Shipper's VAT registration number
-- **Shipper Notes** Additional shipper instructions
 
 ### Consignee Fields
 
@@ -90,6 +90,9 @@ This system enables logistics service providers to efficiently manage complex tr
 - **Consignee No.** Consignee code/number
 - **Consignee Name/Name 2** Consignee entity name
 - **Consignee Address/Address 2** Consignee street address
+- **Consignee Map Location No.** Map reference for TMS display
+- **Consignee VAT No.** Consignee's VAT registration number
+- **Consignee Notes** Additional consignee instructions
 - **Unload Address Code** Predefined delivery location code
 - **Unload Address Name** Label for delivery address
 - **Unload Address** Primary delivery street address
@@ -101,9 +104,6 @@ This system enables logistics service providers to efficiently manage complex tr
 - **Unload Address County** County/region name
 - **Unload Address E-Mail** Email for delivery location
 - **Unload Address GLN** GLN for EDI/location references
-- **Consignee Map Location No.** Map reference for TMS display
-- **Consignee VAT No.** Consignee's VAT registration number
-- **Consignee Notes** Additional consignee instructions
 
 ### Planning Fields
 
@@ -168,7 +168,7 @@ The TMS attachment control system allows for the configuration of types of docum
 
 ## Use case
 
-Request for transportation from either an external client or the company itself. It specifies WHAT needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
+Request for transportation from either an external client or the company itself. It specifies **WHAT** needs to be transported, where to pick up and deliver the item(s), identifies the shipper and consignee, outlines the logistic units being shipped, the relevant dates, and who will cover the costs, etc.
 
 ![Setup Image](resources/forwardingorder/pics/forwardingorder.png)
 

@@ -22,66 +22,66 @@ You can create any number of map points (MAP Locations) for any Business Central
 
 Basic Identification:
 
-- **No.**: Unique identifier for this map location in TMS. The number series for MAP Locations is configured in the TMS Setup [details](setup.md).
-- **Description**: Brief description or label for this map location in TMS
-- **Type Code**: Location category, such as an airport, port, or warehouse [details](maplocationtype.md)
+- **No.** : Unique identifier for this map location in TMS. The number series for MAP Locations is configured in the TMS Setup [details](setup.md).
+- **Description** : Brief description or label for this map location in TMS
+- **Type Code** : Location category, such as an airport, port, or warehouse [details](maplocationtype.md)
 Address Information:
-- **Address**: Street address for this map location (e.g., street and house number)
-- **Address 2**: Additional address details, such as suite or building information
-- **Country/Region Code**: Country or region associated with this map location
-- **City**: City in which this map location is found
-- **Post Code**: Postal code used for routing or shipping references
-- **County**: County, district, or province for this address
+- **Address** : Street address for this map location (e.g., street and house number)
+- **Address 2** : Additional address details, such as suite or building information
+- **Country/Region Code** : Country or region associated with this map location
+- **City** : City in which this map location is found
+- **Post Code** : Postal code used for routing or shipping references
+- **County** : County, district, or province for this address
 
 Specialized Identifiers:
 
-- **GLN**: Global Location Number used for EDI or supply chain documents (with validation)
-- **Contact**: Contact person's name for this location in TMS
-- **Phone No.**: Primary telephone number for this map location
+- **GLN** : Global Location Number used for EDI or supply chain documents (with validation)
+- **Contact** : Contact person's name for this location in TMS
+- **Phone No.** : Primary telephone number for this map location
 
 Time and Location Services:
 
-- **Time Zone**: Time zone to use for scheduling and timeline accuracy at this location
-- **Airport Code**: IATA airport code if this location is an airport (with automatic coordinate lookup)
+- **Time Zone** : Time zone to use for scheduling and timeline accuracy at this location
+- **Airport Code** : IATA airport code if this location is an airport (with automatic coordinate lookup)
 
 Geographical Coordinates:
 
-- **Latitude**: GPS latitude coordinate for map-based calculations (10 decimal places)
-- **Longitude**: GPS longitude coordinate for routing or distance calculations (10 decimal places)
-- **Altitude**: Elevation above sea level for this location (10 decimal places)
+- **Latitude** : GPS latitude coordinate for map-based calculations (10 decimal places)
+- **Longitude** : GPS longitude coordinate for routing or distance calculations (10 decimal places)
+- **Altitude** : Elevation above sea level for this location (10 decimal places)
 
 Map Display Settings:
 
-- **Map Zoom Level**: Default zoom level for map displays at this location
-- **Map View Type**: Default map view type (e.g., satellite or terrain)
-- **Position Is Set**: Whether the location's coordinates have been set by a map service
-- **Last API Call Result**: Outcome of the last geocoding or map API request for this location
-- **Google Place ID**: Unique identifier assigned by Google for this place
+- **Map Zoom Level** : Default zoom level for map displays at this location
+- **Map View Type** : Default map view type (e.g., satellite or terrain)
+- **Position Is Set** : Whether the location's coordinates have been set by a map service
+- **Last API Call Result** : Outcome of the last geocoding or map API request for this location
+- **Google Place ID** : Unique identifier assigned by Google for this place
 
 Creation Tracking:
 
-- **Created by Wizard**: Whether this location was automatically created by a wizard
+- **Created by Wizard** : Whether this location was automatically created by a wizard
 
 Business Central Integration:
 
-- **Source Type**: Type of linked entity (undefined, customer, ship-to address, vendor, order address, location, contact)
-- **Source No.**: Record identifier of the entity linked to this map location (with automatic data population)
-- **Source Code**: Secondary code for addresses (ship-to or order address) linked to this location
-- **Source Name**: Name or label of the linked source entity (auto-populated)
+- **Source Type** : Type of linked entity (undefined, customer, ship-to address, vendor, order address, location, contact)
+- **Source No.** : Record identifier of the entity linked to this map location (with automatic data population)
+- **Source Code** : Secondary code for addresses (ship-to or order address) linked to this location
+- **Source Name** : Name or label of the linked source entity (auto-populated)
 
 Operational Parameters:
 
-- **Handling Time**: Additional time needed at this location for loading, unloading, or other tasks
+- **Handling Time** : Additional time needed at this location for loading, unloading, or other tasks
 
 System Configuration:
 
-- **No. Series**: Number series code used to assign new location numbers automatically
+- **No. Series** : Number series code used to assign new location numbers automatically
 
 Audit Trail:
 
-- **Last Modified Date Time**: Local date-time when this record was last changed
-- **Last Modified Date Time (UTC)**: UTC date-time when this record was last changed
-- **Last Modified UserID**: User who last modified this record in TMS
+- **Last Modified Date Time** : Local date-time when this record was last changed
+- **Last Modified Date Time (UTC)** : UTC date-time when this record was last changed
+- **Last Modified UserID** : User who last modified this record in TMS
 
 ## Notes
 

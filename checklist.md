@@ -35,4 +35,4 @@ Users mark items as done and add comments. Check List does not depend on the sta
 
 The setup uses two main tables:
 
-- **Check List Settings" table**: stores the check list template configuration for [Forwarding Order Type](forwardingordertype.md).
+- **Check List Settings" table** : stores the check list template configuration for [Forwarding Order Type](forwardingordertype.md).
