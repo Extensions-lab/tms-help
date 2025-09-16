@@ -40,9 +40,7 @@ Each settlement consists of multiple settlement lines, where each line represent
 
 ### 2. Master Data Integration
 
-#### Services (Income Lines)
-
-Services define what you charge customers for:
+#### Services (Income) Lines. Services define what you charge customers for
 
 - **Code** : Unique service identifier
 - **Description** : Service description
@@ -50,9 +48,7 @@ Services define what you charge customers for:
 - **Invoice Line Type** : Maps to Business Central entities (G/L Account, Item, Resource, etc.)
 - **Invoice Line No.** : Specific Business Central record
 
-#### Charges (Cost Lines)
-
-Charges define what you pay suppliers for:
+#### Charges (Cost) Lines. Charges define what you pay suppliers for
 
 - **Code** : Unique charge identifier
 - **Description** : Charge description

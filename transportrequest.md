@@ -114,7 +114,7 @@ Main rule for combining documents: One origin point – one destination point.
 
 From the card page of a document, you can manage the creation of Transport Requests more precisely — for example, by splitting a large order into several Transport Requests and later assigning them to different trucks. However, in list pages, it's more convenient to group multiple orders into a single request or truck.
 
-Document Card and List Pages
+Document Card and List Pages:
 
 - **Purchase Credit Memo** / **Purchase Credit Memos**
 - **Purchase Invoice** / **Purchase Invoices**
