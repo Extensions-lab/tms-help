@@ -188,7 +188,7 @@ Posted Documents Card and List Page:
 - **Posted Purchase Invoice** / **Posted Purchase Invoices**
 - **Posted Purchase Receipt** / **Posted Purchase Receipts**
 - **Posted Return Shipment** / **Posted Return Shipment**
-- **Posted Purchase Credit Memo** / ***Posted Purchase Credit Memos**
+- **Posted Purchase Credit Memo** / **Posted Purchase Credit Memos**
 
 - **Posted Sales Credit Memo** / **Posted Sales Credit Memos**
 - **Posted Sales Invoice** / **Posted Sales Invoices**
