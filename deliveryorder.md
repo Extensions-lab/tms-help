@@ -175,12 +175,10 @@ Document Card and List Pages
 - **Purchase Invoice** / **Purchase Invoices**
 - **Purchase Order** / **Purchase Order List**
 - **Purchase Return Order** / **Purchase Return Order List**
-
 - **Sales Credit Memo** / **Sales Credit Memos**
 - **Sales Invoice** / **Sales Invoice List**
 - **Sales Order** / **Sales Order List**
 - **Sales Return Order** / **Sales Return Order List**
-
 - **Transfer Order**
 
 Posted Documents Card and List Page:
@@ -189,8 +187,13 @@ Posted Documents Card and List Page:
 - **Posted Purchase Receipt** / **Posted Purchase Receipts**
 - **Posted Return Shipment** / **Posted Return Shipment**
 - **Posted Purchase Credit Memo** / **Posted Purchase Credit Memos**
-
 - **Posted Sales Credit Memo** / **Posted Sales Credit Memos**
 - **Posted Sales Invoice** / **Posted Sales Invoices**
 - **Posted Return Receipt** / **Posted Return Receipts**
 - **Posted Sales Shipment** / **Posted Sales Shipments**
+
+## Reports
+
+- **Loading Manifest**: Prints a concise manifest showing vehicle, driver, route, and the ordered loading/unloading stops with items, quantities, weights, and addresses to guide efficient loading and delivery.
+- **Packing List Report** provides a concise, per-drop summary of all goods included in a Delivery Order. It shows key delivery information (carrier, driver, vehicle, route) and, for each stop, the addresses, notes, and totals such as weight, volume, and number of logistic units. When enabled, it also lists detailed item lines (items, quantities, weights, volumes, GTINs). Use it to guide loading and unloading, verify shipped contents, and share clear, structured information with drivers, warehouses, and consignees throughout the delivery process.
+- **Bill of Lading** report provides a per-drop (stop) shipment document for a Delivery Order, using the route’s unload points. It compiles company details, carrier/driver/vehicle information (including registration, mode of transport, route number, waybill and external tracking references), and key delivery metrics such as total distance and duration. For each stop, it shows the sequence/drop number, waypoint/action, scheduled date/time, comments, source document references, and aggregated cargo figures (weight, volume, and footage). It also details shipper and consignee addresses and contacts for the specific drop, along with load/unload notes and priorities. When logistic units are involved, the report lists each unit with barcode, type, weight, and volume, plus per-drop totals (gross/net weight, total volume, line count, and quantity). The report is produced from the Delivery Order page via “Bill Of Lading” and is rendered with a Word layout for sharing with the carrier and consignee.

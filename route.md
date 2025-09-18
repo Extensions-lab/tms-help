@@ -34,3 +34,8 @@ The table includes automatic validation logic in the "Def. Carrier No." field th
 ## Notes
 
 The Route directory is used in the Shipper scenario of TMS.
+
+## Use case
+
+A typical route usage scenario. A default route is set for the customer, and this route is inherited by the created document (for example, a sales order). The route code is then passed on to the generated Transport Request.
+The route code can then be used when selecting documents in the created Delivery Order (using the Get Documents function) or when creating a Delivery Order from a list of documents (e.g., sales orders) by filtering on the route field.
