@@ -1,26 +1,59 @@
+---
+title: "Posted Forwarding Order"
+description: "Review read-only history after a Forwarding Order has been posted."
+---
+
 # Posted Forwarding Order
 
-The Posted Forwarding Order represents the historical and finalized version of a [Forwarding Order](forwardingorder.md) in the Transportation Management System (TMS) extension for Microsoft Dynamics 365 Business Central. It serves as an immutable record of a completed transportation request that has been posted or archived in the system.
-The Posted Forwarding Order captures all essential transportation details including:
+Use **Posted Forwarding Orders** to review completed transportation jobs.
 
-- the ordering party (customer/vendor/company)
-- shipper and consignee information with complete address details
-- transportation planning data (requested/planned/actual pickup and delivery dates)
-- freight documentation (waybills, consolidation numbers)
-- and financial settlement information.
+Posted records preserve operational, document, and financial history after the active Forwarding Order is posted.
 
-It maintains a comprehensive audit trail with creation and modification timestamps, user tracking, and supports multiple posted versions of the same order through versioning.
+## Before you start
 
-The entity includes extensive logistics data such as weights, volumes, freight charges, carrier assignments, vehicle and driver information, and integrates with Business Central's document attachment system for supporting documentation.
+Make sure that:
 
-As a read-only historical record, it provides complete visibility into past transportation operations while preserving the integrity of completed transactions and enabling detailed reporting and analysis of transportation performance, costs, and execution patterns. The Posted Forwarding Order is designed primarily for the Logistics Service Provider (LSP) scenario, serving as the definitive record of transportation services delivered to customers.
+- the Forwarding Order has been posted,
+- the user has permission to open posted TMS records,
+- related sales or purchase posted documents are available if you need financial detail.
 
-## Post
+## What you can review
 
-A Posted Forwarding Order appears only after the Forwarding Order has been posted.
+| Area | Use it for |
+|---|---|
+| **General** | Posted order number, original references, dates, status, and parties. |
+| **Content** | Cargo, quantities, unit types, and logistics details. |
+| **Stages** | Historical transportation legs and execution assignments. |
+| **Settlement** | Posted income, cost, allocation, and margin information. |
+| **Attachments** | Files stored with or linked to the posted record. |
+| **Related documents** | Posted customer invoices, credit memos, and vendor documents when linked. |
 
-The permissions—that is, when posting is allowed—are controlled by the [status system](statuses.md). For example, statuses can be used to block the posting of a Forwarding Order if customer invoices or carrier invoices related to that order have not yet been processed.
+## How to work in this page
 
-## Use cases
+1. Search for **Posted Forwarding Orders**.
+2. Open the posted order.
+3. Review general information and references.
+4. Open content, stage, settlement, or attachment details as needed.
+5. Use related document actions to trace invoices or credit memos.
+6. Print historical documents when your process allows it.
 
-This table is used when a transport history for a customer/client is needed. Typically, the customer is the party paying for the transport, meaning the value is stored in Order Party No. (Order Party Name).
+## Good to know
+
+- Posted Forwarding Orders are read-only history.
+- Corrections normally happen through credit memos, new documents, or controlled adjustment processes.
+- Keep posted history available for audit, customer service, and profitability reporting.
+
+## Troubleshooting
+
+| Problem | What to check |
+|---|---|
+| Posted order is not visible | Check filters, posting result, and user permissions. |
+| Linked invoice is missing | Review settlement posting and related document references. |
+| Attachment is not available | Check storage setup and user permission to open attachments. |
+
+## Related
+
+- [Forwarding Order](forwardingorder.md)
+- [Posted History](postedhistory.md)
+- [Settlement](settlement.md)
+- [Reports and Documents](reports.md)

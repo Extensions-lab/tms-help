@@ -1,43 +1,71 @@
+---
+title: "Services"
+description: "Define billable services used in Forwarding Order settlement and customer invoicing."
+---
+
 # Services
 
-Services are used in TMS for the LSP scenario to issue invoices to the customer and to record the services provided to them.
+Use **Services** to define what your company charges customers for.
 
-- The TMS module possesses its own service directory/system, enabling the flexible customization of services offered within the context of the transportation process.
-- TMS services are mapped to entities within the standard Business Central, facilitating operations for billing.
-- Mapping can be one-to-one, where a TMS service is directly mirrored in the item directory, or many-to-one, where multiple TMS services aggregate into a single billable item-service.
-- TMS services are employed in the settlement of forwarding orders, and setting up TMS services is essential for invoicing clients.
-- TMS represents the suite of transportation services we provide to the client and for which we issue invoices.
+Services are the income side of settlement. Charges are the cost side.
 
-Possible relations between TMS Services and Items of the Business Central
+![Services list](resources/services/pics/services1.png)
 
-![Setup Image](resources/services/pics/services1.png)
+## Before you start
 
-- Mapping TMS services to BC items means that within the TMS module, we operate and work with TMS services, but when invoicing or allocating costs in standard BC documents, items will appear instead.
-- Business Central is unaware of the TMS module and cannot interact with its entities.
+Make sure that:
 
-## Where to find
+- Business Central posting setup exists for customer invoicing,
+- service descriptions are agreed with finance and operations,
+- pricing rules are configured if services should receive automatic prices,
+- users know which services are standard and which are exception services.
 
-using main menu of the TMS
+## How to create a service
 
-![Setup Image](resources/services/pics/services2.png)
+1. Search for **Services**.
+2. Choose **New**.
+3. Enter a code and description.
+4. Fill posting, tax, unit, and pricing defaults when required.
+5. Mark the service blocked only when it should no longer be used.
+6. Test the service on a settlement income line.
 
-using search
+## Fields that matter most
 
-![Setup Image](resources/services/pics/services3.png)
+| Field | Why it matters |
+|---|---|
+| **Code** | Identifies the service on settlement lines. |
+| **Description** | Appears on invoices and internal reports. |
+| **Posting mapping** | Controls customer invoice creation. |
+| **Unit of Measure** | Controls quantity and price interpretation. |
+| **Blocked** | Prevents new use while preserving history. |
 
-TMS Services list page
+## Where services are used
 
-![Setup Image](resources/services/pics/services4.png)
+| Area | Use |
+|---|---|
+| **Settlement income lines** | Defines what the customer is billed for. |
+| **Pricing** | Finds or calculates expected income. |
+| **Sales documents** | Creates customer invoice or credit memo lines. |
+| **Reporting** | Shows revenue by service. |
 
-Set link to the Business Central entity
+## Good to know
 
-![Setup Image](resources/services/pics/services5.png)
+- Use clear invoice-friendly descriptions.
+- Do not mix services and charges. Services are income. Charges are cost.
+- Block obsolete services instead of deleting them.
 
-- Create a product that will serve as a reflection of the TMS service in the standard Business Central module.
-- Establish the link.
+## Troubleshooting
 
-p.s. The entity type corresponds to the type of purchase or sales order line.
+| Problem | What to check |
+|---|---|
+| Service cannot be selected | Check whether the service is blocked. |
+| Invoice line is wrong | Review service description, posting mapping, quantity, price, and tax setup. |
+| Price is missing | Check pricing setup, customer, agreement, currency, and validity dates. |
+| User cannot create invoice | Check settlement status, permissions, and TMS Setup. |
 
-## Prerequisites
+## Related
 
-To change or create status profiles user must have TMS Admin Permissions.
+- [Settlement](settlement.md)
+- [Pricing](pricing.md)
+- [Charges](charges.md)
+- [TMS Setup](setup.md)

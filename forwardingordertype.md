@@ -1,59 +1,74 @@
-# Forwarding Order Type
+---
+title: "Forwarding Order Types"
+description: "Configure Forwarding Order templates for defaults, stages, statuses, documents, and settlement behavior."
+---
 
-is a template configuration that defines the structure, behavior, and default values for forwarding orders (LSP Scenario) in the Transportation Management System (TMS).
-It serves as a blueprint that automates the creation of forwarding orders by pre-configuring:
+# Forwarding Order Types
 
-- Process Management: Status profiles and stage profiles that define the workflow and transportation stages.
-- Party Defaults: Default shipper, consignee, and ordering party information
-- Service Configuration: Default and allowed service/charge sets for billing
-- Content Templates: Default content sets for order items/products
-- Business Rules: INCOTERM terms, payment status, volume weight calculations, and field editability
-- Numbering: Number series for unique order identification
-- This entity enables standardization of transportation processes while providing flexibility through configurable templates for different types of shipments (e.g., domestic, international, express, standard freight).
+Use **Forwarding Order Types** to define how different transportation jobs behave.
 
-## Fields description
+A type can represent an import job, export job, domestic move, air freight job, sea freight job, brokerage job, or any other process your company manages.
 
- Status profiles and stage profiles that define the workflow and transportation stages.
+![Forwarding Order Type setup](resources/forwardingordertype/pics/fwotype1.png)
 
-- **Default Status Profile** : - the status profile that will be set for an order upon its creation for the selected order type. A status profile is a set of statuses that a document can have within the business process of its handling. Default status code - the status value that a document will have upon creation, thereby allowing for the automatic advancement of the document to a specific stage of its processing [See details](statuses.md).
+## Before you start
 
-![Setup Image](resources/forwardingordertype/pics/fwotype1.png)
+Make sure that:
 
-- **Default Stage Profile** : - the stage profile defines the structure of the transportation, whether it be a simple single-stage delivery or a complex multi-stage intermodal transportation involving multiple carriers.
+- status profiles exist,
+- stage profiles exist,
+- services and charges exist if the type uses settlement defaults,
+- report and attachment rules are understood by the business owner.
 
-- **Default Service Set** : - is a set of lines for default settlement. This setting allows for the creation of a set of services and charges that will be automatically added to the order upon its creation. The Service Set can include services to be invoiced as well as charges whose structure may be known in advance.
+## How to create a type
 
-![Setup Image](resources/forwardingordertype/pics/fwotype2.png)
+1. Search for **Forwarding Order Types**.
+2. Choose **New**.
+3. Enter a code and description.
+4. Select status and stage profiles.
+5. Fill default values used on new Forwarding Orders.
+6. Configure document, attachment, and settlement behavior as needed.
+7. Test the type by creating a Forwarding Order in a sandbox.
 
-- **Allowed Service/Charges Set** : - a set of permitted services or charges that can be added to the settlement. If this field is filled, a restriction system is activated, allowing only values from this set to be added to the settlement.
+## Fields that matter most
 
-![Setup Image](resources/forwardingordertype/pics/fwotype3.png)
+| Field | Why it matters |
+|---|---|
+| **Code** | The type users select on the Forwarding Order. |
+| **Description** | Helps users choose the correct process. |
+| **Status Profile Code** | Controls allowed actions by status. |
+| **Stage Profile Code** | Controls default transportation legs. |
+| **Default values** | Reduce manual entry on new orders. |
+| **Posting and document settings** | Control completion rules and output. |
 
-- **Default Content Set** : - a default set of contents for transportation. It's possible to create a set of standard contents and add them automatically when an order of this type is created. This is convenient for LSPs with abstract cargo descriptions like SHIPMENT (cargo space).
+## Setup decisions
 
-![Setup Image](resources/forwardingordertype/pics/fwotype4.png)
+| Decision | What it changes |
+|---|---|
+| Separate types by process | Gives users the correct stages and controls for each operation. |
+| Separate types by mode | Makes air, sea, road, and multimodal jobs easier to report. |
+| Use strict status control | Prevents users from invoicing, posting, or changing data too early. |
+| Use attachment requirements | Blocks movement to controlled statuses until required files exist. |
 
-- **Default values** : - specific default values for the ordering party, shipper, and consignee can be set for regular transportation orders. Fill in the type value and then select the value in the “… No." field.
+## Good to know
 
-![Setup Image](resources/forwardingordertype/pics/fwotype5.png)
+- Keep type codes stable. They are used in filtering, reporting, and historical documents.
+- Do not create too many types for small differences. Use stages, services, or references when the process is mostly the same.
+- Test every new type with a real working example before users start using it.
 
-## Other parameters
+## Troubleshooting
 
-- Default Incoterm code.
-- Number series for numbering the created Forwarding Orders of this type.
-- A flag in the field determines whether the shipper and consignee fields can be edited in the forwarding order or if they are only set in the corresponding counterparty's card.
+| Problem | What to check |
+|---|---|
+| New order has wrong stages | Check the stage profile selected on the type. |
+| User cannot perform an action | Check the status profile and current status. |
+| Required files are not enforced | Check extended control and attachment category rules. |
+| Wrong defaults appear | Review default fields on the type and TMS Setup. |
 
-![Setup Image](resources/forwardingordertype/pics/fwotype6.png)
+## Related
 
-## Mandatory fields
-
-For better productivity, always make sure to fill in all the fields:
-
-- **Default Status Profile**
-- **Default Status Profile**
-- **No. Series**
-
-## Prerequisites
-
-To change “Forwarding Order Types” user must have TMS Admin or Super Permissions.
-Before configuring forwarding order types, you must create the required entities: a set of services, a number series, a shipper and consignee, status profiles, and stages profiles.
+- [Forwarding Order](forwardingorder.md)
+- [Statuses and Status Profiles](statuses.md)
+- [Stages](stages.md)
+- [Attachment Control](attachmentcontrol.md)
+- [TMS Setup](setup.md)

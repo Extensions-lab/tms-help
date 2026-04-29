@@ -1,38 +1,58 @@
+---
+title: "Check List"
+description: "Use checklist lines to track operational tasks on a Forwarding Order."
+---
+
 # Check List
 
-The Check List entity is a comprehensive task management and quality control system within the Transportation Management System that enables Logistics Service Providers (LSPs) to define, track, and monitor completion of standardized operational tasks associated with forwarding orders.
+Use **Check List** lines to track operational tasks that must be completed for a Forwarding Order.
 
-This system consists of configurable checklist templates that can be customized for different operational scenarios, ensuring consistent process execution and compliance with transportation procedures.
+A checklist is useful when the team needs a visible task list for customs checks, customer approvals, carrier confirmation, document review, finance review, or internal handoff.
 
-The Check List functionality operates through a two-tier structure: Check List Settings serves as the master configuration where administrators define reusable checklist templates with sequential task descriptions, while Check List Line represents the actual execution instance linked to specific forwarding orders.
+## Before you start
 
-Users can mark tasks as completed, add comments, and track completion status with automatic timestamping and user identification. The system provides multiple interface options including a full checklist page for comprehensive task management, a sub-page for quick status overview, and specialized pages for posted forwarding orders to maintain historical task completion records.
+Make sure that:
 
-This ensures operational transparency, quality assurance, and audit trail maintenance throughout the transportation workflow, enabling organizations to standardize processes, reduce errors, and maintain consistent service delivery standards across all forwarding operations.
+- the Forwarding Order exists,
+- users know which tasks are mandatory for the process,
+- status controls are configured if task completion affects status movement.
 
-## Check List Setup Process
+## How to work with checklist lines
 
-The check list setup is configured at the "Forwarding Order Type" level through the "Check List Settings" page, which can be accessed via:
-Forwarding Order Type page → "Check List Setup" action. Each Forwarding Order Type can have its own checklist template.
+1. Open the Forwarding Order.
+2. Open **Check List**.
+3. Add a line for each task.
+4. Assign the responsible user or team if your process uses ownership.
+5. Fill due dates when the task is time sensitive.
+6. Mark the task complete when the work is done.
+7. Review incomplete tasks before posting or closing the job.
 
-Step 1: Template Configuration
-In the "Check List Settings" page checklist items are defined with:
+## Fields that matter most
 
-- Order (sequence number)
-- Description (task description)
+| Field | Why it matters |
+|---|---|
+| **Description** | Tells the user what must be done. |
+| **Responsible User** | Shows who owns the task. |
+| **Due Date** | Helps operations follow time-sensitive steps. |
+| **Completed** | Shows whether the task is done. |
+| **Completed By / Completed At** | Supports audit review when available. |
 
-## How Check List Works
+## Good to know
 
-When creating a new forwarding order, checklist items are automatically created from the template
-When a new Forwarding Order is created, the system automatically:
+- Checklist lines are operational controls. They do not replace required attachment checks.
+- Use consistent task names so users can scan the list quickly.
+- Keep the checklist short. Long lists stop being useful in daily work.
 
-- Validates the "Forwarding Order Type"
-- Creates checklist items from the template for created FWO.
+## Troubleshooting
 
-Users mark items as done and add comments. Check List does not depend on the status system..
+| Problem | What to check |
+|---|---|
+| A task is not visible | Check filters on the checklist page. |
+| User cannot mark a task complete | Check permissions and whether the document status allows changes. |
+| Posting is blocked even though tasks are done | Review status controls, attachment requirements, and settlement posting rules. |
 
-### Technical Details
+## Related
 
-The setup uses two main tables:
-
-- **Check List Settings" table** : stores the check list template configuration for [Forwarding Order Type](forwardingordertype.md).
+- [Forwarding Order](forwardingorder.md)
+- [Statuses and Status Profiles](statuses.md)
+- [Attachment Control](attachmentcontrol.md)

@@ -1,27 +1,69 @@
+---
+title: "Attachment Control"
+description: "Track required files, attachment categories, and document completeness for Forwarding Orders and posted history."
+---
+
 # Attachment Control
 
-The Attachment Control Page is a comprehensive monitoring and analysis tool within the Transportation Management System that provides centralized oversight of document attachments across forwarding orders and posted documents.
+Use **Attachment Control** to monitor whether TMS documents have the files your process requires.
 
-This sophisticated page displays a consolidated view of all transportation documents (both draft and posted) with detailed attachment statistics, allowing users to track and analyze document completeness and compliance. The page features a dynamic column structure that can display up to 15 customizable attachment categories, each configured through the Attachments Selection to filter specific document types or categories.
+The page gives operations and compliance users one place to review attachment counts by document and category.
 
-The system automatically populates attachment counts for each document, showing both total attachments and category-specific counts, with drill-down capabilities that open detailed attachment views filtered by selected categories.
+![Attachment Control overview](resources/attachmentcontrol/pics/attachment-control-overview.png)
 
-Users can configure which attachment categories to monitor through the "Settings" action, which opens the "Attachments Selections" page where administrators can define category filters and captions for up to 15 different attachment types.
+## Before you start
 
-The page includes comprehensive document information such as ordering party names, document dates, status codes, posting dates, and order types, making it an essential tool for compliance monitoring, document management, and quality control in transportation operations.
+Make sure that:
 
-## Attachment Category
+- attachment categories are created,
+- status profiles are configured if attachments are required before status changes,
+- users have permission to open document attachments,
+- Azure Blob Storage is configured in [TMS Setup](setup.md) if your company stores files outside the Business Central database.
 
-The Attachment Category is a simple master data entity within the Transportation Management System that provides a classification system for organizing and categorizing attachments and documents used throughout the TMS.
-This entity serves as a lookup table with a basic two-field structure consisting of a unique code identifier and a descriptive text field.
-The Attachment Category enables users to systematically classify various types of transportation-related documents such as shipping manifests, customs forms, delivery receipts, insurance certificates, and other logistics paperwork.
+## What Attachment Control shows
 
-The system provides a straightforward list page interface that allows administrators to define and manage these categories, making it easier for users to select appropriate categories when attaching documents to the Forwarding Orders.
+| Column or area | Use it for |
+|---|---|
+| **Document No.** | Opens the source document or posted document. |
+| **Ordering Party** | Shows who ordered the transportation job. |
+| **Status Code** | Helps identify whether the document is ready for the next step. |
+| **Posting Date** | Helps review posted history and audit periods. |
+| **Total Attachments** | Shows the complete attachment count. |
+| **Category columns** | Show counts for selected attachment categories. |
 
-By implementing a standardized categorization system, the TMS ensures consistent document organization and improves the ability to locate and manage transportation-related attachments efficiently.
+## How to work in this page
 
-Attachment Categories are used in the advanced status setup to define the types of documents that must be attached at a specific stage of processing a Forwarding Order [details](statuses.md).
+1. Open **Attachment Control**.
+2. Review the total attachment count for each document.
+3. Use category columns to find missing files.
+4. Drill down into a count to open filtered attachments.
+5. Choose **Settings** to change which categories are shown.
+6. Follow up with the document owner when required files are missing.
 
-## Note
+## Attachment categories
 
-LSP scenario settings
+Use **Attachment Categories** to classify files such as carrier confirmation, customs document, insurance certificate, invoice support, customer approval, or internal note.
+
+Attachment categories are also used by status extended control. A status can require selected attachment categories before the Forwarding Order moves forward.
+
+## Good to know
+
+- Attachment Control is a monitoring page. The source documents remain the place where users attach and review files in daily work.
+- Category columns are configurable, so each company can monitor the document types that matter most.
+- Attachment requirements are enforced through status setup, not through the monitoring page itself.
+
+## Troubleshooting
+
+| Problem | What to check |
+|---|---|
+| A category column is empty | Check **Settings** and confirm the category filter is correct. |
+| A user cannot open an attachment | Check user permissions and file storage setup. |
+| Posting is blocked by missing files | Review the status profile extended control and attach the required categories. |
+| Attachment count looks wrong | Refresh the page and check whether the file is attached to the expected document. |
+
+## Related
+
+- [Statuses and Status Profiles](statuses.md)
+- [Forwarding Order](forwardingorder.md)
+- [Posted History](postedhistory.md)
+- [TMS Setup](setup.md)

@@ -1,41 +1,70 @@
-# Transportation Management System (TMS) - Buy Licenses
+---
+title: "Buy Licenses"
+description: "Buy and assign TMS licenses for Business Central users."
+---
 
-Purchase and assign licenses. Immediately after installation, TMS is not available to users and is not visible in the Business Central menu, therefore, it is necessary to purchase TMS licenses. This can be done from the TMS page on AppSource by selecting the pricing plan that best suits your company. Then, assign licenses to users who will work with TMS in the Microsoft 365 Admin Center.
+# Buy licenses
 
-p.s. It is not mandatory to buy as many licenses as Business Central licenses; you can limit it to only those who work with transportation and TMS.
+Users need an assigned TMS license before they can work with the app.
 
-Licenses are purchased directly on the TMS page on the AppSource portal. Click "Buy now" button.
+Buy licenses from the TMS AppSource listing, then assign them in Microsoft 365 Admin Center.
 
-![Setup Image](resources/buylicenses/pics/buylicense1.png)
+## Who needs a license
 
-Choose the suitable pricing plan according to the number of users you need. Each plan includes a one-month trial period.
+Assign licenses to users who work with TMS pages, documents, setup, or integrations.
 
-![Setup Image](resources/buylicenses/pics/buylicense2.png)
+You do not need to buy a TMS license for every Business Central user. Buy licenses only for users who use TMS.
 
-Set the subscription parameters. For demo mode, auto-renewal can be disabled (Recurring billing).
+## Buy the licenses
 
-![Setup Image](resources/buylicenses/pics/buylicense3.png)
+1. Open the TMS page on AppSource.
+2. Choose **Buy now**.
+3. Select the pricing plan that matches the number of users you need.
+4. Review subscription settings.
+5. Select the billing account.
+6. Add or confirm the payment method.
+7. Complete the purchase.
 
-In the next step, it is necessary to check the subscription parameters and select the billing account from which payments will be made and to which Microsoft will issue invoices.
+![Buy TMS from AppSource](resources/buylicenses/pics/buylicense1.png)
 
-![Setup Image](resources/buylicenses/pics/buylicense4.png)
+![Choose a TMS pricing plan](resources/buylicenses/pics/buylicense2.png)
 
-Payment by card is possible. To do this, it is necessary to press the +Add new button to add a new payment method.
+![Review subscription settings](resources/buylicenses/pics/buylicense3.png)
 
-![Setup Image](resources/buylicenses/pics/buylicense5.png)
+![Confirm billing account](resources/buylicenses/pics/buylicense4.png)
 
-Assigning licenses to users is done in the Microsoft 365 admin center.
+![Add payment method](resources/buylicenses/pics/buylicense5.png)
 
-![Setup Image](resources/buylicenses/pics/buylicense6.png)
+## Assign licenses to users
 
-Select the Billing > Licenses menu item and scroll down to the TMS product licenses
+1. Open Microsoft 365 Admin Center.
+2. Go to **Billing** > **Licenses**.
+3. Find the TMS product license.
+4. Choose **Assign licenses**.
+5. Select the users who will work with TMS.
+6. Save the assignment.
 
-![Setup Image](resources/buylicenses/pics/buylicense7.png)
+![Open licenses in Microsoft 365 Admin Center](resources/buylicenses/pics/buylicense6.png)
 
-On this page, licenses are distributed among users. Click Assign licenses button and find users.
+![Find the TMS license](resources/buylicenses/pics/buylicense7.png)
 
-![Setup Image](resources/buylicenses/pics/buylicense8.png)
+![Assign licenses to users](resources/buylicenses/pics/buylicense8.png)
 
-To revoke TMS licenses from users, you need to select the users and press the 'Unassign licenses' button.
+## Verify
 
-![Setup Image](resources/buylicenses/pics/buylicense9.png)
+1. Ask a licensed user to sign in to Business Central.
+2. Search for **Forwarding Orders** or **TMS Setup**.
+3. Confirm that the page opens.
+
+## Troubleshooting
+
+| Problem | What to check |
+|---|---|
+| User cannot see TMS | Confirm both license assignment and Business Central permission sets. |
+| License was bought but not visible | Wait for Microsoft 365 license synchronization, then refresh the user session. |
+| User should no longer use TMS | Remove the TMS license in Microsoft 365 Admin Center. |
+
+## Related
+
+- [Installation](installation.md)
+- [Assign permission sets](assignpermissionsets.md)

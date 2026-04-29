@@ -1,52 +1,71 @@
+---
+title: "Stages"
+description: "Configure transportation legs used by Forwarding Orders and executed through Freight Orders."
+---
+
 # Stages
 
-The Stage Profile defines the sequence of steps (legs) that will occur during the transportation process. Stages are used in Forwarding Order to define steps, schedule, and duration of the transportation. The profile may include both mandatory steps executed via the Freight Order and additional steps that are manually added to the transportation process.
+Use **Stages** to define the transportation legs of a Forwarding Order.
 
-![Stages](resources/stages/pics/stages2.png)
+A stage can represent pickup, pre-carriage, main carriage, on-carriage, terminal handling, customs-related movement, or another leg your company tracks.
 
-## Use case
+![Stage profile](resources/stages/pics/stages1.png)
 
-Example of a stage structure for a 3-leg transportation process, where a separate carrier is assigned to each stage and will issue an invoice for their services:
+## Before you start
 
-Transportation from Lengerich (Germany) to Grimsby (UK) can be divided into 3 legs (stages):
+Make sure that:
 
-- From Lengerich to Frankfurt Airport (FRA) – this is the pick-up stage, road transportation.
-- From FRA to London Heathrow (LHR) – the main leg, air freight.
-- From LHR to Grimsby – the delivery stage, final road transportation to the consignee.
+- the business process is mapped,
+- map locations or party address rules are ready,
+- status profiles exist,
+- Forwarding Order Types are ready to use stage profiles.
 
-## Stages in Forwarding Order
+## Stage profiles
 
-Stages are used only in Forwarding Orders and are assigned to a Forwarding Order through the Forwarding Order Type during creation.
+A **Stage Profile** is a reusable list of stages that can be assigned to a Forwarding Order Type.
 
-![Stages in Forwarding Order](resources/stages/pics/stages1.png)
+When users create a Forwarding Order, the stage profile helps create the expected transportation legs automatically.
 
-## Where to find
+## How to create a stage profile
 
-using main menu of the TMS
+1. Search for **Stage Profiles**.
+2. Choose **New**.
+3. Enter code and description.
+4. Add stage lines in the expected sequence.
+5. Fill stage type, locations, mode, and defaults when used.
+6. Assign the profile to a Forwarding Order Type.
+7. Test by creating a Forwarding Order.
 
-![Setup Image](resources/stages/pics/stages3.png)
+## Fields that matter most
 
-using search
+| Field | Why it matters |
+|---|---|
+| **Sequence** | Controls the order of stages. |
+| **Stage Code** | Identifies the leg. |
+| **Description** | Helps users understand the leg. |
+| **Mode of Transport** | Classifies the stage. |
+| **Origin / Destination** | Defines the movement for the leg. |
+| **Status Profile** | Controls stage or execution behavior when used. |
+| **Create Freight Order** | Indicates whether carrier execution is expected for the stage. |
 
-![Setup Image](resources/stages/pics/stages4.png)
+## Good to know
 
-## Fields description
+- Stages are the bridge between customer job planning and carrier execution.
+- Keep stage profiles simple enough for users to understand.
+- Different Forwarding Order Types can use different stage profiles.
 
-- Code. Unique identifier of the status profile that will be used in Forwarding Order Types.
-- Description. Name of the stage profile.
+## Troubleshooting
 
-Each line in the profile represents a specific stage of the transportation process. For this, you need to fill in the Code (stages in the Forwarding Order are sorted by this code), the Stage Description, and the Mode of Transport.
+| Problem | What to check |
+|---|---|
+| Stages do not appear on a new order | Check the Forwarding Order Type and selected stage profile. |
+| Freight Order cannot be created for a stage | Check stage setup, current status, and status action control. |
+| Stage order is wrong | Review sequence values in the stage profile. |
+| Route or map data is incomplete | Check stage origin, destination, and map locations. |
 
-If a certain stage always uses the same carrier or service provider, you can specify it in the "Def. Carrier Name" field. If the party we’re paying is different from the actual carrier (e.g. an agent), you can enter it in the "Def. Pay-to Vendor Name" field. These fields will be automatically populated when creating a Freight Order based on the current stage.
+## Related
 
-![Setup Image](resources/stages/pics/stages5.png)
-
-## Where stages are using
-
-Stages are used in Forwarding Orders Types page. By assigning a stage profile to the forwarding order type, a set of stages is defined for all documents of this type.
-
-![Setup Image](resources/stages/pics/stages6.png)
-
-## Prerequisites
-
-To change or create status profiles user must have TMS Admin or Super Permissions.
+- [Forwarding Order Types](forwardingordertype.md)
+- [Forwarding Order](forwardingorder.md)
+- [Freight Order](freightorder.md)
+- [Statuses and Status Profiles](statuses.md)

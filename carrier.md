@@ -1,82 +1,79 @@
-# Carrier
+---
+title: "Carriers"
+description: "Create and maintain carriers used on Freight Orders, settlement, reporting, and carrier execution documents."
+---
 
-The Carrier entity is a comprehensive master data table in the Transportation Management System (TMS) that manages transportation service providers and their operational configurations.
+# Carriers
 
-It contains extensive carrier information including:
+Use **Carriers** to store the companies that execute transportation work for your LSP operation.
 
-- basic identification (carrier number, primary and secondary names)
-- Business Central integration (source type linking to vendors, resources, employees, or shipping agents with automatic name population)
-- operational settings (freight agreement numbers, mode of transport, truckload shipping type, blocking status)
-- default resource assignments (default vehicle, driver, and unit type with automatic name lookups)
-- internet resources (website and tracking URLs)
-- scheduling preferences (sort order and blocking controls)
-- performance metrics (calculated fields for total distance, route quantity, and freight order counts).
+A carrier can be an external vendor, a partner carrier, or an internal execution unit that your company wants to track as a carrier.
 
-The entity supports flexible integration with existing Business Central entities through an extensible source type enum, includes photo management capabilities, and features comprehensive card and list pages with navigation to related drivers, vehicles, and freight agreements.
+![Carrier card](resources/carrier/pics/carrier-card.png)
 
-The Carrier entity serves as the central hub for transportation service provider management within the TMS, enabling effective carrier selection, default resource assignment, performance tracking, and operational planning while supporting seamless integration with existing Business Central master data and providing detailed operational metrics for carrier evaluation and management.
+## Before you start
 
-## Fields Description
+Make sure that:
 
-Basic Identification:
+- the vendor exists if carrier invoices are posted to a vendor,
+- default contact and address data is available,
+- [Freight Agreements](freightagreement.md) are ready if carrier rates are maintained as contracts,
+- map location and route data are ready if the carrier is used in route planning,
+- default vehicle, driver, or logistic unit type records exist if you want them copied to Freight Orders.
 
-- **No.** : Carrier's unique identifier used in TMS freight operations
-- **Name** : Primary name of the carrier for shipping references and TMS tasks
-- **Name 2** : Second line for the carrier's name if additional details are needed
+## How to create a carrier
 
-Business Central Integration:
+1. Search for **Carriers**.
+2. Choose **New**.
+3. Fill the carrier code and name.
+4. Link a vendor if the carrier is paid through purchase documents.
+5. Fill address, contact, and communication details.
+6. Fill operational defaults such as vehicle, driver, and unit type when used.
+7. Save the card.
 
-- **Source Type** : BC entity type linked to this carrier (none, resource, vendor, employee, shipping agent)
-- **Source No.** : Unique record ID from the chosen entity type for this carrier link
-- **Source Name** : Name from the linked source entity (e.g., vendor name) used in TMS (auto-populated)
-- **Source Name 2** : Additional line for the linked source name, if required (auto-populated)
+## Fields that matter most
 
-Operational Configuration:
+| Field | Why it matters |
+|---|---|
+| **No. / Code** | Identifies the carrier in TMS documents. |
+| **Name** | Appears in lists, reports, and user lookups. |
+| **Vendor No.** | Connects carrier cost to Business Central purchase processing. |
+| **Pay-to Vendor** | Supports cases where the invoice vendor differs from the executing carrier. |
+| **Default Vehicle / Driver** | Speeds up Freight Order creation when the carrier uses known resources. |
+| **Blocked** | Prevents users from using a carrier that should no longer be selected. |
 
-- **Freight Agreement No.** : Contract number for purchasing transportation services from this carrier
-- **Mode of Transport** : Carrier's main transportation method, like road, sea, or air. This mode of transport will be automatically added to the document when the corresponding carrier is selected.
-- **Blocked** : Indicates if this carrier is blocked and cannot be used for new shipments
+## Where carriers are used
 
-Default Resource Assignments:
+| Area | Use |
+|---|---|
+| **Freight Order** | Defines who executes the transportation stage. |
+| **Settlement** | Supports carrier cost and vendor invoice allocation. |
+| **Freight Agreements** | Stores commercial terms and expected cost lines for the carrier. |
+| **Charges** | Provides vendor context for purchase-related cost lines. |
+| **Reports** | Prints carrier details on execution documents. |
+| **API** | Exposes carrier data to portals and external planning systems. |
 
-- **Default Vehicle No.** : Vehicle number automatically used on freight orders for this carrier. This vehicle will be automatically added to the document when the corresponding carrier is selected (if the Vehicle No. field in document was empty).
-- **Default Vehicle Name** : Name of the default vehicle assigned to freight orders (auto-populated)
-- **Default Driver No.** : Driver assigned by default to freight/delivery orders using this carrier. This driver will be automatically added to the document when the corresponding carrier is selected (if the Driver No. field in document was empty).
-- **Default Driver Name** : Name of the default driver operating shipments (auto-populated)
-- **Default Unit Type Code** : Default logistic unit type (e.g., container) for this carrier's shipments
-- **Default Unit Type Description** : Details about the chosen logistic unit type (auto-populated)
+## Good to know
 
-Internet Resources:
+- Blocking a carrier is safer than deleting it when the carrier already exists on historical documents.
+- A carrier can be used without a vendor only when your process does not create vendor financial documents from that carrier.
+- Use Freight Agreements when carrier rates or contract lines should be maintained separately from individual Freight Orders.
+- Keep carrier names and vendor links clean. They are visible in settlement and reports.
 
-- **Internet Address** : Carrier's website or online resource link for further information
-- **Tracking Internet Address** : Link where shipments under this carrier can be tracked online
+## Troubleshooting
 
-Shipping Configuration:
+| Problem | What to check |
+|---|---|
+| Carrier is not available on a Freight Order | Check whether the carrier is blocked and whether user filters hide it. |
+| Vendor cost cannot be created | Confirm the carrier has the correct vendor or pay-to vendor. |
+| Carrier details are missing on a report | Review address, contact, vehicle, and driver fields on the carrier and Freight Order. |
+| Wrong vendor receives the cost | Check pay-to vendor setup on the carrier and the Freight Order. |
 
-- **Truckload Shipping Type** : Whether this carrier typically handles full or partial truckloads
+## Related
 
-Scheduling Management:
-
-- **Scheduler Sort Order** : Order in which this carrier is displayed in the scheduling tool (lower = higher priority)
-- **Block for Scheduling** : Indicates if this carrier is prevented from appearing in scheduling due to maintenance or downtime
-
-Visual and Media:
-
-- **Picture** : Image or photo associated with this carrier (e.g. a logo)
-
-Performance Metrics (Calculated Fields/ flowfields):
-
-- **Total Actual Distance (Base)** : Sum of actual distances traveled for shipments under this carrier (calculated)
-- **Total Route Quantity** : Total number of route entries in TMS for this carrier's shipments (calculated)
-- **Freight Orders** : Number of freight orders linked to this carrier in TMS (calculated)
-
-Obsolete Fields (Removed in v22.3):
-
-- **Tracking Service Provider** : Obsolete tracking provider for shipments
-- **Courier Code** : Obsolete code for the tracking service carrier
-
-Audit Fields:
-
-- **Last Modified Date Time** : When this record was last changed, for auditing or reference
-- **Last Modified Date Time (UTC)** : Last modified timestamp in Coordinated Universal Time
-- **Last Modified UserID** : User who made the most recent update to this carrier record
+- [Freight Order](freightorder.md)
+- [Charges](charges.md)
+- [Freight Agreements](freightagreement.md)
+- [Settlement](settlement.md)
+- [Vehicles](vehicle.md)
+- [Drivers](driver.md)

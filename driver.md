@@ -1,94 +1,72 @@
-# Driver
+---
+title: "Drivers"
+description: "Create and maintain driver records used on Freight Orders, carriers, reports, and execution planning."
+---
 
-The Driver entity is a comprehensive master data table in the Transportation Management System (TMS) that manages complete driver profiles for transportation operations.
-It contains extensive driver information including:
+# Drivers
 
-- personal details (names, birth date, employment date)
-- contact information (phone numbers, email, emergency contacts)
-- professional qualifications (license details, categories, expiration dates), compliance certifications (medical cards, ADR for dangerous goods), - operational settings (carrier association, default vehicle assignment, fuel card, scheduler preferences).
+Use **Drivers** to store driver information used on Freight Orders and transportation documents.
 
-The entity supports mobile integration through Proof of Delivery (PoD) app credentials and includes photo management capabilities with camera integration. It features a comprehensive card page with organized sections for all driver data, a list page for browsing and selection, and a dedicated picture management page part.
+Drivers help operations identify who executes the work, print useful documents, and report activity by resource.
 
-The Driver entity serves as the central repository for driver-related information, enabling effective driver assignment, scheduling, compliance tracking, and operational management within the TMS while ensuring regulatory compliance and supporting mobile workforce operations.
+![Driver card](resources/driver/pics/driver-card.png)
 
-This directory allows you to store information not only about your own drivers but also to register drivers from third-party carriers if needed.
+## Before you start
 
-## Field description
+Make sure that:
 
-- **No.** :  Unique identifier for the driver in TMS
-- **Name** :  Short name or label for the driver, shown on TMS documents
-- **Full Name** : Driver's complete name for official references in TMS
-- **First Name** : Driver's given name for detailed TMS identification
-- **Last Name** : Driver's family name used for TMS records or official documents
-- **Middle Name** : Additional name if needed for complete driver identification
+- carrier records exist if drivers belong to a carrier,
+- vehicle records exist if drivers have default vehicles,
+- your company policy defines which personal data can be stored,
+- users have permission to edit driver master data.
 
-Personal Information:
+## How to create a driver
 
-- **Birth Date** : Driver's date of birth, often required for HR or compliance
-- **Employment Date** :  When the driver started working for the organization
+1. Search for **Drivers**.
+2. Choose **New**.
+3. Enter the driver number or code.
+4. Fill name, carrier, contact, and license details as required.
+5. Add default vehicle or unit details if used.
+6. Mark the driver blocked only when the driver should no longer be selected.
 
-Carrier Association:
+## Fields that matter most
 
-- **Carrier No.** :  Which carrier the driver is associated with for TMS tasks.
-- **Carrier Name** : Name of the carrier linked to this driver (auto-populated)
+| Field | Why it matters |
+|---|---|
+| **No. / Code** | Identifies the driver in TMS. |
+| **Name** | Appears on Freight Orders and documents. |
+| **Carrier No.** | Links the driver to the executing carrier. |
+| **Default Vehicle No.** | Speeds up Freight Order assignment. |
+| **Phone / Email** | Supports operational communication. |
+| **Blocked** | Prevents new assignment while preserving history. |
 
-Vehicle Assignment:
+## Where drivers are used
 
-- **Default Vehicle No.** : Vehicle number the driver typically operates in TMS. This field can be filled in so that when a driver is selected in the Delivery Order, the vehicle is automatically selected.
-- **Default Vehicle Name** : Name or label for the driver's main vehicle resource (auto-populated)
+| Area | Use |
+|---|---|
+| **Freight Order** | Shows the driver assigned to the execution work. |
+| **Carrier setup** | Provides defaults when a carrier is selected. |
+| **Reports** | Prints driver information on operational documents. |
+| **API** | Exposes driver data to integrations when needed. |
 
-Contact Information:
+## Good to know
 
-- **Phone No.** : Driver's primary phone contact for scheduling or emergencies
-- **Phone No. 2** :  Alternative phone contact if the driver has another line
-- **E-Mail** : Driver's email address for official communication
+- Do not delete driver records used on historical Freight Orders. Block them instead.
+- Keep personal data minimal and aligned with company policy.
+- Driver assignment is operational information. Financial posting is normally driven by carriers, vendors, services, and charges.
 
-License Information:
+## Troubleshooting
 
-- **License No.** : Driver's official license ID used for compliance checks
-- **License Categories** : Driver's permitted vehicle categories (e.g., A, B, C) for TMS routes
-- **License Start Date** : When the driver's license validity begins
-- **License Exp. Date** : When the driver's license expires and needs renewal
-- **License State** : Which state or region issued the driver's license
+| Problem | What to check |
+|---|---|
+| Driver is not available | Check whether the driver is blocked or filtered by carrier. |
+| Wrong driver appears by default | Review carrier and vehicle default setup. |
+| Driver details are missing on a report | Fill the driver card and review the Freight Order before printing. |
+| User cannot edit driver data | Check permission sets and master data ownership. |
 
-Operational Status:
+## Related
 
-- **Blocked** : Indicates whether this driver cannot be assigned to new shipments
-
-Medical Compliance:
-
-- **Medical Card Number** : Driver's medical card ID if required by law
-- **Medical Card Expiration** : When the driver's medical card becomes invalid
-
-Dangerous Goods Certification:
-
-- **ADR No.** : ADR certificate number if the driver handles dangerous goods
-- **ADR Expiration Date** : When the ADR certificate is no longer valid for dangerous cargo
-
-Emergency Information:
-
-- **Emergency Contact** : Whom to contact for emergencies involving this driver
-
-Fuel Management:
-
-- **Fuel Card No.** : Assigned fuel card number for this driver if relevant
-
-Proof-of Delivery (POD) Mobile App Integration:
-
-- **PoD User E-mail** : Driver's email used to log in to the Proof of Delivery application. This field links an organization’s user, who may not necessarily have access to Business Central, with a driver’s card. As a result, when the user logs into the mobile Power App (Proof-Of-Delivery), they will only see Delivery Orders assigned to that specific driver.
-- **PoD User Full Name** : Name displayed for the driver's PoD user account in TMS
-
-Visual Identification:
-
-- **Picture** : Stored photograph for driver identification within TMS. Foto in FactBox.
-
-Scheduling Management:
-
-- **Scheduler Sort Order** : Numeric priority for this driver in the TMS scheduler view
-- **Block for Scheduling** : Indicates if this driver is restricted from scheduling due to maintenance or downtime
-
-Audit Trail:
-
-- **Last Modified Date Time** : When this driver record was last updated for traceability
-- **Last Modified Date Time (UTC)** : Timestamp of the latest update in Coordinated Universal Time
-- **Last Modified UserID** : User who performed the most recent modification to this record
+- [Freight Order](freightorder.md)
+- [Carriers](carrier.md)
+- [Vehicles](vehicle.md)
+- [Reports and Documents](reports.md)

@@ -1,43 +1,53 @@
-# MAP Location Type
+---
+title: "Map Location Types"
+description: "Classify map locations so users can filter, report, and select the right sites faster."
+---
 
-The Map Location Type is a configuration entity within the Transportation Management System that categorizes and defines different types of map locations used throughout the TMS. This entity serves as a master data table that allows administrators to classify map locations based on their purpose and characteristics.
+# Map Location Types
 
-The Map Location Type includes a unique code identifier and description, along with several boolean flags that determine default behavior for different source entities in the system.
+Use **Map Location Types** to classify map locations.
 
-The key functionality includes setting default location types for various Business Central entities such as Customers, Vendors, Locations, Ship-to Addresses, Order Addresses, and Contacts.
+Common types include customer site, vendor site, warehouse, airport, seaport, terminal, depot, or border point.
 
-Each type can be marked as the default for one or more of these entity types, with the system ensuring only one default per entity type through validation triggers.
+![Map Location Type list](resources/maplocationtype/pics/maplocationtype.png)
 
-Additionally, location types can be specifically marked as "Airport" types, which enables specialized TMS logic for aviation-related locations. The entity also includes standard audit fields for tracking modifications, including timestamps and user identification.
+## Before you start
 
-The Map Location Type List page provides a simple administrative interface for managing these location type definitions, allowing users to view and edit all the configuration options in a tabular format. This system enables flexible categorization of map locations while maintaining data integrity and providing clear defaults for different business scenarios within the transportation management workflow.
+Make sure that your company agrees on a short list of location categories.
 
-## Fields Description
+Too many categories make lookup pages harder to use.
 
-Primary Fields:
+## How to create a type
 
-- **Code** : Unique identifier for the map location type
-- **Description** : Descriptive text for the location type
+1. Search for **Map Location Types**.
+2. Choose **New**.
+3. Enter a code.
+4. Enter a clear description.
+5. Save the record.
 
-Default Assignment Fields:
+## Fields that matter most
 
-- **Default For Location** : Sets this type as default for standard Location entities
-- **Default for Customer** : Sets this type as default for Customer-related map locations
-- **Default for Ship-to Address** : Sets this type as default for customer ship-to addresses
-- **Default for Vendor** :  Sets this type as default for Vendor-based map locations
-- **Default for Order Address** : Sets this type as default for vendor order addresses
-- **Default for Contact** : Sets this type as default for Contact-related map locations
+| Field | Why it matters |
+|---|---|
+| **Code** | Identifies the type in map location records. |
+| **Description** | Helps users understand when to use the type. |
 
-Specialization Fields:
+## Good to know
 
-- **Airport** : Indicates if this type represents an airport, enabling specialized TMS logic
+- Use short, readable codes.
+- Keep descriptions business-friendly.
+- Review old types before adding new ones. Similar types create inconsistent reporting.
 
-Audit Fields:
+## Troubleshooting
 
-- **Last Modified Date Time** : Local timestamp of last record modification
-- **Last Modified Date Time (UTC)** : - UTC timestamp of last record modification
-- **Last Modified UserID** : - User who last modified the record
+| Problem | What to check |
+|---|---|
+| Users choose inconsistent types | Merge business guidance into fewer, clearer type descriptions. |
+| Type cannot be deleted | It may already be used on map locations. Rename only when safe and allowed by your release policy. |
+| Reporting is unclear | Review whether map locations use the expected type. |
 
-## Page
+## Related
 
-![Setup Image](resources/maplocationtype/pics/maplocationtype.png)
+- [Map Locations](maplocation.md)
+- [Google Maps Integration](googlemapintegration.md)
+- [Routes](route.md)
