@@ -40,8 +40,12 @@ Best fit:
 | Pricing and agreements | [Pricing](pricing.md), [Forwarding Agreements](forwardingagreement.md), and [Freight Agreements](freightagreement.md) |
 | Document control | [Attachment Control](attachmentcontrol.md) and [Check List](checklist.md) |
 | Execution history | [Stage Entries](stageentries.md) and [Posted History](postedhistory.md) |
-| Maps and distance | [Map Locations](maplocation.md) and [Google Maps Integration](googlemapintegration.md) |
+| Maps and distance | [Map Locations](maplocation.md) and [Map Providers](mapproviders.md) |
 | Integration and reporting | [API](api.md) and [Business Central Integration](integration.md) |
+
+## Optional external map services
+
+Google Maps and Azure Maps integration is optional. When enabled, geocoding, distance, route, matrix, and map-visualization operations transmit address, coordinate, route, and travel-mode data to the selected provider. Administrators should review the [map-provider privacy and outbound-service disclosure](mapproviders.md#privacy-and-outbound-data-transfer), the provider terms, and geographic processing settings before use.
 
 ## Supported Business Central editions
 

@@ -23,22 +23,22 @@ Make sure that:
 
 ## How to create a charge
 
-1. Search for **Charges**.
+1. Search for **Charges (TMS)**.
 2. Choose **New**.
-3. Enter a code and description.
-4. Select the posting or purchase mapping used by your process.
-5. Fill defaults such as quantity, unit of measure, VAT/product posting data, or currency when required.
-6. Mark the charge blocked only when users must stop using it.
+3. Enter **No.** and **Description**.
+4. Set **Purchase Line - Type** and **Purchase Line - No.** to the Business Central line type and record used for this cost.
+5. Fill **Unit of Measure Code** and **Default Vendor No.** when the charge should supply these defaults.
 
 ## Fields that matter most
 
 | Field | Why it matters |
 |---|---|
-| **Code** | The charge identifier used on documents and settlement lines. |
+| **No.** | The charge identifier selected in **Code** on settlement lines. |
 | **Description** | Appears on cost lines, reports, and documents. |
-| **Vendor or carrier mapping** | Controls which supplier context is used for cost processing. |
-| **Item Charge / G/L mapping** | Controls how the cost is posted or allocated. |
-| **Blocked** | Prevents new use without breaking history. |
+| **Unit of Measure Code** | Supplies the default unit for the charge quantity. |
+| **Default Vendor No.** | Supplies the default supplier for the cost. |
+| **Purchase Line - Type** | Defines the Business Central purchase line type, such as **G/L Account**, **Charge (Item)**, or a service **Item**. |
+| **Purchase Line - No.** | Identifies the account, item charge, or service item. The purchase line must use the matching type and number when its cost is imported. |
 
 ## Where charges are used
 
@@ -54,16 +54,18 @@ Make sure that:
 ## Good to know
 
 - Use short, stable charge codes. They become reporting dimensions for cost analysis.
-- Do not delete charges used in historical documents. Block them instead.
 - Keep service codes and charge codes separate. It helps users understand income versus cost.
+- For an ordinary manual Settlement **Cost** line, use **Financial Effect = Standard**. With **Pricing Mode = Per Unit**, enter positive **Quantity** and **Price**: quantity `1` and price `700` produce **Amount = -700** automatically.
+- With **Pricing Mode = Fixed Amount**, enter the signed economic total instead: an ordinary cost of `700` has **Amount = -700**. For supplier credits, use **Financial Effect = Credit** and review the [quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
+- When a vendor invoice already exists, follow [Purchase Assignment](purchaseassignment.md) to import its cost. Check for a matching draft cost first so that the invoice does not duplicate an estimate.
 
 ## Troubleshooting
 
 | Problem | What to check |
 |---|---|
-| Charge cannot be selected | Check whether the charge is blocked. |
-| Cost does not post correctly | Review item charge, G/L, VAT, and vendor mapping. |
-| Margin is wrong | Confirm the charge amount, currency, allocation, and settlement recalculation. |
+| Charge cannot be selected | Check the charge exists and is included in the Forwarding Order Type's allowed service/charge set when one is configured. |
+| Cost does not post correctly | Review **Purchase Line - Type**, **Purchase Line - No.**, vendor, and Business Central posting setup. |
+| Margin is wrong | Review **Financial Effect**, **Pricing Mode**, amount signs, currency, allocation, and duplicate costs. |
 | Cost cannot be allocated | Check the settlement line status and linked Forwarding Order. |
 | Purchase invoice line cannot be matched | Check charge setup and [Purchase Assignment](purchaseassignment.md). |
 

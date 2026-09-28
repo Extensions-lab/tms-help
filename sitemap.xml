@@ -126,6 +126,11 @@
     <priority>0.64</priority>
   </url>
   <url>
+    <loc>https://tms.extensions-lab.com/instructions.html</loc>
+    <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
     <loc>https://tms.extensions-lab.com/logisticunittype.html</loc>
     <lastmod>2026-04-29T00:00:00+00:00</lastmod>
     <priority>0.64</priority>
@@ -218,6 +223,11 @@
   <url>
     <loc>https://tms.extensions-lab.com/timeslots.html</loc>
     <lastmod>2026-04-29T00:00:00+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://tms.extensions-lab.com/transportprofiles.html</loc>
+    <lastmod>2026-08-26T00:00:00+00:00</lastmod>
     <priority>0.64</priority>
   </url>
   <url>

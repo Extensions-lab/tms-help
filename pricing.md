@@ -35,9 +35,20 @@ Make sure that:
 2. Confirm customer, agreement, route, cargo, and dates.
 3. Open [Settlement](settlement.md).
 4. Add or calculate income lines.
-5. Review price, currency, quantity, and description.
-6. Adjust only when the status and company policy allow it.
-7. Create the customer invoice when the order is ready.
+5. Review **Financial Effect**, **Pricing Mode**, **Unit of Measure Code**, quantity, price, amount, currency, and description.
+6. For an editable manual line, adjust the input that controls its pricing mode: **Quantity** and **Price** for **Per Unit**, or **Amount** for **Fixed Amount**. Follow [Add an Income line](settlement.md#add-an-income-line).
+7. For a normal customer invoice, confirm **Financial Effect = Standard** and fill **Unit of Measure Code** on every Income line, including **Fixed Amount** lines. Create the invoice when the order is ready.
+
+## Pricing Mode in Settlement
+
+Pricing rules can produce different settlement pricing modes. Review the resulting mode before changing a line.
+
+| Pricing Mode | What controls the total |
+|---|---|
+| **Per Unit** | **Quantity** and **Price** determine **Amount**, with the economic sign determined by **Type** and **Financial Effect**. Changing quantity changes the total. |
+| **Fixed Amount** | **Amount** is the agreed signed total. **Price** is derived when quantity is nonzero. Changing quantity preserves the total. |
+
+**Financial Effect** has a separate purpose. Use **Standard** for ordinary billing and **Credit** for a customer credit. Do not select a credit workflow just because a value is negative. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 
 ## Good to know
 
@@ -52,7 +63,8 @@ Make sure that:
 | No price is found | Check service, customer, agreement, currency, route, validity dates, and setup. |
 | Wrong price is used | Review priority rules and whether the Forwarding Order has the expected agreement. |
 | User cannot change price | Check status controls and settlement permissions. |
-| Invoice total differs from expected value | Review settlement quantity, currency, tax, discounts, and rounding. |
+| Invoice total differs from expected value | Review **Pricing Mode**, **Financial Effect**, quantity, currency, tax, discounts, and rounding. |
+| Quantity changes but the total stays the same | Check whether **Pricing Mode = Fixed Amount**. In this mode, quantity changes the derived price, not the agreed amount. |
 
 ## Related
 

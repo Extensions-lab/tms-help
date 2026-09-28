@@ -54,6 +54,104 @@ Make sure that:
 
 ## Good to know
 
+### Order instructions
+
+The `forwardingorders`, `freightorders`, `postedforwardingorders`, and `postedfreightorders` APIs expose read-only instruction collections. The navigation property has the same name as the corresponding instruction entity set listed below. Request it with `$expand` or navigate to that collection for a selected order.
+
+For example, relative to the `extensionsforce/tms/v1.0` API company path:
+
+```http
+GET forwardingorders(<order-guid>)?$expand=forwardingorderinstructions
+GET freightorders(<order-guid>)/freightorderinstructions
+GET postedforwardingorders(<posted-order-guid>)/postedforwardingorderinstructions
+GET postedfreightorders(<posted-order-guid>)?$expand=postedfreightorderinstructions
+```
+
+Instructions are also available through dedicated read-only entity sets:
+
+| Entity set | Owner fields |
+|---|---|
+| `forwardingorderinstructions` | `forwardingOrderNo` |
+| `freightorderinstructions` | `freightOrderNo` |
+| `postedforwardingorderinstructions` | `forwardingOrderNo`, `postedVersion` |
+| `postedfreightorderinstructions` | `freightOrderNo`, `postedVersion` |
+
+Use `id` to identify an instruction record. Freight Order instructions also expose `sourceForwardingOrderNo`: several customer jobs can supply different variants of the same `instructionCode`. A blank source identifies the Freight Order's own instruction.
+
+Each record includes the saved description, type code, Comment Group, applicability flags, customization/provenance information, `contentHtml`, and `contentText`. Active instruction type descriptions come from the current type master; posted instructions retain the archived type description. `contentText` is a plain-text conversion for integrations and LLMs; it preserves supported textual structure but does not recognize text inside images. Use `contentHtml` when the original formatting or embedded content is needed. Comment Group is classification, not an access-control filter.
+
+The nested collection automatically selects the correct order and, for posted records, its exact version. When reading a posted entity set directly, filter by both owner fields. A Posted Freight Order can have version `0`; its version is independent of the related Forwarding Order version.
+
+Reads return saved document copies without regenerating instructions from current master data. The APIs reject create, update, and delete operations. Existing instruction-table permissions are inherited by the TMS API roles; MCP operations still depend on server configuration and the integration user's permissions.
+
+### Planning and operational fields
+
+The APIs include selected operational fields from current TMS master data, orders, cargo lines, and posted history:
+
+| API area | Useful fields and meaning |
+|---|---|
+| Drivers, vehicles, carriers | `blockForScheduling` and `schedulerSortOrder` describe scheduler visibility and order. Vehicles include `defaultMapLocationCode`; carriers include `note` and the read-only `freightOrderCount`. These fields do not establish availability for a particular date. |
+| Logistic Units | `comment` contains the unit-specific note, up to 250 characters; posted units preserve its historical value as read-only. `trackingNo`, `seals`, `shippingAgentCode`, and `reusable` identify tracking, security, and reuse information. Read-only warehouse/logistics location fields describe stored placement. Posted units also expose `parentUnitPostedVersion` for exact historical nesting. |
+| Logistic Unit lines | `qtyPerUnitOfMeasure`, `inventoryQuantityBase`, and `expectedQuantityBase` distinguish packing quantities from signed posted and projected document-link balances. Expected quantity includes both posted and unposted calculation links. Location fields are read-only. |
+| Forwarding Orders | Order and party notes, the selected customer agreement, route, estimated loading length, planned reservations, and `uninvoicedAmountLCY`. That amount combines signed income and cost settlement without a financial document number; it is not an unpaid customer balance. |
+| Freight Orders | Loading/unloading dates, times, windows, bays and priority; booking/flight references; responsibility center and route; stored capacity and temperature context. Current FO APIs also expose reserved capacity and current charge amounts. |
+| Forwarding Order cargo lines | `gtin`, the read-only source `itemReferenceNo`, `qtyPerUnitOfMeasure`, and `linearUnitOfMeasureCode`. Changing the linear unit does not convert the numeric dimensions; it reinterprets them and recalculates volume. |
+| Order stages | `stageProfileCode`, `transportRegulationCode`, `transportProfileCode`, `vehicleUnitTypeCode`, `packageTypeCode`, and relevant reservation/status-profile context. These new stage fields are read-only through the API. |
+
+Posted APIs expose stored counterparts only where the source tables preserve that information. Posted Freight Orders do not expose the live-cost or cross-version reservation FlowFields as historical totals. A transport-profile code in history is a saved reference, not a frozen copy of the entire current master profile.
+
+Computed values, historical data, workflow-managed locations, and selected customer agreements are read-only. The new stage transport selectors are read-only because the current API insertion path does not perform the full equipment validation used by the planning workflow. Use the supported business processes to change these values. All added fields include AboutTitle/AboutText explaining their source, units, relationships, and limits.
+
+### Transport Profiles and Vehicle Unit Types
+
+The Stage API exposes `transportProfileCode` and `vehicleUnitTypeCode`. Resolve these references through the following read-only APIs under `extensionsforce/tms/v1.0`:
+
+| Entity set | Purpose and business key |
+|---|---|
+| `transportprofiles` | Current Transport Profile master data. Match `code` to the stage `transportProfileCode`. |
+| `vehicleunittypes` | Shared Logistic Units type master used for equipment and packaging. Match `code` to the stage or Freight Order `vehicleUnitTypeCode`, or a vehicle's `unitTypeCode`. |
+| `transportprofiledetails` | Repeating facts and structured conditions, linked by `profileCode`. The business key includes `profileCode`, `detailType` and `lineNo`. |
+| `profileunittyperules` | Profile-specific equipment rules, linked by `profileCode` and `vehicleUnitTypeCode`. |
+
+Every record uses `id` (SystemId) as its OData key. Transport Profiles expose their classification, SDS references, transport context, required temperatures with explicit Defined flags, and handling requirements. They describe complete scenarios, including nonregulated or conditional cargo; they are not simply a list of hazard classes.
+
+Profiles contain `transportprofiledetails` and `profileunittyperules` navigation collections. Vehicle Unit Types also expose `profileunittyperules`, filtered to that equipment type. For example, relative to the API company path:
+
+```http
+GET transportprofiles?$filter=code eq 'PROFILE-CODE'&$expand=transportprofiledetails,profileunittyperules
+GET vehicleunittypes?$filter=code eq 'TYPE-CODE'&$expand=profileunittyperules
+```
+
+The Vehicle Unit Type API returns stored dimensions and units, capacities, strict-control flags, loading characteristics, reuse and legacy TMS attribute information. The underlying dictionary also contains packaging types; it has no separate vehicle-only filter or Blocked field. Type membership is not evidence that equipment is available or suitable for a shipment.
+
+These APIs return current definitions, including blocked or unreviewed profiles for traceability. A profile reference from a posted stage does not reconstruct a historical master definition. Inspect `blocked`, `transportDataReviewed`, the full profile context, details and equipment rules when interpreting a reference.
+
+Temperature zero is meaningful only when its corresponding Defined flag is set. A profile with no equipment rules imposes no restriction through that rule list; once any rule exists, an unlisted type is excluded. Conditional rules require shipment context and, where specified, explicit confirmation. Reading or expanding the records does not execute the TMS compatibility checks, approve classification, or assign equipment.
+
+Create, update and delete operations are disabled. The current and legacy TMS API permission sets include execution of the new pages; existing transport-planner permissions supply the profile-table reads. Reading `vehicleunittypes` additionally requires Unit Type read permission from the Logistic Units app, for example **TMAC User** (caption **Logistic Units - User**) or an equivalent custom role. TMS does not redefine the dependency's licensing entitlements.
+
+### Transport Regulations and Package Types
+
+Use these read-only entity sets under `extensionsforce/tms/v1.0` to resolve `transportRegulationCode` and `packageTypeCode` from `stages`, `postedstages`, `postedfreightstages`, and `transportprofiles`. Match each reference to the corresponding dictionary's `code`.
+
+| Entity set | Fields |
+|---|---|
+| `transportregulations` | `id`, `code`, `description`, `edition`, `active`, `notes` |
+| `packagetypes` | `id`, `code`, `description` |
+
+Both APIs use `id` (SystemId) as the OData key and expose `systemCreatedAt`, `systemCreatedBy`, `systemModifiedAt`, and `systemModifiedBy`. Create, update, and delete operations are disabled.
+
+Transport Regulations include inactive records so that older references remain resolvable when those dictionary records still exist. To request only active regulations, apply the optional filter explicitly:
+
+```http
+GET transportregulations?$filter=active eq true
+GET packagetypes?$filter=code eq 'PACKAGE-CODE'
+```
+
+Package Types are the separate TMS dictionary for the cargo's packaging context; `vehicleunittypes` describes Logistic Units equipment and unit types. Resolve `packageTypeCode` against `packagetypes`, even if an equipment or unit type happens to use the same code. These APIs return current dictionary values, not the definitions as they were when a stage was posted.
+
+### General API behavior
+
 - API behavior follows Business Central company, user, and permission rules.
 - Do not use a personal user account for integrations.
 - Keep external IDs in dedicated reference fields so users can trace records across systems.

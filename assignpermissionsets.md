@@ -16,9 +16,17 @@ Assign permission sets after the app is installed and licenses are assigned.
 | Operations and finance users | **TMS User** |
 | TMS administrators | **TMS Administrator** |
 | API, Power BI, or integration users | **TMS API** |
+| Custom role that works with Settlement | **TMA Settlement** |
 | Capacity sourcing users, if enabled | **TMA Capacity Sourcing** |
 
 Older permission sets with the `TMA` prefix can exist for compatibility. For new assignments, use the `TMS` permission sets unless your implementation guide says otherwise.
+
+`TMS User`, `TMS Administrator`, and `TMS API` already include the complete **TMA Settlement** capability.
+Settlement access is not divided by operation type: the same capability covers runtime processing, reconciliation,
+reporting-currency revaluation, evidence review, posting, archiving, and Full Reversal. Assign **TMA Settlement**
+directly only when composing a custom role instead of using a standard TMS role.
+
+`TMS User` also includes operational [Instructions](instructions.md) access. `TMS Administrator` adds maintenance rights for Instruction Types and master Instructions. The internal instruction capability sets are composed into these roles and normally should not be assigned directly.
 
 ## Recommended assignment pattern
 
@@ -62,3 +70,4 @@ Older permission sets with the `TMA` prefix can exist for compatibility. For new
 - [Buy licenses](buylicenses.md)
 - [TMS Setup](setup.md)
 - [API](api.md)
+- [Instructions](instructions.md)

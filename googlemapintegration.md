@@ -22,13 +22,15 @@ Make sure that:
 
 1. Create or open the Google Maps Platform project.
 2. Enable the APIs required by your TMS process.
-3. Create an API key.
-4. Restrict the key according to your company policy.
+3. Create one Google Maps API key for TMS.
+4. Configure API restrictions, quotas, billing alerts, rotation, and monitoring for that key.
 5. Open [TMS Setup](setup.md).
 6. Select Google Maps as the map provider.
-7. Paste the API key.
+7. Paste the key into **Google Api Key**.
 8. Test geocoding on a [Map Location](maplocation.md).
 9. Test route or distance calculation on a Forwarding Order or Freight Order.
+
+TMS shows one field and stores the entered value in separate encrypted server and browser slots. The same value is used by Business Central service-tier requests and the browser map control. Consequently, TMS currently does not support separate IP-restricted and HTTP-referrer-restricted Google keys. Select restrictions that work for both request paths, and use API restrictions, quotas, rotation, monitoring, and billing alerts to limit exposure.
 
 ## What Google Maps supports
 
@@ -43,7 +45,9 @@ Make sure that:
 
 - Google usage can create costs in your Google account.
 - Restrict API keys. Do not share unrestricted keys with users or external systems.
+- The configured Google key is supplied to the browser control and can be extracted by a browser user. Encryption protects it at rest, not while it is used in the browser.
 - Address quality matters. Clean city, country, postal code, and street data gives better results.
+- Geocoding and routing send address or coordinate data to Google. Review [privacy and outbound data transfer](mapproviders.md#privacy-and-outbound-data-transfer) before enabling the integration.
 
 ## Troubleshooting
 
@@ -57,6 +61,7 @@ Make sure that:
 ## Related
 
 - [TMS Setup](setup.md)
+- [Map Providers](mapproviders.md)
 - [Map Locations](maplocation.md)
 - [Map Location Types](maplocationtype.md)
 - [Forwarding Order](forwardingorder.md)

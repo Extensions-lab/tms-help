@@ -28,6 +28,17 @@ Make sure that:
 6. Choose **Check Connection**.
 7. Fix any Azure or credential errors before transferring files.
 
+## Credential security
+
+TMS stores the account access key in encrypted Business Central isolated storage with company scope. The key is not retained in the TMS Setup table and is returned to the Azure Storage client as `SecretText`.
+
+- The setup page displays a masked placeholder when a key exists and never loads the saved value back into the page field.
+- Entering a new value rotates the saved key. Clearing the field removes it.
+- The storage account name and container remain regular company-specific setup values.
+- Encrypted isolated-storage input is limited to at most 215 plain characters, and special characters can reduce the effective limit. A standard Azure Storage account key fits within the supported size.
+
+When the extension is upgraded from a version that stored the key in the TMS Setup table, the upgrade moves the existing value to encrypted isolated storage and verifies that it can be read back. Only then is the plaintext table value cleared. If encrypted storage cannot retain the credential, the upgrade stops without erasing the existing value so the problem can be corrected and the upgrade retried.
+
 ## Transfer existing attachments
 
 1. Open [TMS Setup](setup.md).
@@ -54,6 +65,7 @@ Make sure that:
 - **Transfer Attachments to ABS** moves TMS attachment content to Azure Blob Storage.
 - **Free Space** removes the imported file payload from Business Central after transfer.
 - Do not rotate the storage key without updating TMS Setup.
+- The saved key cannot be revealed from TMS Setup. Obtain a replacement from Azure when rotation is required.
 
 ## Troubleshooting
 
@@ -62,6 +74,7 @@ Make sure that:
 | Check Connection fails | Check account name, container, access key, network policy, and Azure permissions. |
 | Attachment does not open | Check whether the file exists in Blob Storage and the setup still uses the correct key. |
 | Transfer stops | Review the error message, fix the storage issue, then run transfer again. |
+| Extension upgrade reports that the key cannot be migrated | Confirm that the configured value is a valid Azure Storage account key and does not exceed 215 characters, rotate it if necessary, and retry the upgrade. |
 | Screenshot exposes a key | Replace the screenshot immediately and rotate the key if it was shared outside the trusted team. |
 
 ## Related

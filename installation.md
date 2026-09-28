@@ -34,7 +34,8 @@ You need:
 2. [Assign permission sets](assignpermissionsets.md).
 3. Open [TMS Setup](setup.md).
 4. Configure the required number series, statuses, stages, and forwarding order types.
-5. Configure [Google Maps integration](googlemapintegration.md) if you use distance, duration, route display, or route optimization.
+5. Configure [Google Maps or Azure Maps](mapproviders.md) if you use distance, duration, route display, or route optimization.
+6. Configure [Azure Blob Storage](azureblobstorage.md) if TMS attachments must be stored outside Business Central.
 
 ## Verify the installation
 
@@ -51,6 +52,7 @@ You need:
 | TMS pages do not appear | Confirm the app is installed in the correct environment and company. |
 | User cannot open TMS pages | Assign the correct TMS permission set and license. |
 | Setup page opens but actions fail | Complete [TMS Setup](setup.md) and required number series. |
+| Upgrade stops while migrating the Azure Blob Storage key | Correct or rotate the existing key, then retry the upgrade. Migration leaves the old value intact when encrypted storage cannot save it. |
 
 ## Related
 

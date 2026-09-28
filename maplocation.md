@@ -41,13 +41,13 @@ Make sure that:
 | **Latitude / Longitude** | Used for map display, route, distance, and duration. |
 | **Contact details** | Help users communicate with the location. |
 
-## Distance matrix
+## Route distance matrix
 
-Use distance matrix data when your process stores distance and duration between common locations.
+Use **Route Distance Matrix** when your process stores distance and duration between common locations. It contains provider-aware calculated cache entries and manual overrides.
 
 ![Map Location distance matrix](resources/maplocation/pics/maplocationDistanceMatrix.png)
 
-Distance matrix values can help reporting and planning, especially when the same lanes are used often.
+Route distance matrix values can help reporting and planning, especially when the same lanes are used often. The former **Distance Matrix** object is retained only for compatibility; rows from it are copied to **Route Distance Matrix** during upgrade.
 
 ## Good to know
 
@@ -62,11 +62,12 @@ Distance matrix values can help reporting and planning, especially when the same
 | Geocoding returns the wrong place | Correct address fields or manually change the position. |
 | Route does not calculate | Confirm all required locations have coordinates. |
 | Location is hard to find | Improve name, type, and code naming convention. |
-| Distance matrix is missing | Check whether the lane has been calculated or entered. |
+| Route distance matrix is missing | Check whether the lane has been calculated or entered in Route Distance Matrix. |
 
 ## Related
 
 - [Map Location Types](maplocationtype.md)
+- [Map Providers](mapproviders.md)
 - [Google Maps Integration](googlemapintegration.md)
 - [Routes](route.md)
 - [Forwarding Order](forwardingorder.md)

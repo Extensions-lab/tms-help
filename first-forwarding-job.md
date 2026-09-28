@@ -46,20 +46,22 @@ Expected result: the carrier execution document is linked to the Forwarding Orde
 ## Step 3. Add income and cost
 
 1. Open [Settlement](settlement.md) from the Forwarding Order.
-2. Add one income line with a service code.
-3. Add one cost line with a charge code or assign a vendor purchase line through [Purchase Assignment](purchaseassignment.md).
-4. Review currency, quantity, price, and amount.
-5. Recalculate settlement totals if needed.
+2. Add a line with **Type = Income**, select a service in **Code**, and keep **Financial Effect = Standard** for a normal customer invoice.
+3. Set **Pricing Mode = Per Unit**. Fill **Unit of Measure Code**, **Quantity**, and **Price**. For example, quantity `1` and price `1,000` give income of `1,000`. Review the customer and currency. See [Add an Income line](settlement.md#add-an-income-line) for other pricing cases.
+4. Add a line with **Type = Cost** and a charge in **Code**. For a normal cost, keep **Financial Effect = Standard** and **Pricing Mode = Per Unit**, then enter positive quantity and price. For example, quantity `1` and price `700` give **Amount = -700** automatically.
+5. If the vendor invoice already exists, use [Purchase Assignment](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost) to link its purchase line to the Cost row from step 4. Do not import it as a second cost.
+6. Review currency, quantity, price, and amount. Do not add a minus to an ordinary per-unit cost quantity or price. A **Fixed Amount** cost uses a different input rule: enter its signed total. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 
-Expected result: settlement shows income, cost, profit, and margin.
+Expected result: settlement shows income and cost contributions. With both example lines in local currency, **Total Profit (LCY)** is `300`.
 
 ## Step 4. Create the customer invoice
 
 1. Confirm that the Forwarding Order status allows invoicing.
-2. Choose **Create Sales Invoice** from settlement or the Forwarding Order action.
-3. Open the created invoice.
-4. Review customer, lines, tax, currency, and amount.
-5. Post the invoice if your test process allows posting.
+2. Confirm that every Income line to invoice has **Unit of Measure Code** filled and **Financial Effect = Standard**.
+3. In Settlement, choose **Create > Sales Invoice**, or choose **Create Sales Invoice** on the Forwarding Order.
+4. Open the created invoice.
+5. Review customer, lines, tax, currency, and amount.
+6. Post the invoice if your test process allows posting.
 
 Expected result: the settlement line stores the linked sales document reference.
 
@@ -80,8 +82,9 @@ Expected result: the job is available in posted history for audit and reporting.
 | Forwarding Order cannot be created | Check TMS Setup, Forwarding Order Type, number series, and permissions. |
 | Freight Order cannot be created | Check stages, status controls, Freight Order Type, and carrier setup. |
 | Invoice action is disabled | Check status profile, settlement permissions, customer, and service setup. |
+| Invoice creation asks for a unit of measure | Fill **Unit of Measure Code** on every Income line being invoiced, including **Fixed Amount** lines. |
 | Posting is blocked | Check required attachments, posted document control, and settlement posting dates. |
-| Totals are wrong | Review service, charge, quantity, currency, price, and allocation. |
+| Totals are wrong | Review **Financial Effect**, **Pricing Mode**, and [amount signs](settlement.md#quantity-price-and-amount-signs), then check currency and duplicate or missing costs. |
 
 ## Related
 

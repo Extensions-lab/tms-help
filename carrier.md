@@ -37,10 +37,13 @@ Make sure that:
 |---|---|
 | **No. / Code** | Identifies the carrier in TMS documents. |
 | **Name** | Appears in lists, reports, and user lookups. |
+| **SCAC** | Stores the optional external NMFTA carrier identifier; shown in General and the carrier list. |
 | **Vendor No.** | Connects carrier cost to Business Central purchase processing. |
 | **Pay-to Vendor** | Supports cases where the invoice vendor differs from the executing carrier. |
 | **Default Vehicle / Driver** | Speeds up Freight Order creation when the carrier uses known resources. |
 | **Blocked** | Prevents users from using a carrier that should no longer be selected. |
+
+Enter the optional **SCAC** ([Standard Carrier Alpha Code](https://scac.nmfta.org/about)) in **General** on the carrier card; it is also visible in the carrier list. SCAC applies to [road, sea, rail, and air carrier companies](https://help.nmfta.org/hc/en-us/articles/40628038580635-Record-Layout-for-SCAC-Data-Daily-Distribution-File); it is not limited to maritime carriers. This NMFTA identifier is separate from the internal carrier **No.** used in TMS. Leave it blank when unused, or enter 2–4 Latin letters A–Z; values are stored in uppercase. Invalid lengths, digits, and punctuation are rejected. TMS validates the format only and does not check the NMFTA online registry. The existing carrier API also exposes SCAC as **scac**.
 
 ## Where carriers are used
 

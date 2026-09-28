@@ -34,6 +34,7 @@ Make sure that:
 | **Settlement** | Income, cost, allocation, invoicing, and margin. |
 | **Attachments** | Files required for compliance, customer communication, or posting. |
 | **Check List** | Operational tasks for the order. |
+| **Instructions** | Rich-content operational guidance inherited from type, consignee, address, or Sales Order, plus manual order-specific instructions. See [Instructions](instructions.md). |
 
 ## How to work in this page
 
@@ -55,9 +56,9 @@ Make sure that:
 | **Assign Freight Order** | Create or assign carrier execution for a selected stage. |
 | **Freight Order List** | Open Freight Orders linked to the Forwarding Order. |
 | **Logistic Unit Builder** | Create logistic units from selected content. |
-| **Create Sales Invoice** | Create a customer invoice from settlement income lines. |
-| **Create Credit Memo** | Create a customer credit memo from negative income lines. |
-| **Sync with Sales** | Push settlement income changes to linked sales documents. |
+| **Create Sales Invoice** | Create a customer invoice from eligible settlement Income lines with **Financial Effect = Standard**. |
+| **Create Credit Memo** | Create a customer credit memo from eligible Income lines with **Financial Effect = Credit**. A negative amount alone does not select a credit memo. |
+| **Sync with Sales** | Check linked sales lines and add eligible new Income lines to the existing open sales document. |
 | **Attachments** | Add or review files for the order. |
 | **Post** | Move the order to posted history after controls pass. |
 
@@ -89,6 +90,9 @@ Posting can be blocked by setup or status rules. Common blockers include:
 - The Forwarding Order defines **what** is transported and **who** ordered it.
 - Freight Orders define **who executes** the transportation work.
 - Settlement defines **how the order is billed and costed**.
+- Before billing, follow [Add an Income line](settlement.md#add-an-income-line). Every Income line needs **Unit of Measure Code**, including fixed-amount lines.
+- For an ordinary **Cost** line with **Financial Effect = Standard** and **Pricing Mode = Per Unit**, enter positive quantity and price. Settlement calculates the negative economic amount. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs) for fixed amounts and credits.
+- To record an existing vendor invoice, follow [Purchase Assignment](purchaseassignment.md). Importing its lines is a different operation from creating new purchase lines from settlement.
 - Posted Forwarding Orders are read-only history.
 
 ## Troubleshooting
@@ -105,6 +109,7 @@ Posting can be blocked by setup or status rules. Common blockers include:
 
 - [Forwarding Order Types](forwardingordertype.md)
 - [Freight Order](freightorder.md)
+- [Forwarding Control Tower](forwardingcontroltower.md)
 - [Settlement](settlement.md)
 - [Attachment Control](attachmentcontrol.md)
 - [Posted Forwarding Order](postedforwardingorder.md)

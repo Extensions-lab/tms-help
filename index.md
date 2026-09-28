@@ -59,9 +59,9 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | Role | Start with | Why |
 |---|---|---|
 | Forwarding coordinator | [Forwarding Order](forwardingorder.md), [Stages](stages.md), [Freight Order](freightorder.md) | Manage customer requests and carrier execution. |
-| Dispatcher or operations planner | [Freight Load Management](freightloadmanagement.md), [Freight Order](freightorder.md), [Stage Entries](stageentries.md), [Carriers](carrier.md) | Plan carrier work, execution capacity, and stage progress. |
+| Dispatcher or operations planner | [Forwarding Control Tower](forwardingcontroltower.md), [Freight Load Management](freightloadmanagement.md), [Freight Order](freightorder.md), [Stage Entries](stageentries.md), [Carriers](carrier.md) | Plan carrier work, execution capacity, and stage progress. |
 | Finance user | [Settlement](settlement.md), [Purchase Assignment](purchaseassignment.md), [Services](services.md), [Charges](charges.md), [Pricing](pricing.md) | Control income, cost, allocation, and margin. |
-| TMS administrator | [TMS Setup](setup.md), [Forwarding Order Types](forwardingordertype.md), [Freight Order Types](freightordertype.md), [Statuses](statuses.md), [Stages](stages.md) | Configure the rules that control daily work. |
+| TMS administrator | [TMS Setup](setup.md), [Transport Profiles](transportprofiles.md), [Forwarding Order Types](forwardingordertype.md), [Freight Order Types](freightordertype.md), [Statuses](statuses.md), [Stages](stages.md) | Configure transport classification, dangerous-goods master data, and the rules that control daily work. |
 | Document controller | [Attachment Control](attachmentcontrol.md), [Check List](checklist.md), [Reports and Documents](reports.md) | Track required files, tasks, and customer/carrier documents. |
 | Integration user | [API](api.md), [Business Central Integration](integration.md), [Customer Portal Entities](customerportal.md) | Connect TMS to portals, Power BI, and external systems. |
 
@@ -71,10 +71,14 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 |---|---|
 | Create a customer transportation job | [Forwarding Order](forwardingorder.md) |
 | Define the transportation legs | [Stages](stages.md) |
+| Review orders that need attention | [Forwarding Control Tower](forwardingcontroltower.md) |
 | Assign the carrier or executor | [Freight Order](freightorder.md) |
 | Plan carrier workload | [Freight Load Management](freightloadmanagement.md) |
 | Record or review execution events | [Stage Entries](stageentries.md) |
-| Add billable services | [Settlement](settlement.md) |
+| Understand income, cost, and credit signs | [Settlement principles](settlement.md#settlement-principles) |
+| Add billable services | [Add an Income line](settlement.md#add-an-income-line) |
+| Maintain dangerous-goods and equipment rules | [Transport Profiles](transportprofiles.md) |
+| Connect a vendor invoice to a planned cost | [Link a purchase line](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost) |
 | Allocate carrier invoices | [Purchase Assignment](purchaseassignment.md), [Charges](charges.md), and [Settlement](settlement.md) |
 | Create customer invoices | [Settlement](settlement.md) |
 | Track required files | [Attachment Control](attachmentcontrol.md) |
@@ -86,7 +90,9 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | Topic | What it explains |
 |---|---|
 | [Forwarding Order](forwardingorder.md) | The main LSP transportation document |
+| [Forwarding Control Tower](forwardingcontroltower.md) | Active operations overview for planning, carrier assignment, documents, and open tasks |
 | [Freight Order](freightorder.md) | Carrier execution for one or more stages |
+| [Transport Profiles and Dangerous Goods](transportprofiles.md) | Cargo classification, Item/Product assignments, Stage profile selection, conditional rules, and Vehicle Unit Type compatibility |
 | [Stage Entries](stageentries.md) | Execution events, statuses, attachments, images, and map points |
 | [Settlement](settlement.md) | Income, cost, allocation, invoicing, and profit |
 | [Stages](stages.md) | Stage profiles and transportation legs |
@@ -99,7 +105,9 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | Topic | What it covers |
 |---|---|
 | [TMS Setup](setup.md) | Core system settings |
+| [Transport Profiles](transportprofiles.md) | Regulatory scenarios, dangerous-goods data, profile assignments, and equipment rules |
 | [Forwarding Order Types](forwardingordertype.md) | Templates for FWO behavior, defaults, stages, and statuses |
+| [Instructions](instructions.md) | Reusable rich-content instructions, source priority, document propagation, and report applicability |
 | [Freight Order Types](freightordertype.md) | Defaults for Freight Order numbering, status, charge calculation, and cost distribution |
 | [Carriers](carrier.md) | Transport service providers |
 | [Vehicles](vehicle.md) | Fleet and equipment records |
@@ -114,6 +122,7 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | [Map Locations](maplocation.md) | Geocoded location records |
 | [Map Location Types](maplocationtype.md) | Classification of map locations |
 | [Logistic Unit Types](logisticunittype.md) | Unit and capacity profiles |
+| [Map Providers](mapproviders.md) | Google Maps and Azure Maps setup, credentials, routing, and cache behavior |
 | [Google Maps Integration](googlemapintegration.md) | Google API key setup |
 
 ## Integration and administration
@@ -135,11 +144,13 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 |---|---|
 | A user cannot open TMS pages | [Assign Permission Sets](assignpermissionsets.md) |
 | A Forwarding Order action is disabled | [Statuses and Status Profiles](statuses.md) |
+| A Transport Profile or Vehicle Unit Type is rejected | [Transport Profiles](transportprofiles.md), [Stages](stages.md), [Freight Order](freightorder.md) |
 | Freight Orders cannot be created | [Forwarding Order](forwardingorder.md), [Stages](stages.md), [Statuses](statuses.md) |
 | Settlement cannot create an invoice | [Settlement](settlement.md), [Services](services.md), [Setup](setup.md) |
 | Carrier cost cannot be allocated | [Purchase Assignment](purchaseassignment.md), [Charges](charges.md), [Settlement](settlement.md) |
-| Distance or route is not calculated | [Google Maps Integration](googlemapintegration.md), [Map Locations](maplocation.md) |
+| Distance or route is not calculated | [Map Providers](mapproviders.md), [Map Locations](maplocation.md) |
 | Required documents are missing | [Attachment Control](attachmentcontrol.md), [Statuses](statuses.md) |
+| A planner needs the full operational picture | [Forwarding Control Tower](forwardingcontroltower.md), [Freight Load Management](freightloadmanagement.md), [Attachment Control](attachmentcontrol.md) |
 
 ## Maintenance
 

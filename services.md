@@ -44,6 +44,7 @@ Make sure that:
 | Area | Use |
 |---|---|
 | **Settlement income lines** | Defines what the customer is billed for. |
+| **Default Service Sets** | Predefines services or charges together with their Financial Effect and Pricing Mode for new Forwarding Orders. |
 | **Pricing** | Finds or calculates expected income. |
 | **Sales documents** | Creates customer invoice or credit memo lines. |
 | **Reporting** | Shows revenue by service. |
@@ -52,6 +53,9 @@ Make sure that:
 
 - Use clear invoice-friendly descriptions.
 - Do not mix services and charges. Services are income. Charges are cost.
+- In a Default Service Set, choose **Standard** or **Credit** Financial Effect and **Per Unit** or **Fixed Amount** Pricing Mode before the set is used by a Forwarding Order Type.
+- Lines copied from a Default Service Set remain editable Settlement drafts until they are linked to a document.
+- Before invoicing, follow [Add an Income line](settlement.md#add-an-income-line). **Unit of Measure Code** must be filled on every Income line, including fixed fees and services mapped to a G/L account or resource.
 - Block obsolete services instead of deleting them.
 
 ## Troubleshooting

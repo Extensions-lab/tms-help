@@ -39,20 +39,22 @@ Save screenshots under `docs/resources/<topic>/pics/` unless the article already
 | [Vehicles](vehicle.md) | `docs/resources/vehicle/pics/vehicle-card.png` | Vehicle card with General, carrier, registration, and equipment groups visible. |
 | [Products](product.md) | `docs/resources/product/pics/products-list.png` | Product list with cargo descriptions, freight class, and weight columns visible. |
 | [Time Slots](timeslots.md) | `docs/resources/timeslots/pics/timeslots-list.png` | Time slot profile list with profile code, description, and slot count visible. |
-| [Settlement](settlement.md) | `docs/resources/settlement/pics/settlement-overview.png` | Forwarding Order settlement lines showing income, cost, allocation, and totals. |
-| [Purchase Assignment](purchaseassignment.md) | `docs/resources/purchaseassignment/pics/purchase-assignment.png` | Purchase Document Assignment page with vendor invoice lines and assigned line styling. |
+| [Settlement](settlement.md) | `docs/resources/settlement/pics/settlement-overview.png` | Refresh to show Type, Financial Effect, Pricing Mode, Quantity, Price, signed Amount, and document references. Use ordinary Income and Cost examples with positive quantity and price, plus a fixed-amount cost with a negative Amount. |
+| [Purchase Assignment](purchaseassignment.md) | `docs/resources/purchaseassignment/pics/purchase-assignment.png` | Purchase Document Assignment opened from Settlement > Import to Settlement > Single Purchase Document Line > Purchase Invoice Line, with clean demo data. Show the resulting document reference on the existing Cost row in a separate capture when needed. |
 | [Stage Entries](stageentries.md) | `docs/resources/stageentries/pics/stage-entries.png` | Stage Entries list with execution status, carrier, driver, vehicle, attachments, and images FactBox. |
 | [Freight Agreements](freightagreement.md) | `docs/resources/freightagreement/pics/freight-agreement-card.png` | Freight Agreement card with carrier, type, currency, dates, active flag, and charge lines. |
 | [Freight Order Types](freightordertype.md) | `docs/resources/freightordertype/pics/freight-order-types.png` | Freight Order Types list showing status profile, default status, and number series. |
 | [Order Wizards](orderwizards.md) | `docs/resources/orderwizards/pics/forwarding-order-wizard.png` | New Forwarding Order Wizard on the first or party step with demo data only. |
 | [Azure Blob Storage](azureblobstorage.md) | `docs/resources/azureblobstorage/pics/azure-blob-storage-setup.png` | TMS Setup Azure Blob Storage section with account key fully hidden. |
 | [Attachment Control](attachmentcontrol.md) | `docs/resources/attachmentcontrol/pics/attachment-control-overview.png` | Attachment Control page with category columns and counts. |
+| [Forwarding Control Tower](forwardingcontroltower.md) | `docs/resources/forwardingcontroltower/pics/forwarding-control-tower.png` | Control Tower with FWO summary rows and stage, attachment, and checklist details visible. |
 | [Freight Load Management](freightloadmanagement.md) | `docs/resources/freightloadmanagement/pics/freight-load-management.png` | Planning view filtered to one day or carrier. |
 
 ## New screenshots to add later
 
 | Article | Suggested file name | Capture guidance |
 |---|---|---|
+| [Transport Profiles](transportprofiles.md) | `docs/resources/transportprofiles/pics/transport-profile-card.png` | Transport Profile card with Transport Context, SDS and Source, Dangerous Goods Classification, review status, Details, and Vehicle Unit Type Rules visible; use blocked demo data only. |
 | [Pricing](pricing.md) | `docs/resources/pricing/pics/pricing-example.png` | Price setup or settlement price calculation example. |
 | [Customer Portal Entities](customerportal.md) | `docs/resources/customerportal/pics/portal-ticket.png` | Portal ticket list or card with customer data anonymized. |
 

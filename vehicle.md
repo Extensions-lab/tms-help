@@ -36,11 +36,18 @@ Make sure that:
 |---|---|
 | **No. / Code** | Identifies the vehicle in TMS. |
 | **Description** | Helps users select the right equipment. |
+| **IMO Number** | Stores the optional permanent IMO vessel identifier; shown in General and the vehicle list. |
 | **Carrier No.** | Links equipment to the executing carrier. |
 | **Registration No.** | Prints on operational documents when needed. |
 | **Capacity values** | Support planning and load review. |
 | **Default Driver** | Speeds up Freight Order assignment. |
 | **Blocked** | Prevents new assignment while preserving history. |
+
+The **IMO Number** field applies only to vessels. Enter it in **General** on the vessel's vehicle card, and leave it blank for trucks, trailers, vans, and other equipment that is not a vessel. The [IMO ship identifier](https://www.imo.org/en/ourwork/iiis/pages/imo-identification-number-schemes.aspx) remains with the vessel when its name, flag, or owner changes. It is separate from the internal Vehicle **No.**, **VIN**, and **Registration No.**
+
+Leave the field blank when unused. Current IMO ship numbers have seven digits; TMS also accepts eight digits for compatibility with the announced future extension. You can include an **IMO** prefix in any letter case and surrounding spaces; TMS removes them and stores only the digits. Other lengths and nondigit characters are rejected. Validation checks the format only, without a checksum or online registry check.
+
+The existing vehicle API exposes this field as **imoNumber**. Freight Order snapshots and reports do not include this field.
 
 ## Where vehicles are used
 
