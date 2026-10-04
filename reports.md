@@ -19,6 +19,31 @@ Make sure that:
 - stage entries are reviewed when reports include execution event details,
 - settlement lines are reviewed before financial documents are created.
 
+## Report selections by document usage
+
+Open **TMS Setup > Reports > Report Selection - Transportation Management System**. **Usage** lists the new document purposes from **TMA Document Report Usage** and maps them to the corresponding standard **Report Selection Usage** values.
+
+The six Freight Order purposes are **Freight Order**, **Freight Order - Details**, **Freight Order - Load Summary**, **Freight Order - Packing List**, **Freight Order - Bill of Lading**, and **Freight Order - Booking Confirmation**. Forwarding Order purposes are **Forwarding Order**, **Forwarding Order - Confirmation**, **Forwarding Order - Invoice**, and **Forwarding Order - Load Summary**.
+
+Each row is a standard Report Selections row. **Sequence** controls the output order; it does not select a preferred alternative. **Printing runs every configured report for that Usage.** To print only one form, delete the other rows or replace the Report ID on the remaining row. There is no additional TMS printing flag.
+
+Initial alternatives are:
+
+| Usage | Sequence 1 | Sequence 2 | Sequence 3 |
+|---|---|---|---|
+| Freight Order - Packing List | TMA Packing List | TMA Packing List By Drop | TMA Packing List by Container |
+| Freight Order - Bill of Lading | TMA Bill of Lading | TMA Bill-of Lading By Drop | TMA DG Bill of Lading |
+
+The other supported purposes receive their corresponding standard report in Sequence 1. **Forwarding Order** and **Forwarding Order - Load Summary** remain empty until an appropriate report is selected; no unrelated report is assigned automatically. **Forwarding Order - Invoice** uses the existing invoice workflow and its Sales Header input.
+
+Use **Report Layout**, shown after **Email Body Layout** as on the standard Report Selection - Sales page, to choose a modern layout for the printed form/PDF. Select the value in that column to open the standard layout selector for the row's Report ID. **Email Body Layout** selects the email text template separately. Leaving the document layout unassigned uses the standard report/company default. The company choice is stored in **Report Selections**; no additional fields in **Custom Report Selection** are required for this feature. That separate standard table holds individual customer/vendor document settings. **Use for Email Attachment** and **Use for Email Body** retain their standard meanings. Multiple attachment rows can produce multiple email documents; vendor/customer-specific settings continue to follow standard Business Central behavior.
+
+The Freight Order card exposes one print/email group per purpose. Variant-specific actions are hidden. Print availability depends on configured Report IDs; email availability follows the effective vendor attachment selection. Reopen the card after changing selections in another window.
+
+New model defaults are initialized once during install/upgrade. Existing target rows and layouts are preserved. Later upgrade/reinstall runs do not restore deleted selections. **Set default reports** is an explicit action that adds missing built-in alternatives again without overwriting existing target rows. Previous-architecture records are retained, but are not automatically migrated into the new purposes; review company and counterparty choices for the new usages.
+
+Credit Memo, Posted Invoice, Periodic Invoice, warehouse, sticker, and Delivery Order scenarios retain their previous usages and defaults until their new purposes are defined.
+
 ## Common documents
 
 | Document | Use it for |
@@ -75,7 +100,7 @@ For a Sales Order source, **Customer PO Number** is **Sales Header.External Docu
 
 ## Dangerous Goods Bill of Lading
 
-On **Freight Order**, open the Bill of Lading action group and choose **Dangerous Goods Bill of Lading**. The corresponding email action prepares the document through the same report-selection mechanism as the existing bills of lading. Its report selection has its own usage; installing or upgrading the extension adds a default only when that usage has no configured selection.
+Select **Freight Order - Bill of Lading** in report selections. **TMA DG Bill of Lading** is initially registered in Sequence 3. Keep only this row if it is the only BoL form required, then use **Bill of Lading** on the Freight Order. Configure **Use for Email Attachment** for the rows to include when emailing. The former separate Dangerous Goods actions are hidden.
 
 Before printing, use **Load Logistic Units to Freight Order** to load the actual logistic units. The report takes cargo only from concrete **Type = Unit** rows in **Freight Order Content** for the selected Freight Order. Planned **Unit Type** rows are ignored, and goods on FWO lines that are not inside the loaded units are excluded. If no concrete units have been loaded, printing stops with an explanatory error.
 
@@ -113,7 +138,7 @@ Missing loaded logistic units, a missing first stage, unresolved profile assignm
 
 ## Packing List by Container
 
-On **Freight Order**, open **Packing List** and choose **Packing List by Container**. **Email Packing List by Container** prepares the same document as a PDF attachment through report selections. The new report has its own report-selection usage; installation and upgrade add its default only when that usage has no configured selection.
+Select **Freight Order - Packing List** in report selections. **TMA Packing List by Container** is initially registered in Sequence 3. Keep only this row if it is the only packing-list form required, then use **Packing List** on the Freight Order. Configure **Use for Email Attachment** for the rows to include when emailing. The former separate By Container actions are hidden.
 
 The report follows the delivery packing-list structure: shipper, customer/order party, forwarding agent, pickup and delivery addresses, Freight Order and source-document references, vessel/vehicle and voyage, carrier/SCAC, booking number, container number, type, seals, destination, and planned loading date/time. The forwarding agent is the company in Business Central. The saved shipper and order-party addresses are kept separate from the full pickup and delivery addresses.
 
@@ -139,7 +164,7 @@ Pallet breakdown, net weight, and tare are omitted because the current data does
 
 - Report output depends on the data available on the source document.
 - Email actions depend on Business Central email setup.
-- If the wrong report opens, run **Set default reports** in [TMS Setup](setup.md) or review report selections.
+- If the wrong report opens or several forms print, review the rows under the document Usage. **Set default reports** adds missing built-in alternatives; it does not choose a single form or overwrite existing selections.
 - Instruction visibility depends on the active report layout. See [Instructions](instructions.md) for applicability and layout details.
 
 ## Troubleshooting

@@ -32,6 +32,24 @@ Typical flow:
 5. Fill consignee details.
 6. Create and open the new Forwarding Order.
 
+## Copy a Forwarding Order
+
+Use **Copy Forwarding Order Wizard** to fill the current Forwarding Order from an existing order. Enable **Copy from Posted** to select an archived order and its posted version. Copy replaces the target order's existing content, stages, and Settlement, subject to the normal checks on the target order.
+
+Income Settlement is recreated as new editable, unlinked drafts. The source can contain linked, posted, generated, Legacy, or Needs Review lines; copying does not change or verify the original lines. Cost lines are not copied.
+
+The new Income drafts retain the service, description, Financial Effect, Pricing Mode, quantity, unit of measure, currency, exchange-rate date and factor, Location Code, dimensions, and distance/weight calculation options.
+
+- **Per Unit** retains Price and calculates the new document Amount from quantity and price. Type and Financial Effect determine the P/L direction separately. Source document discounts are not copied.
+- **Fixed Amount** retains the document Amount before line discount and derives Price using the copied quantity. A zero quantity is supported.
+- The customer comes from the target FWO's Ordering Party when its type is Customer. For other party types, a manually selected line customer is retained and its name is refreshed.
+- Posting Date comes from the target FWO, or the work date when the header date is blank. A missing exchange-rate date uses that new draft date; a missing foreign-currency factor is obtained from the exchange-rate setup. A blank source unit uses the current service default when available.
+- The full line dimension set is retained when present. Older lines containing only the two shortcut dimensions apply those values to the new defaults.
+
+Document links, freight links, allocation, posting and correction history, generation markers, verification status, and legacy metadata are not inherited. Amounts in local and reporting currencies are recalculated. The normal validations for services, customers, units, dimensions, locations, exchange rates, and target status still apply.
+
+For migrated, unverified Per Unit lines with positive quantity, an unchanged legacy price whose sign matches the source Amount is converted from the old signed-price convention to document values. For example, a legacy Income / Credit with quantity 1, price -100, and financial Amount -100 becomes a Credit draft with price 100, Amount 100, and P/L Amount -100. Modern prices and negative quantities keep their stored values. Review the new draft values before creating financial documents.
+
 ## Freight Order Wizards
 
 Use Freight Order wizards to create or optimize Freight Orders from stages, content, unit types, or selected operational data.

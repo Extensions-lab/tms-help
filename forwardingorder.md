@@ -91,7 +91,7 @@ Posting can be blocked by setup or status rules. Common blockers include:
 - Freight Orders define **who executes** the transportation work.
 - Settlement defines **how the order is billed and costed**.
 - Before billing, follow [Add an Income line](settlement.md#add-an-income-line). Every Income line needs **Unit of Measure Code**, including fixed-amount lines.
-- For an ordinary **Cost** line with **Financial Effect = Standard** and **Pricing Mode = Per Unit**, enter positive quantity and price. Settlement calculates the negative economic amount. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs) for fixed amounts and credits.
+- Enter Settlement quantity, price, and amount as they should appear on the target document. For an ordinary **Cost / Standard** line, quantity `1` and price `700` give **Amount = 700** and **P/L Amount = -700** before discounts. Fixed Amount follows the same document sign rule; deliberately negative inputs remain available. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs) for fixed amounts and credits.
 - To record an existing vendor invoice, follow [Purchase Assignment](purchaseassignment.md). Importing its lines is a different operation from creating new purchase lines from settlement.
 - Posted Forwarding Orders are read-only history.
 

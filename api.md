@@ -54,6 +54,34 @@ Make sure that:
 
 ## Good to know
 
+### Settlement document amounts and P/L
+
+The v1.0 `settlements` and `postedsettlements` entity sets expose separate document and financial amounts:
+
+| Property | Meaning |
+|---|---|
+| `amount` | Document amount **before line discount**, retaining the source sign. |
+| `lineDiscountPercent`, `lineDiscountAmount` | Line discount percentage and exact amount in the transaction currency. |
+| `lineAmount` | `amount − lineDiscountAmount`, before invoice discount. |
+| `invoiceDiscountAmount` | Exact invoice discount allocated to this line or Settlement share. |
+| `netAmountExclVAT` | Document amount excluding VAT after all discounts, before the P/L financial direction. |
+| `amountIncludingVAT` | Exact linked document total including VAT for this share. An unlinked plan uses its Line Amount without estimating VAT. |
+| `quantityBase` | Exact document quantity in the base unit of measure for this Settlement share. |
+| `amountLCY`, `lineAmountLCY` | Gross Amount and Line Amount converted to LCY; these do not apply Income/Cost financial direction. |
+| `plAmount` | Net amount excluding VAT after applicable discounts, with Income/Cost and Standard/Credit direction, in the transaction currency. |
+| `plAmountLCY` | Signed financial contribution used for Forwarding Order profitability across currencies. |
+| `plAmountACY` | `plAmountLCY` converted to the TMS additional reporting currency; equals `plAmountLCY` when none is configured. |
+| `postedSourceDeleted` | Read-only flag on active and posted Settlement: deletion of the linked posted invoice, credit memo, or source line was recorded. Stored financial amounts and document references are retained. |
+| `amountModelVersion` | `2` for canonical document and P/L fields; `0` and `1` require the manual conversion wizard. |
+
+For a normal purchase line with quantity 1, price 100, and a 20% discount, `amount` is 100, `lineAmount` is 80, and `plAmount` is −80. A positive vendor credit uses the same document values with positive P/L. Negative source quantities and amounts retain their signs.
+
+The optional **TMS Setup > Make Settlement Input Positive** setting is off by default. When enabled, new negative inputs to editable `quantity`, `price` and `amount` fields are converted to positive values. Use the normalized values returned in the API response; web-service sessions do not show the interactive explanation Message. The option does not change P/L signs or synchronized document values, and unrelated edits do not normalize an existing negative value. See [Settlement input signs](setup.md#settlement-input-signs).
+
+**Integration change:** for converted rows, `amount`, `amountLCY`, and `additionalCurrencyAmount` now describe document values before discount. Existing profitability consumers must use `plAmount`, `plAmountLCY`, and `plAmountACY`. Adding the new fields does not automatically update existing reports. Do not combine old and new `amount` semantics: use `amountModelVersion` to detect incomplete migration. P/L fields and order totals are incomplete while version-0 or version-1 rows remain.
+
+Document links, base quantity, invoice discount, net/VAT totals, and calculated P/L fields are read-only. Active API writes to discounts follow the same editable-draft rules as the page; linked values come from the financial source. Posted Settlement is read-only. Existing rows are converted through the [manual Settlement wizard](setup.md#upgrade-existing-settlement-amounts), not an API request or an automatic amount-model upgrade.
+
 ### Order instructions
 
 The `forwardingorders`, `freightorders`, `postedforwardingorders`, and `postedfreightorders` APIs expose read-only instruction collections. The navigation property has the same name as the corresponding instruction entity set listed below. Request it with `$expand` or navigate to that collection for a selected order.

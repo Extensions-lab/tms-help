@@ -58,9 +58,36 @@ The **Content** part shows all content for this posted Freight Order version. Se
 
 Posted fields remain read-only.
 
+## Posted Settlement amounts
+
+Posted Settlement retains the document signs of Quantity, Price, Amount before discount, and Line Amount after line discount. **P/L Amount (LCY)** is the signed financial contribution used for profit; **P/L Amount (ACY)** is its conversion to the additional reporting currency configured in TMS Setup. If that setting is blank, ACY stores the same value as LCY. For an ordinary purchase without discounts, Amount 100 and Line Amount 100 correspond to P/L Amount −100. Invoice Discount Amount, Net Amount Excl. VAT, and Amount Including VAT preserve the remaining document values directly. The P/L Amount (ACY) column is visible when Additional Reporting Currency is filled in TMS Setup. Posted source documents use the same amount calculation service as open documents.
+
+**Posted Source Deleted** records deletion of a linked posted sales/purchase invoice, credit memo, or source line. Every affected historical version retains its original link, posted state and financial amounts. This controlled metadata update does not recalculate the historical snapshot. The same flag is copied when an active FWO is subsequently archived; a new independent plan does not inherit it.
+
+Older rows marked **Settlement Upgrade Required**, including the first document/P/L model, have not yet been converted to the canonical document fields (amount-model version 2). Their new amounts and related P/L totals are incomplete. An administrator can use **TMS Setup > Data Migration > Settlement Amount Model Upgrade** to preview and convert posted orders, including their saved versions. This is a controlled change to Settlement snapshots, not a reposting of the financial documents. Read the [wizard steps and group rules](setup.md#upgrade-existing-settlement-amounts) before converting history. The conversion is not run automatically during extension upgrade.
+
+When the same allocation appears in several historical versions, review each version separately. Those versions are snapshots of the same allocation, not additional costs to sum into one source total. The wizard converts consistent copies together and stops for conflicting allocations.
+
+## Detach an archived Settlement reference
+
+**Detach Settlement** removes a direct financial-document assignment through the same mechanism used for active Settlement. On Posted Sales Invoice and Posted Purchase Invoice lines, use **TMS > Detach Settlement** for one source line or **TMS > Detach All Lines** for the invoice. The invoice actions also work when all its Settlement references are archived. Starting the command from an active Settlement row selects that source line's complete group, not just the current order.
+
+Every physical reference in the group is included, across active Settlement and all saved posted FWO versions. For example, if a purchase line belongs to **five FWOs, three posted and two active**, the command clears the references in all three posted orders and both active orders. Multiple archived versions are all included.
+
+The two kinds of record have different outcomes:
+
+- Active rows become unlinked **Fixed Amount** plans and keep their previous P/L in all currencies.
+- Posted rows remain historical records. Their quantities, prices, discounts, amounts, currency values, P/L, and saved business details do not change. Only the financial-document reference and related allocation-link state are cleared.
+
+Detach does not synchronize history to the current document, revalue its currency amounts, reopen a posted FWO, or change financial entries. Different historical versions retain their own values. Posted fields remain read-only; this controlled command does not permit ordinary editing of archived records.
+
+Supported archived sources are **Order**, **Invoice**, **Credit Memo**, **Posted Invoice**, and **Posted Credit Memo**. Freight Order parent allocations, TMS correction chains, unresolved legacy data, and archived Quote, Blanket Order, or Return Order references are not supported by direct detach. Every member must pass the checks; a failure rolls back the whole command. See [Settlement](settlement.md#change-or-remove-a-document-link) and [Purchase Assignment](purchaseassignment.md#remove-or-change-an-assignment).
+
 ## Good to know
 
-- Posted history is read-only.
+- FWO posting archives the saved Settlement values without recalculating them. Freight Charge lines are full snapshots of the stored parent in each posted Freight Order version. FWO-specific allocated costs remain in Posted Settlement; adding parent snapshots across versions is not the allocation total.
+
+- Posted history is read-only. The controlled **Detach Settlement** command can clear supported source references while preserving the financial snapshot.
 - The Posted Freight Order card includes **Date and Time Planning**, with the loading and unloading dates, times, allowed windows, calculated ends, bays, and priorities saved at posting.
 - Corrections should follow your finance and operational correction process.
 - Posted records are the best source for audit, reporting, and customer service review.
@@ -70,7 +97,7 @@ Posted fields remain read-only.
 | Problem | What to check |
 |---|---|
 | Posted document is not found | Check filters, company, posting date, and the original document number. |
-| Related invoice is missing | Review settlement posting and linked document references. |
+| Related invoice is missing | The source document may no longer exist. During the manual amount-model conversion, posted FWO Settlement retains its historical reference and financial result and uses saved values; source absence alone is not an error. Active FWO rows still require their source. Explicit Detach is a separate operation that intentionally clears a reference. |
 | User cannot open posted history | Check posted-document permissions. |
 
 ## Related

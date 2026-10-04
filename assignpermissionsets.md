@@ -23,7 +23,7 @@ Older permission sets with the `TMA` prefix can exist for compatibility. For new
 
 `TMS User`, `TMS Administrator`, and `TMS API` already include the complete **TMA Settlement** capability.
 Settlement access is not divided by operation type: the same capability covers runtime processing, reconciliation,
-reporting-currency revaluation, evidence review, posting, archiving, and Full Reversal. Assign **TMA Settlement**
+reporting-currency revaluation, evidence review, posting, and archiving. Assign **TMA Settlement**
 directly only when composing a custom role instead of using a standard TMS role.
 
 `TMS User` also includes operational [Instructions](instructions.md) access. `TMS Administrator` adds maintenance rights for Instruction Types and master Instructions. The internal instruction capability sets are composed into these roles and normally should not be assigned directly.

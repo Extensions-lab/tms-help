@@ -45,8 +45,10 @@ Pricing rules can produce different settlement pricing modes. Review the resulti
 
 | Pricing Mode | What controls the total |
 |---|---|
-| **Per Unit** | **Quantity** and **Price** determine **Amount**, with the economic sign determined by **Type** and **Financial Effect**. Changing quantity changes the total. |
-| **Fixed Amount** | **Amount** is the agreed signed total. **Price** is derived when quantity is nonzero. Changing quantity preserves the total. |
+| **Per Unit** | **Quantity × Price** determines **Amount** before line discount. Changing quantity changes the total. |
+| **Fixed Amount** | **Amount** is the agreed document total before line discount. **Price** is derived from Amount and Quantity when quantity is nonzero. Changing quantity preserves Amount. |
+
+Enter quantity, price, and amount as they should appear on the target document. An ordinary **Cost / Standard** line uses positive document values: quantity `1` and price `700` give **Amount = 700** and **P/L Amount = -700** before discounts. Settlement applies **Type** and **Financial Effect** to P/L automatically. Deliberately negative quantities, prices, and amounts remain available.
 
 **Financial Effect** has a separate purpose. Use **Standard** for ordinary billing and **Credit** for a customer credit. Do not select a credit workflow just because a value is negative. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 

@@ -48,9 +48,9 @@ Expected result: the carrier execution document is linked to the Forwarding Orde
 1. Open [Settlement](settlement.md) from the Forwarding Order.
 2. Add a line with **Type = Income**, select a service in **Code**, and keep **Financial Effect = Standard** for a normal customer invoice.
 3. Set **Pricing Mode = Per Unit**. Fill **Unit of Measure Code**, **Quantity**, and **Price**. For example, quantity `1` and price `1,000` give income of `1,000`. Review the customer and currency. See [Add an Income line](settlement.md#add-an-income-line) for other pricing cases.
-4. Add a line with **Type = Cost** and a charge in **Code**. For a normal cost, keep **Financial Effect = Standard** and **Pricing Mode = Per Unit**, then enter positive quantity and price. For example, quantity `1` and price `700` give **Amount = -700** automatically.
+4. Add a line with **Type = Cost** and a charge in **Code**. For a normal cost, keep **Financial Effect = Standard** and **Pricing Mode = Per Unit**, then enter quantity and price as they should appear on the purchase document. For example, quantity `1` and price `700` give **Amount = 700** and **P/L Amount = -700** before discounts.
 5. If the vendor invoice already exists, use [Purchase Assignment](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost) to link its purchase line to the Cost row from step 4. Do not import it as a second cost.
-6. Review currency, quantity, price, and amount. Do not add a minus to an ordinary per-unit cost quantity or price. A **Fixed Amount** cost uses a different input rule: enter its signed total. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
+6. Review currency, quantity, price, discounts, and Line Amount. **Fixed Amount** follows the same document sign rule: enter the amount before line discount, normally `700` for a cost of `700`. Settlement applies the financial direction to P/L automatically. Deliberately negative quantities, prices, and amounts remain available when those are the intended document values. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 
 Expected result: settlement shows income and cost contributions. With both example lines in local currency, **Total Profit (LCY)** is `300`.
 

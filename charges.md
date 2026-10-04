@@ -55,8 +55,8 @@ Make sure that:
 
 - Use short, stable charge codes. They become reporting dimensions for cost analysis.
 - Keep service codes and charge codes separate. It helps users understand income versus cost.
-- For an ordinary manual Settlement **Cost** line, use **Financial Effect = Standard**. With **Pricing Mode = Per Unit**, enter positive **Quantity** and **Price**: quantity `1` and price `700` produce **Amount = -700** automatically.
-- With **Pricing Mode = Fixed Amount**, enter the signed economic total instead: an ordinary cost of `700` has **Amount = -700**. For supplier credits, use **Financial Effect = Credit** and review the [quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
+- For an ordinary manual Settlement **Cost** line, use **Financial Effect = Standard**. Enter **Quantity** and **Price** as they should appear on the purchase document: with **Pricing Mode = Per Unit**, quantity `1` and price `700` produce **Amount = 700** and **P/L Amount = -700** before discounts.
+- With **Pricing Mode = Fixed Amount**, enter the document amount before line discount, normally **Amount = 700** for a cost of `700`. Settlement applies the financial direction to P/L automatically. Deliberately negative quantities, prices, and amounts remain available. For supplier credits, use **Financial Effect = Credit** and review the [quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 - When a vendor invoice already exists, follow [Purchase Assignment](purchaseassignment.md) to import its cost. Check for a matching draft cost first so that the invoice does not duplicate an estimate.
 
 ## Troubleshooting

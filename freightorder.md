@@ -59,10 +59,8 @@ Make sure that:
 | **Email Freight Order** | Send the Freight Order as a PDF. |
 | **Details** | Print logistic unit or cargo details. |
 | **Load Summary** | Print a compact load overview, including lot numbers and stage-specific vehicle, regulation, transport-profile, formalized cargo-description, and package conditions. |
-| **Packing List** | Print cargo packing information. |
-| **Packing List by Container** | Print a separate packing list for each actual loaded outer LU, with products, lots, quantities, seals, and cargo gross weights. Available in the Packing List action group. |
-| **Bill of Lading** | Print transport handover documentation. |
-| **Dangerous Goods Bill of Lading** | In the Bill of Lading group, print actual loaded cargo with a separately resolved Transport Profile for each Item/Product. |
+| **Packing List** | Print all rows configured under Freight Order - Packing List, in Sequence order. Keep only the required standard, By Drop, By Container, or custom form in setup. |
+| **Bill of Lading** | Print all rows configured under Freight Order - Bill of Lading, in Sequence order. Keep only the required standard, By Drop, Dangerous Goods, or custom form in setup. |
 | **Check Vehicle Unit Type** | Check the related Stage profiles, cargo assignments, equipment rules, temperature boundaries, and Conditional instructions. |
 | **Booking Confirmation** | Print confirmation for the carrier. |
 | **Purchase Assignment** | Assign vendor purchase lines to Freight Order charges and settlement costs. |
@@ -70,6 +68,8 @@ Make sure that:
 | **Attachments** | Add or review Freight Order files. |
 
 ## Fields that matter most
+
+The print/email groups use standard Business Central Report Selections with the new document usages. Variant-specific buttons are hidden. To produce only one form, leave only its row in the corresponding Usage; Sequence is an output order, not an alternative selector. See [Report selections by document usage](reports.md#report-selections-by-document-usage).
 
 | Field | Why it matters |
 |---|---|
