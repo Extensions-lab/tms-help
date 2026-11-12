@@ -59,6 +59,7 @@ Enter the optional **SCAC** ([Standard Carrier Alpha Code](https://scac.nmfta.or
 ## Good to know
 
 - Blocking a carrier is safer than deleting it when the carrier already exists on historical documents.
+- A blocked carrier is excluded from Freight Order selection and rejected for new assignments, including entry by number or name and API creation. Existing assignments remain available, but adding a new stage to that Freight Order requires an unblocked carrier and driver.
 - A carrier can be used without a vendor only when your process does not create vendor financial documents from that carrier.
 - Use Freight Agreements when carrier rates or contract lines should be maintained separately from individual Freight Orders.
 - Keep carrier names and vendor links clean. They are visible in settlement and reports.

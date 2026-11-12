@@ -117,6 +117,8 @@ Totals use **P/L Amount (LCY)** to compare different transaction currencies. P/L
 
 Both P/L Amount (LCY) and P/L Amount (ACY) are calculated for an unlinked planned line when it is created or its financial inputs change. The plan uses its own currency factor and exchange-rate date, initialized from the forwarding order context. Linking replaces the plan with source-document values, including the document's currency factor and date, and recalculates the P/L amounts through the same amount service.
 
+Changing **TMS Setup > Additional Reporting Currency** recalculates stored reporting amounts from LCY. For linked allocations, rounding preserves the converted group total and each share's sign; a small share can become zero in ACY. This keeps the Settlement row, purchase link, quantity and allocation factor. For example, four shares of 0.01 LCY converted at 0.5 ACY per LCY with precision 0.01 receive 0.01, 0.01, 0 and 0 ACY. Their Cost P/L values are -0.01, -0.01, 0 and 0 ACY. Consistent active and posted copies of the same share receive the same reporting amounts.
+
 | Example line | P/L Amount (LCY) |
 |---|---:|
 | Customer income | +1,000 |
@@ -124,6 +126,8 @@ Both P/L Amount (LCY) and P/L Amount (ACY) are calculated for an unlinked planne
 | **Total Profit (LCY)** | **300** |
 
 Total Cost (LCY) is already signed. Profit is **Total Income (LCY) + Total Cost (LCY)**; do not subtract a negative cost a second time. Amount (LCY) is the gross document value and is not a profitability measure.
+
+When the FWO has linked corrective orders, **Result Including Corrections** appears below these totals. It shows the order's own profit, **Corrections (LCY)**, and **Profit Including Corrections (LCY)**. Choose **Corrections (LCY)** to open the corrective orders. The same group is available in Posted FWO Settlement, using the saved profit of the exact posted version. These totals apply to the whole FWO, including when a line filter hides its Settlement rows.
 
 Planned and linked lines both affect the result. Link an invoice to its existing planned Cost; importing another row can count the cost twice.
 
@@ -154,7 +158,7 @@ These actions have different purposes:
 
 | Starting point | Action | Result |
 |---|---|---|
-| Settlement has the lines; no financial document exists. | **Create** → the required Sales or Purchase document. | Creates a new document and links its new lines. |
+| Settlement has unlinked lines to bill. | **Create** → the required Sales or Purchase document. | Creates a new document and links its new lines. |
 | Settlement has the lines; an open financial document exists but needs new lines. | **Add to Document** → **Select Sales Document** or **Select Purchase Document**. | Adds new financial lines to that document and links them. |
 | A purchase invoice already contains the cost line; Settlement has its planned Cost. | **Import to Settlement** → **Link to Purchase Line**. | Connects the existing purchase line to the current Cost line. |
 | A financial document contains lines that are not yet in Settlement. | **Import to Settlement** → the appropriate import action. | Creates Settlement rows from eligible existing document lines. |
@@ -163,7 +167,11 @@ After **Create** successfully creates a Sales or Purchase Order, Invoice, or Cre
 
 **Add to Document** does not match an existing invoice line. Use the single purchase line link when both sides already exist.
 
-The FWO Settlement actions **Link to Purchase Line** and **Import Purchase Document** do not restrict the status of an unposted purchase Order, Invoice, or Credit Memo: **Open** and **Released** documents are both included. Source-line eligibility checks still apply. **Charge Allocation** across Forwarding Orders and **Freight Order assignment** still require an unposted source to have **Status = Released**. **Create** and **Add to Document** create new purchase lines in an **Open** document.
+New links to existing unposted documents follow **TMS Setup > Finance and Invoicing > Settlement > Sales Document Linking Mode** or **Purch. Document Linking Mode**, according to the source side. Each setting offers **Open and Released** (default), **Open Only**, and **Released Only**. The purchase mode applies consistently to **Link to Purchase Line**, **Import Purchase Document**, **Charge Allocation**, and **Freight Order assignment**. Pending Approval and Pending Prepayment sources are excluded in every mode. See [Source document linking status](setup.md#source-document-linking-status).
+
+The selection lists and the operation both check the configured mode; TMS does not release or reopen the source automatically. **Create** and **Add to Document** create new financial lines and retain their **Open** requirement, independently of the linking modes.
+
+For both purchase actions, a filled **Customer/Vendor No.** on the current **Cost** row filters the selection list by **Buy-from Vendor No.**; a blank value on Cost shows all vendors. **Import Purchase Document** from an **Income** row ignores its customer number and shows all vendors, even if that number also exists as a vendor. This applies to Purchase Orders, Purchase Invoices, Purchase Credit Memos, Posted Purchase Invoices, and Posted Purchase Credit Memos. **Import Purchase Document** still creates new Cost rows; the current row is not replaced by the import.
 
 Both **Import Purchase Document** and **Link to Purchase Line** require a **User Setup** record with **TMS Allow Purchase Document Allocation** enabled. This applies to unposted and posted purchase documents. Reopen the Forwarding Order after changing the option.
 
@@ -179,11 +187,13 @@ Use these steps for a manually agreed customer service. If a suitable Default Se
 2. Expand **Settlement** and add a new row.
 3. Set **Type = Income**.
 4. In **Code**, select the Service being billed. TMS copies its description and available unit default. The Forwarding Order Type can restrict which services are available.
-5. Review **Description** and **Customer/Vendor Name**. The customer comes from the Forwarding Order Ordering Party. Income lines on one FWO cannot be assigned to different customers.
+5. Review **Description** and **Customer/Vendor Name**. New Income lines take the customer from the current Forwarding Order Ordering Party. The same FWO can retain earlier linked or posted Income for other customers; see [Change the customer for the next invoice](#change-the-customer-for-the-next-invoice).
 6. Choose **Financial Effect**: **Standard** for an ordinary charge to the customer; **Credit** for a customer credit.
 7. Choose **Pricing Mode**, then enter the values in the scenario table below.
 8. Fill or confirm **Unit of Measure Code**. It is required before creating or adding every Income line to a sales document, including fixed fees and services mapped to a G/L account or resource. Use a unit allowed by the mapped item when the service uses an Item.
-9. Check **Currency Code** and **Exchange Rate Date**. Currency Code is the currency of this service price; blank means local currency. Review dimensions, and **Location Code** if your process uses it. Location is hidden by default and can be shown through personalization.
+9. Check **Currency Code** and **Exchange Rate Date**. Currency Code is the currency of this service price; blank means local currency. Review dimensions and **Location Code** if your process uses it. Location Code is hidden by default and can be shown through personalization.
+
+For an editable **Income** draft, enter Location Code before creating the sales document; the generated sales line receives the value. A nonblank **Cost** Settlement Location Code is likewise passed to a newly created purchase line through normal Business Central validation. When it is blank, standard document defaults apply. After creation, Settlement stores the actual location of the purchase line. Applying an existing purchase document line also brings its location into Settlement. The Cost field remains read-only, and the column stays hidden by default. The field does not change Settlement calculations; document lines follow the normal Business Central location rules.
 10. If needed, show **Line Discount %** and enter the agreed discount. Check **Amount**, **Line Amount**, **P/L Amount (LCY)**, and the order totals before creating a financial document.
 
 ### Choose values for your Income scenario
@@ -214,7 +224,33 @@ Create Credit Line preserves the commercial quantity, price, and line discount f
 
 Full Reversal is not available. This action creates an independent draft; it does not post a correction or modify the original document. Review the credit amount and its assignment to each affected Forwarding Order, then create and post the appropriate credit memo through the normal document workflow.
 
-Using Business Central **Correct**, **Cancel**, or **Copy Document** to create a credit memo does not automatically create its Settlement allocation. Link or import the credit memo to the affected Forwarding Orders so that their profit includes the credit; until then, the original income or cost remains unoffset in Settlement.
+### Correct a posted sales or purchase invoice
+
+See [Invoice Corrections and Corrective Forwarding Orders](invoice-corrections.md) for step-by-step instructions, the three correction actions, active versus posted FWO behavior, and financial-result examples.
+
+TMS follows these standard Business Central actions for invoice lines already assigned to Settlement. Business Central's document eligibility checks still apply.
+
+| Action | Settlement behavior |
+|---|---|
+| **Cancel** | Creates the credit allocation and follows the full corrective credit memo created and posted by Business Central. |
+| **Correct** | Follows both the cancellation credit and the new replacement invoice. The replacement has its own linked Standard rows and can be edited before posting. |
+| **Create Corrective Credit Memo** | Links the copied lines of the editable credit memo. Change the supported source quantities or prices for a partial credit; the linked Credit rows follow those changes. |
+
+Sales credits use **Income / Credit**; purchase credits use **Cost / Credit**. Replacement invoices use **Standard**. An ordinary sales invoice for 1,000 contributes P/L +1,000; its full credit contributes −1,000. The equivalent purchase contributes −1,000 and its credit +1,000. Original invoice rows retain their references and amounts.
+
+When the original FWO is active, the new rows remain on that order. When the allocation belongs only to posted history, TMS asks once to create active **corrective Forwarding Orders**, using [Correction FWO Type Code](setup.md#corrective-forwarding-orders). Each original order gets one corrective FWO for the operation, with the same Ordering Party. **Correct** places its credit and replacement allocations on that same corrective FWO. The original posted FWO, its Settlement, and its trip history are not rewritten or reopened.
+
+Identical historical copies of one allocation count once; a matching active allocation takes precedence. TMS checks source identity and the saved shares instead of treating each posted version as a new charge. Conflicting or unresolved history must be resolved before the operation can continue. A source line shared between FWOs keeps its original allocation factors: a partial credit of 200 for a 60/40 allocation contributes 120 and 80. Currency and quantity rounding remainders are assigned consistently so the shares equal the source. An unchanged purchase credit from **Cancel** or **Correct** preserves the exact original shares, including their rounding. If its financial values change while it is open, TMS allocates its current values using the original factors.
+
+Make changes to managed unposted correction rows in the financial document. TMS updates their quantities, prices, discounts, currency context, and dimensions from that source. The copied source relationship is preserved through the supported line-recreation workflow. Newly added document lines without an original allocation still need their own Settlement assignment. Do not separately import a line that is already managed by the correction operation.
+
+Any created credit memo that remains unposted can be edited, including one left by an unsuccessful **Cancel** or **Correct**. Post it when its changes are complete. TMS checks Settlement against the current credit-memo lines, not the original invoice's price or quantity. Posting moves the existing Settlement references to the posted financial lines. Posting such a credit manually does not resume **Correct**, create a replacement invoice, or perform the original action's cancellation bookkeeping. Replacement invoices can also be edited and posted through their normal document workflow.
+
+Deleting a supported unposted corrective-credit line or replacement-invoice line removes its managed active Settlement rows, including when the credit originated from **Cancel** or **Correct**. Deleting the replacement does not undo a credit already posted by **Correct**. A corrective FWO containing any Settlement rows cannot be deleted; after those rows have been removed through the supported workflow, the empty order can be deleted while the document-correction operation is retained. The original-FWO reference is stored on the corrective order itself. Normal order deletion permissions and status rules still apply.
+
+An FWO containing managed correction rows cannot be posted until those financial sources are posted and their copied links are complete, even if **Posted Documents Control** is disabled. A retained credit memo posted manually does not leave the FWO waiting for a replacement invoice that Business Central will no longer create. Posting the corrective FWO preserves its link to the original. Review **Has Corrections** on the original posted FWO, **Corrects Forwarding Order** on the corrective FWO, and the separate [profit including corrections](postedhistory.md#invoice-cancellation-in-posted-history) before closing the work.
+
+Ordinary **Copy Document** and credit memos created independently of these invoice actions still use explicit Settlement linking or import. This workflow applies to new operations; it does not rebuild older corrections or rewrite their history.
 
 **Correction Baseline Status = Linked After Posting** identifies a sales or purchase invoice or credit memo first linked to Settlement after posting. It records when the link was established; it does not establish the source's complete prior correction history.
 
@@ -225,15 +261,29 @@ Unknown prior correction history, including **Legacy Unknown** and **Linked Afte
 ### Create a customer invoice
 
 1. Complete and review the Income lines, including their unit of measure.
-2. Check that the lines to invoice have **Financial Effect = Standard**.
+2. Check that the lines to invoice have **Financial Effect = Standard**. In **Ordering Party**, select the customer and set **Currency Code** for this invoice; blank means local currency.
 3. In Settlement, choose **Create** → **Sales Invoice**. Use **Sales Order** if your process requires an order first.
-4. Review any exchange-rate warning. The new sales document uses the current FWO Posting Date and invoice currency.
+4. Review any exchange-rate warning. The new sales document uses the current FWO Ordering Party customer, Posting Date, and invoice currency.
 5. Open the created document and check customer, currency, quantities, prices, line discounts, VAT, and totals.
 6. Post the sales document when ready. Return to Settlement and open **Document No.** to review the linked document.
 
-**Create** includes all compatible unlinked, verified Income lines for that document's Financial Effect on the current FWO. Selecting one row does not limit creation to that row. **Create** → **Sales Credit Memo** uses Credit lines.
+**Create** includes all compatible unlinked, verified Income lines for that document's Financial Effect on the current FWO. Selecting one row does not limit creation to that row, and differing service-price currencies do not split the lines into separate invoices. The lines are converted to the current FWO invoice currency. **Create** → **Sales Credit Memo** uses Credit lines.
+
+You can create another **Sales Invoice** while earlier sales documents for the FWO remain open. Existing linked or posted Income lines keep their document references and are excluded from the new invoice. For example, create a EUR invoice for the current free Income, change the FWO invoice currency to USD, add the next Income lines, and create another invoice. Each invoice retains its own currency. **Create** → **Sales Order** retains its existing restriction when an unposted Sales Order or Sales Invoice is already linked.
 
 To add only particular Settlement lines to an existing open document, select them and choose **Add to Document** → **Select Sales Document**. Standard lines can target an Order or Invoice; Credit lines can target only a Credit Memo. Mixed Standard/Credit selections are rejected.
+
+### Change the customer for the next invoice
+
+Change **Ordering Party No.** on the Forwarding Order to bill the next services to another customer. Earlier linked or posted Income can remain on the same order: their customers, source documents, and financial values stay with those documents.
+
+The change assigns the new customer to **all unlinked Income** on the order, including manually entered lines, generated lines, and lines marked **Legacy** or **Needs Review**. It preserves their quantities, prices, discounts, service-price currencies and exchange rates, saved amounts, verification state, and generation or correction references. Cost lines keep their own vendors and values. Customer dimensions update on editable manual and Default Service Set drafts; other generated rows and rows marked **Legacy** or **Needs Review** retain their saved dimensions.
+
+The header receives the new customer's default Forwarding Agreement, but existing Income is not replaced with that agreement's charges. Default agreement generation still applies when a customer is selected on an order without Income. Explicitly selecting or refreshing a Forwarding Agreement remains a separate operation with its normal restrictions on the generated lines it would replace.
+
+For example, create an invoice for customer A, then change the Ordering Party to customer B. The first invoice and its linked Income remain with A. All unlinked Income now belongs to B, and the next **Sales Invoice** uses B. Review all unlinked lines before changing the customer, since the change applies to the whole unlinked Income set.
+
+Changing the customer does not make **Legacy** or **Needs Review** lines ready for invoicing. Complete the normal verification, service mapping, unit of measure, currency, and financial checks before creating a document. Order status, customer blocking and credit controls still apply. A financial correction order must retain the Ordering Party of its saved original posted FWO.
 
 ### Import an existing sales document
 
@@ -241,23 +291,44 @@ Choose **Import to Settlement** → **Import Sales Document**, then select the d
 
 | Action | Source | Result |
 |---|---|---|
-| **Sales Order** | An open sales order. | New linked Income lines with Standard effect. |
-| **Sales Invoice** | An open sales invoice. | New linked Income lines with Standard effect. |
-| **Sales Credit Memo** | An open sales credit memo. | New linked Income lines with Credit effect. |
+| **Sales Order** | An unposted sales order in a status allowed by Sales Document Linking Mode. | New linked Income lines with Standard effect. |
+| **Sales Invoice** | An unposted sales invoice in a status allowed by Sales Document Linking Mode. | New linked Income lines with Standard effect. |
+| **Sales Credit Memo** | An unposted sales credit memo in a status allowed by Sales Document Linking Mode. | New linked Income lines with Credit effect. |
 | **Posted Sales Invoice** | An eligible posted sales invoice. | New posted Income lines with Standard effect. |
 | **Posted Sales Credit-Memo** | An eligible posted sales credit memo. | New posted Income lines with Credit effect. |
 
-When **Ordering Party No.** is filled, all five actions limit the selection to documents whose **Sell-to Customer No.** matches it. When the number is blank, the lists show documents for all customers. The existing invoice currency and document eligibility filters still apply. Browsing or selecting a document never fills **Ordering Party No.** automatically.
+All five actions show documents for all customers, regardless of the FWO's **Ordering Party Type** or **Ordering Party No.** They accept documents in any currency, independently of the FWO's current invoice currency. The three unposted actions filter source status using **Sales Document Linking Mode**; the posted actions keep their separate eligibility rules. The imported Income takes its customer from the source document; importing does not change the FWO's Ordering Party.
 
-Before importing, manually set **Ordering Party Type = Customer** and **Ordering Party No.** on the FWO. Confirming a selection while they are missing stops the import without creating Settlement lines. The customer and currency are checked again when importing; a different **Bill-to Customer** does not change the operational customer match. TMS imports the document's lines into the current FWO; selecting an existing Settlement row does not make it the import target.
+The document lookup opened by **Import Sales Document** includes a read-only **Comment** column. It shows existing Settlement assignments and source limitations, and identifies unposted or related posted credit memos for an invoice when a relationship is recorded. Credit-memo comments can show the referenced invoice. Review the listed document numbers and their allocations before importing.
 
-Each imported non-comment line must match exactly one **Service** through **Invoice Line - Type** and **Invoice Line - No.** The Service must be allowed by the FWO type's **Allowed Service/Charges Set**, when configured. TMS copies the source description, quantity, unit price, discounts, net amount, unit of measure, location, currency context, and dimensions, and retains the document and line reference. The actual source amount is preserved without rounding it again using current currency settings. Invoice amounts normally increase Income; credit memo amounts reduce it. Negative source quantities or amounts retain their economic meaning.
+Comments add no new selection restrictions; the existing import checks below still apply. Close and reopen the lookup to refresh its selection snapshot and comments after a document or its assignments change.
+
+You can import into an FWO with **Ordering Party Type = Company**, an empty Ordering Party, or a different customer. This also applies to a corrective FWO that retains **Company** from its original. The source must have a **Sell-to Customer No.**, and its lines must belong to that same source customer. A different **Bill-to Customer** remains part of the financial document. TMS imports the document's lines into the current FWO; selecting an existing Settlement row does not make it the import target.
+
+Import preserves the source document's actual currency, currency factor, and amounts in the new Settlement rows. It keeps the FWO's invoice currency unchanged. For example, a USD invoice can be imported when the FWO's **Currency Code** is blank (LCY). **Add Lines to Existing Forwarding Order** on a Sales Invoice uses the same import rule. **Add to Document** creates new sales lines and retains its existing currency-compatibility checks.
+
+Each imported non-comment line is matched to **Services** through **Invoice Line - Type** and **Invoice Line - No.** A single match is used automatically. If several Services match, the one with **Default for Sales Import** enabled takes priority. If none is marked, TMS uses the first matching **Code** in ascending order, independently of list sorting, filters, or record creation order. This fallback does not mark a default or change setup. Missing mappings or multiple marked defaults stop import. The selected Service must be allowed by the FWO type's **Allowed Service/Charges Set**, when configured; TMS does not try another match if the selected one is disallowed. This rule applies to open and posted documents; see [Choose a service for sales import](services.md#choose-a-service-for-sales-import).
+
+In Services setup, configuring the first Service for a complete type and number enables its import default automatically; additional Services for that pair remain unmarked. Existing mappings are not assigned defaults during upgrade, and a manually cleared flag stays cleared until you change the mapping or choose a default yourself.
+
+TMS copies the source description, quantity, unit price, discounts, net amount, unit of measure, location, currency context, and dimensions, and retains the document and line reference. The actual source amount is preserved without rounding it again using current currency settings. Invoice amounts normally increase Income; credit memo amounts reduce it. Negative source quantities or amounts retain their economic meaning. Changing the import default affects future automatic selections and does not reclassify existing Settlement links or history.
 
 Import always creates new Income rows. Existing planned Income remains. For example, importing an invoice for 1,000 while a planned Income of 1,000 remains gives total Income of 2,000; review existing plans before importing.
 
-For **open documents**, all non-comment lines are checked before any Income is created. A missing or ambiguous Service mapping, an unsupported source line, or any line already linked to active or archived Settlement blocks the whole import. Initial import requires **Allow Invoice Disc. = No**, zero **Inv. Discount Amount**, and zero **Inv. Disc. Amount to Invoice** on each source line. Review and adjust the document before importing if needed; importing does not change these source fields. Ordinary line discounts are supported. These are initial-link requirements; subsequent changes to an already linked source line are reflected in Settlement.
+An integration can import an existing **Sales Order** through the
+[`importSalesOrder` API action](api.md#importing-a-sales-order-into-settlement)
+on the target Forwarding Order. It imports all non-comment lines using the same
+status, mapping, and source checks as the interactive Sales Order action, and
+creates the same document links. The API does not approve, release, reopen, or
+post the source. Complete any required approval workflow before calling it.
+Existing planned Income remains, and repeating an import after its source lines
+have been linked returns an error.
 
-For **posted documents**, comments and lines already linked to active or archived Settlement are skipped. All remaining lines are checked before importing; a failed check leaves no partial import. Posted invoices must not be marked Cancelled, Corrective, or Correction, and cannot be prepayment invoices. Posted credit memos must not be Cancelled or prepayment credit memos; an otherwise eligible Corrective or Correction credit memo is allowed. Prices must exclude VAT, actual invoice discount must be zero, and unsupported processing such as deferrals is excluded.
+For **unposted documents**, the current status must satisfy **Sales Document Linking Mode**, and all non-comment lines are checked before any Income is created. A missing Service mapping, multiple marked defaults, an unsupported source line, or any line already linked to active or archived Settlement blocks the whole import. Prices may include or exclude VAT. **Allow Invoice Disc.** may be **Yes** or **No**: it permits invoice discount calculation and does not mean a discount has been applied. Initial import still requires zero **Inv. Discount Amount** and zero **Inv. Disc. Amount to Invoice** on each source line. If either amount is nonzero, the error identifies the document and line and asks you to review the actual invoice discount. Import does not turn the flag off, remove a discount, or recalculate the source amounts. Ordinary line discounts are supported. These are initial-link requirements; subsequent changes to an already linked source line are reflected in Settlement.
+
+For **posted documents**, comments and lines already linked to active or archived Settlement are skipped. All remaining lines are checked before importing; a failed check leaves no partial import. Posted invoices must not be marked Cancelled, Corrective, or Correction, and cannot be prepayment invoices. Posted credit memos must not be Cancelled or prepayment credit memos; an otherwise eligible Corrective or Correction credit memo is allowed. Prices may include or exclude VAT; actual invoice discount must still be zero, and unsupported processing such as deferrals is excluded.
+
+VAT-inclusive import uses the existing source-value representation: prices and document amounts retain the source's VAT basis, while **Net Amount Excl. VAT** and **P/L Amount** exclude VAT. The source is not repriced or converted by the import. Later supported changes to an unposted source continue through the same [linked-document synchronization](#change-or-remove-a-document-link).
 
 The posted source supplies the actual values and posting date. New rows are verified and **Posted**, with **Correction Baseline Status = Linked After Posting**. The import does not post the source again or create financial entries. Eligible posted Sales links can be detached through **Detach Settlement**. Posted Sales Invoice lines also provide **TMS > Detach Settlement** and **Detach All Lines**; the normal FWO closing checks still apply.
 
@@ -279,9 +350,11 @@ When the vendor invoice arrives, decide whether its lines already exist in Busin
 
 See [Purchase Assignment](purchaseassignment.md) for prerequisites, matching rules, Freight Order assignment, step-by-step linking, and removing an incorrect assignment.
 
-Existing unposted purchase lines can be linked or imported from FWO Settlement without a document-status restriction. **Charge Allocation** and **Freight Order assignment** still require a **Released** unposted source. Eligible **Posted Purchase Invoice** and **Posted Purchase Credit Memo** lines can also be linked afterward; payment or application alone does not prevent linking. Posted Purchase Invoice lines also offer **TMS > Charge Allocation** to split a free source line between several FWOs.
+Existing unposted purchase lines can be linked, imported, or allocated when their document status is allowed by **Purch. Document Linking Mode**. The same mode applies to direct FWO Settlement actions, **Charge Allocation**, and **Freight Order assignment**. Eligible **Posted Purchase Invoice** and **Posted Purchase Credit Memo** lines can also be linked afterward under their separate rules; payment or application alone does not prevent linking. Posted Purchase Invoice lines also offer **TMS > Charge Allocation** to split a free source line between several FWOs.
 
-When linking one purchase line to an existing Cost, the actual source replaces the old plan, including its vendor, Financial Effect, quantity, price, discounts, amount, currency, dates, location, and dimensions. **Needs Review**, **Legacy**, or **Unresolved** metadata and old amounts do not prevent this link by themselves. The selection lists show all vendors. Actual conflicting document, Freight, correction, and allocation references remain protected. A compatible existing Charge Code is retained; otherwise, the source must identify exactly one Charge. See [single-line purchase linking](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost).
+When linking one purchase line to an existing Cost, the actual source replaces the old plan, including its vendor, Financial Effect, quantity, price, discounts, amount, currency, dates, location, and dimensions. **Needs Review**, **Legacy**, or **Unresolved** metadata and old amounts do not prevent this link by themselves. A filled **Customer/Vendor No.** on the current Cost limits the selection list to the matching **Buy-from Vendor No.**; a blank value shows all vendors. Actual conflicting document, Freight, correction, and allocation references remain protected. A compatible existing Charge Code is retained, even when another matching Charge is the import default. Otherwise, TMS uses the matching Charge marked **Default for Purchase Import**, or the first matching **Code** in ascending order when none is marked. See [single-line purchase linking](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost).
+
+Whole purchase document import creates new Cost rows and uses that same automatic Charge selection rule for each free source line. It does not use the Code on the currently selected Settlement row. See [Choose a charge for purchase import](charges.md#choose-a-charge-for-purchase-import).
 
 For [multi-FWO Charge Allocation](purchaseassignment.md#allocate-one-purchase-line-across-forwarding-orders), select a free Cost in each order whose vendor exactly matches **Buy-from Vendor** and whose existing, nonblank Charge Code maps to the source line's **Type / No.** **Pay-to Vendor** is not the match criterion. Blank or different vendors and blank or incompatible codes are excluded; mass allocation does not replace the Charge Code. Exactly one eligible row is selected automatically; several eligible rows require an explicit **Settlement Line No.** choice. The command rechecks those targets before applying positive allocation ratios that total 100%. For Amount 100 split three ways, the document shares are 33.33, 33.33, and 33.34. The last share receives each component's rounding remainder, including LCY and ACY, so totals match the source. Quantity, price, and percentage retain their source meaning.
 
@@ -299,25 +372,45 @@ The same **Select Allocation** dialog is available from **TMS > Charge Allocatio
 | **Exchange Rate Date** | Date used for the planned exchange rate. Linking adopts the financial document's exchange-rate context. |
 | **Posting Date** on Settlement | The planned line's own date. Changing the FWO date does not replace it. Purchase linking adopts the source Posting Date, or its Document Date when an open source has no Posting Date. FWO posting preserves the stored date. |
 | **Document Posting Date** | The Posting Date of the linked financial document. |
-| **Currency Code** in the FWO **Ordering Party** section | Invoice currency used when creating a sales document. It may differ from planned Income line currencies. |
+| **Currency Code** in the FWO **Ordering Party** section | Currency for the next sales document. It may differ from planned Income line currencies and earlier invoices on the same FWO. Blank means LCY. |
 
 For example, a planned service of 100 USD can be invoiced in EUR. Creation converts the service using the sales document's Posting Date and Currency Factor. After linking, Settlement shows the actual EUR values and currency context from that sales line.
 
 A new Sales document takes its Posting Date from the current FWO; Income line dates can differ. Purchase document creation requires a common Posting Date across the selected Cost lines. A combined Sales Invoice requires a common Posting Date across the selected FWOs.
 
-Before Income lines are linked, eligible drafts can use a different FWO invoice currency without rewriting their service prices. Once any Income is linked or posted, the FWO **Order Party Type**, customer, and **Currency Code** in **Ordering Party** are protected. Changing the customer is also blocked by customer-specific agreement/price-list lines or data requiring review.
+A combined Sales Invoice also requires the same Ordering Party and invoice currency. The selected FWOs may have different Document Dates and dimension sets. The invoice header takes its dimensions and Document Date from the first processed FWO, or uses today's Document Date when **Invoicing Today** is enabled. Each invoice line keeps the dimensions of its corresponding Settlement line.
+
+**Fulfillment Overview** shows Posting Date, Document Date, and both global dimensions as columns. Before **Create Sales Invoice** proceeds, it reports all selected-order differences in Ordering Party, invoice currency, and Posting Date together. For each field, the message shows the most common value and its order count, followed by every differing FWO number and value. If several values are equally common, the message identifies the reference value without treating it as the correct value. The same message lists orders whose status prevents invoicing, whose Ordering Party Type is not Customer, or whose Ordering Party No. or Posting Date is missing. An empty currency code is shown as local currency. Document Date and dimensions are not compared. Settlement-line and financial-document checks still run after this selection check passes.
+
+You can change the FWO **Currency Code** in **Ordering Party** even when Income lines are already linked or posted, provided the FWO status allows the change. This sets the currency for the next sales document. Existing documents and their linked Settlement amounts, currencies, and exchange rates retain their current values; unlinked service prices also keep their own currencies. To add new lines to an earlier invoice, the current Ordering Party customer and FWO invoice currency must match that document before using **Add to Document**.
+
+Changing **Order Party No.** reassigns all unlinked Income to the new customer, including agreement, price-list, Legacy, and Needs Review lines. Existing linked or posted Income retains its source customer and financial values. See [Change the customer for the next invoice](#change-the-customer-for-the-next-invoice).
+
+When you select a different customer in **Ordering Party**, the new customer's default dimension values replace existing values for the same dimension codes on the FWO and on its editable manual or Default Service Set Income drafts. This includes manually entered values. New customer dimension codes are added; existing dimensions not supplied by the new customer are retained. Other default sources can still fill missing dimensions. For example, the customer's **Region = South** replaces **Region = North**, while an existing **Project = P17** remains if the new customer does not supply Project.
+
+Customer defaults also replace an editable Income draft's differing value when the old and new customers have the same value on the FWO. Other generated rows and rows marked **Legacy** or **Needs Review** retain their saved dimensions when the customer changes. Linked and posted Income keeps the dimensions of its source document.
+
+Filled quantities, prices, amounts, and review markers do not by themselves prevent changing **Ordering Party**. If an unlinked imported line remains blocked for normal editing or invoicing after amount conversion, an administrator can use [Repair Settlement Drafts](setup.md#repair-blocked-settlement-drafts). The wizard checks the line's ownership, independent status, and financial values before restoring normal draft editing. This includes eligible converted legacy lines still requiring review. It can also fill an empty Income **Customer/Vendor No.** from the FWO's nonblank customer Ordering Party; Preview shows the proposed customer number. A different existing customer remains a conflict for that repair workflow, and Cost lines do not inherit the FWO customer. Financial amounts are preserved.
+
+The same wizard repairs **FWO System ID** and **FWO Type Code** on eligible unlinked Income and Cost lines using the existing active FWO identified by **Forwarding Order No.** It also corrects an old GUID pointing to another existing order, such as the copy source: the row's Forwarding Order No. determines its owner. Preview shows the proposed correction, so this case does not require a separate GUID Repair run. A missing FWO remains a diagnostic. The Settlement row's own identity, prices, amounts, and P/L are preserved; document-linked, posted, and protected source-controlled rows remain outside this draft repair.
+
+The wizard repairs **Ready** rows while leaving skipped or failed rows for review. Each row is saved separately, so successful repairs remain saved if another row fails or the run is interrupted. Afterward, **Preview Details** shows each row's **Repair Status** and diagnostic. Refresh the Forwarding Order with **F5** before editing its repaired lines. A remaining blocked Income still needs resolution before it can be invoiced.
 
 Business Central controls **Bill-to Customer** and **Pay-to Vendor** on document headers. Settlement identifies the operational **Sell-to Customer** or **Buy-from Vendor**.
 
 ## Change or remove a document link
 
-Invoice and credit-memo lines in Sales and Purchase, including posted documents, show one **Allocated Amount** for their linked active and posted Settlement rows. It is the net amount excluding VAT in the document currency, with the document sign. Choose it to open the active list, the posted list, or a combined **Linked Settlement Lines** list when both are present. The combined list identifies each FWO's status and exact posted version. Its rows use the same filters as the displayed amount; zero-value links remain available. See [Purchase Assignment](purchaseassignment.md) for navigation details.
+Invoice and credit-memo lines in Sales and Purchase, including posted documents, show one **Allocated Amount** for their linked active and posted Settlement rows. It is the net amount excluding VAT in the document currency, with the document sign. Identical copies of the same FWO and Settlement line count once; an active copy takes precedence over its matching posted versions. Copies are combined only when their source identities, allocation shares, quantities, amounts, and currency context agree. Conflicting historical snapshots remain separate contributions so they can be reviewed; the displayed amount is not proof that such a group is eligible for automatic cancellation.
+
+Choose **Allocated Amount** to open the active list, the posted list, or a combined **Linked Settlement Lines** list when both are present. The details retain every physical version for comparison, including copies counted only once in the total, and identify each FWO's status and exact posted version. Zero-value links remain available. See [Purchase Assignment](purchaseassignment.md) for navigation details.
 
 A linked Settlement line takes its actual values from the document. Every saved change to the existing Sales or Purchase line refreshes the values represented in Settlement: description, quantity, unit, price or direct unit cost, line and invoice discounts, net and VAT-inclusive amounts, location, and dimensions. VAT posting groups and other document settings remain controlled by Business Central; their calculated results flow into Settlement. TMS also refreshes existing links before posting the financial document. Purchase allocations retain their existing shares and total. Posting the FWO later archives the saved Settlement values.
 
+Changing dimensions on the FWO updates its defaults. If you confirm updating Settlement lines, the change applies only to editable, unlinked drafts, subject to the FWO status rules. Linked, posted, and protected generated rows keep their existing dimensions. To change a linked row's dimensions, use the source document: saved dimension changes on an unposted Sales or Purchase line continue to update its linked Settlement rows automatically.
+
 After posting, the actual **posted document line** supplies the final description, quantities, amounts, unit, location, and dimensions. Both shortcut dimensions and the complete **Dimension Set ID** replace the previous Settlement values, including when dimensions were changed in the invoice before posting. Every Settlement share of an allocated purchase line receives those posted dimensions; its Forwarding Order reference and allocation share remain in place.
 
-You can reopen a linked purchase document for editing. Direct **Link to Purchase Line** and **Import Purchase Document** actions do not require it to be released again. Release is still required for a new **Charge Allocation** or **Freight Order assignment**; an existing link does not require the document to remain Released throughout editing.
+You can reopen a linked purchase document for editing when Business Central requires it. Its supported source refresh continues regardless of the current linking mode; changing the mode or the source status does not invalidate an existing link. A new link, import, **Charge Allocation**, or **Freight Order assignment** must satisfy **Purch. Document Linking Mode** at the time of that operation.
 
 An ordinary deletion of a linked Sales or Purchase line requires detaching its Settlement link first. Standard header changes, such as changing currency, can temporarily delete and recreate document lines. TMS treats that Recreate operation separately: it restores the link to the recreated line and refreshes the document values, discounts, and P/L amounts.
 
@@ -336,7 +429,9 @@ Detach does not require an unposted Sales or Purchase document to have **Open** 
 
 For example, a purchase line for **100** is distributed equally to **five FWOs**. Three FWOs have been posted and two remain active. **Detach Settlement** removes all five assignments, including every saved version of the three posted orders. The two active rows become unlinked **Fixed Amount** plans with their existing **P/L Amount = −20** each. The three posted orders retain their historical amounts and P/L; only their source-reference and allocation-link fields are cleared.
 
-Active rows retain their P/L in the transaction, local, and additional reporting currencies. Ordinary document amounts and line discounts are retained. Where the linked values need VAT or invoice-discount context, the independent plan uses the saved net amount excluding VAT as its Amount base and clears the document discount. Detach uses the saved values without applying current exchange rates or restoring an earlier estimate. Existing restrictions for generated or agreement-controlled rows remain.
+After a successful direct Detach, each affected active row is an independent manual draft ready for normal editing without running Repair. The row no longer belongs to its former agreement, price list, or other generator. An Income draft receives the current FWO Ordering Party customer, including when its former document used a different customer. Cost retains its vendor. Normal FWO status restrictions still apply.
+
+Active rows retain their P/L in the transaction, local, and additional reporting currencies. Ordinary document amounts and line discounts are retained. Where the linked values need VAT or invoice-discount context, the independent plan uses the saved net amount excluding VAT as its Amount base and clears the document discount. Detach uses the saved values without applying current exchange rates or restoring an earlier estimate. The source, correction, and Freight allocation checks below still determine whether direct Detach is allowed.
 
 Archived rows stay read-only historical records. Their quantities, prices, discounts, amounts, currency values, and P/L remain unchanged. Historical versions can contain different values: detach removes their references without synchronizing those snapshots to today's document. See [Posted History](postedhistory.md#detach-an-archived-settlement-reference).
 
@@ -352,13 +447,13 @@ Review Settlement before posting the Forwarding Order. If **Posted Documents Con
 
 The supported document workflow covers Sales Orders, Invoices, and Credit Memos; Purchase Orders, Invoices, and Credit Memos; and full posting where each open source line produces one posted line.
 
-Direct assignment also supports eligible **Posted Purchase Invoice** lines. The invoice must not be cancelled, corrective, or a prepayment invoice; prices must exclude VAT and actual invoice discount amounts must be zero. Deferrals and other unsupported source processing remain excluded. TMS checks existing allocations in active and posted Settlement and Freight records, so closing a transportation order does not free its invoice line for another assignment. See the [posted purchase prerequisites](purchaseassignment.md#link-an-already-posted-purchase-invoice).
+Direct assignment also supports eligible **Posted Purchase Invoice** lines. The invoice must not be cancelled, corrective, or a prepayment invoice; prices may include or exclude VAT, and actual invoice discount amounts must be zero. Deferrals and other unsupported source processing remain excluded. TMS checks existing allocations in active and posted Settlement and Freight records, so closing a transportation order does not free its invoice line for another assignment. See the [posted purchase prerequisites](purchaseassignment.md#link-an-already-posted-purchase-invoice).
 
-Eligible **Posted Purchase Credit Memo** lines can be linked to existing **Cost** rows or imported as new rows, subject to their [source and mapping checks](purchaseassignment.md#link-an-already-posted-purchase-credit-memo). The source sets the Credit effect. The credit memo itself must not be Cancelled; Corrective or Correction credits are allowed when otherwise eligible. They also use prices excluding VAT, zero actual invoice discount, and no prepayment or deferral. The result is verified and **Posted**, without new financial entries. Eligible direct credit-memo links use the same **Detach Settlement** command as other supported sources.
+Eligible **Posted Purchase Credit Memo** lines can be linked to existing **Cost** rows or imported as new rows, subject to their [source and mapping checks](purchaseassignment.md#link-an-already-posted-purchase-credit-memo). The source sets the Credit effect. The credit memo itself must not be Cancelled; Corrective or Correction credits are allowed when otherwise eligible. Prices may include or exclude VAT; zero actual invoice discount and no prepayment or deferral are still required. The result is verified and **Posted**, without new financial entries. Eligible direct credit-memo links use the same **Detach Settlement** command as other supported sources.
 
 For a linked Sales Order, post the full quantity with **Ship and Invoice**. For a linked Purchase Order, use **Receive and Invoice** for the full quantity. Posting only the shipment or receipt first is not supported.
 
-Use compatible customer/vendor, currency, and dimension settings. Creating a document normally works within one FWO; the dedicated combined Sales Invoice workflow is the exception. Adding to an existing document has its own compatibility checks.
+Use compatible customer/vendor and currency settings. Creating a document normally works within one FWO; the dedicated combined Sales Invoice workflow is the exception and allows different FWO dimension sets. Purchase document creation requires compatible dimension sets. Adding to an existing document has its own compatibility checks.
 
 The following are outside the supported Settlement workflow:
 
@@ -368,7 +463,8 @@ The following are outside the supported Settlement workflow:
 - linking already posted Sales lines to an existing planned Income row; use **Import Sales Document** to create new posted Income rows instead;
 - creating new split allocations from an already posted purchase credit memo; posted purchase invoices support **TMS > Charge Allocation**;
 - detaching Freight Order parent allocations, TMS correction chains, or archived Quote, Blanket Order, and Return Order references;
-- corrections after the FWO is archived, or split/merge correction chains.
+- editing the original posted Settlement financial snapshot; use a separate [financial correction FWO](invoice-corrections.md#create-a-corrective-fwo-manually) for new adjustments;
+- split/merge correction chains.
 
 After amount-model conversion, **Needs Review**, **Unresolved**, and other legacy metadata retain their existing archive behavior; posting does not repair them. **Settlement Upgrade Required** is a separate conversion status: complete the amount-model wizard before processing these legacy amount rows. An independent Cost without a conflicting source identity can be linked directly to its actual purchase line even when its old metadata needs review. Use the controlled replacement below when a blocked manual Cost needs to remain an editable plan.
 
@@ -376,13 +472,17 @@ After amount-model conversion, **Needs Review**, **Unresolved**, and other legac
 
 Choose **Post** on a Forwarding Order or post selected orders from the list to close them and create their transport history. TMS copies each saved **Income** and **Cost** row to the corresponding Posted Settlement row. Linking, changing, and posting sales or purchase documents prepares the Settlement values before this step.
 
-**FWO posting preserves the stored values.** It does not synchronize document links, recalculate quantities, prices, amounts or exchange rates, repair technical states, or redistribute costs. Customer/vendor, dates, dimensions, document references, allocation shares, and migration and correction history are copied as saved. Existing Settlement rows on other FWOs are not refreshed.
+**FWO posting preserves the stored values.** For ordinary Settlement rows, it does not compare quantities, prices, amounts, discounts or currency context with the source sales or purchase line, and it does not recalculate them. Customer/vendor, dates, dimensions, document references, allocation shares, and migration and correction history are copied as saved. Posting does not repair technical states or redistribute costs. Existing Settlement rows on other FWOs are not refreshed.
+
+For an existing financial source, posting resolves the document and line by their saved type, number and line number and refreshes the technical record identifiers. A missing referenced document or line still blocks posting unless **Posted Source Deleted** records its deletion; recorded deleted-source history retains its saved identifiers. Rows without a document number or line number keep their saved identifiers. This reference lookup does not load or replace the financial snapshot. Freight Order purchase and allocation checks remain part of their separate workflow.
+
+**Document Correction** rows retain their separate correction-operation checks, including source consistency, original shares and correction totals. The operation must be ready and its correction documents posted before these rows can be archived.
 
 The FWO still needs its Posting Date and must satisfy its status rules and enabled posting controls. **Posted Documents Control** requires each Settlement row's saved **Posted** marker to be true. **FWO Posting Date Control** compares the saved **Document Posting Date** with the FWO Posting Date. The configured allowed posting range also continues to apply. **Link State**, **Data Verification Status**, **Source Quantity Mode**, and an unknown correction baseline do not add separate FWO posting restrictions. Rows still marked **Settlement Upgrade Required** must first be converted to the new amount model.
 
 Only the chosen orders are archived. Their active Settlement rows are removed after the copies and totals have been checked. A posting error rolls back the order or selected batch. Sales and purchase documents and their financial entries are not posted again.
 
-Review or correct financial values through the relevant document workflow before closing the FWO. Archiving does not establish missing correction history.
+Review or correct financial values through the relevant document workflow before closing the FWO. Amount-model migration checks eligible legacy rows before conversion, but ordinary FWO posting does not repeat that source comparison. A source change missed by synchronization will therefore remain in the archived Settlement values. Archiving does not establish missing correction history.
 
 ### Recreate blocked manual Cost lines
 
@@ -408,10 +508,14 @@ After all replacements are created successfully, the original blocked rows are d
 | Price is read-only | The draft is Fixed Amount, so edit Amount. |
 | A fixed total changed after invoice linking | The document replaces the plan with its actual Amount before discount, Line Amount, discounts, and currency. The document quantity is shown as Per Unit after linking. |
 | Income cannot be invoiced | Complete Unit of Measure Code on every affected Income row; check service invoice mapping, customer, status, VAT/posting setup, and currency. |
-| A different customer cannot be selected | Income belongs to the FWO Ordering Party. Change the FWO customer while all Income rows are eligible drafts. |
+| Sales import reports an invoice discount | Review **Inv. Discount Amount** and **Inv. Disc. Amount to Invoice** on the document and line named in the message. Initial import requires both amounts to be zero. **Allow Invoice Disc. = Yes** alone does not block import, and TMS does not change the flag or remove a discount for you. |
+| The next invoice must use a different customer | Change the FWO Ordering Party. All unlinked Income receives the new customer; linked or posted Income keeps its source customer and documents. |
+| Ordering Party cannot be changed | Check order status, customer blocking and credit controls, and whether this is a financial correction tied to an original posted FWO. Legacy or Needs Review markers and existing linked or posted Income alone do not block a customer change. |
+| An independent Income draft has no customer although the FWO does | Use [Repair Settlement Drafts](setup.md#repair-blocked-settlement-drafts) to preview filling the missing Customer/Vendor No. from the FWO Ordering Party. Existing different customers remain conflicts; Cost lines are not assigned this customer. |
+| An imported unlinked Income or Cost has the wrong FWO System ID or FWO Type Code | Use the same [Repair Settlement Drafts](setup.md#repair-blocked-settlement-drafts) wizard to restore the owner fields from the active FWO number, including a GUID left from another existing order. Missing parents remain diagnostics. |
 | More lines were invoiced than the selected row | Create uses all compatible unlinked lines for that effect. Add to Document uses the current or selected lines. |
 | The same vendor cost appears twice | A whole-document import creates new rows. If a planned Cost existed, use a single-line link instead and review the duplicate before posting. |
-| A purchase invoice cannot be found or linked | Follow [Purchase Assignment troubleshooting](purchaseassignment.md#troubleshooting); choose the unposted or posted invoice action. Direct linking has no unposted document-status restriction. Check source eligibility, Charge mapping, and existing document or allocation references. Old vendor, effect, and Needs Review markers alone do not block a single-line link. |
+| A purchase invoice cannot be found or linked | Follow [Purchase Assignment troubleshooting](purchaseassignment.md#troubleshooting); choose the unposted or posted invoice action. For an unposted source, check **Purch. Document Linking Mode** and the document status. Check source eligibility, Charge mapping, and existing document or allocation references. Old vendor, effect, and Needs Review markers alone do not block a single-line link. |
 | A linked document line cannot be deleted | Use Detach Settlement first; it includes supported active and archived direct references. Freight allocations and correction chains require their own workflow. |
 | Forwarding Order posting is blocked | Check the FWO status and Posting Date, then the enabled Posted Documents, document-date, and allowed-posting-range controls. Complete the amount-model wizard for rows marked Settlement Upgrade Required. Other technical Settlement states retain their existing archive rules. |
 | A linked Income or Cost shows Unresolved or stale values | Review it through the relevant financial document workflow before closing the FWO. FWO posting copies the saved row without repairing it. |
@@ -420,6 +524,7 @@ After all replacements are created successfully, the original blocked rows are d
 ## Related
 
 - [Forwarding Order](forwardingorder.md)
+- [Invoice Corrections and Corrective Forwarding Orders](invoice-corrections.md)
 - [Create and Invoice Your First Forwarding Job](first-forwarding-job.md)
 - [Services](services.md)
 - [Charges](charges.md)

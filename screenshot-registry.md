@@ -24,7 +24,7 @@ Save screenshots under `docs/resources/<topic>/pics/` unless the article already
 |---|---|---|
 | [Forwarding Order](forwardingorder.md) | `docs/resources/forwardingorder/pics/forwardingorder.png` | Forwarding Order card with General, parties, content, stages, and settlement visible. |
 | [Freight Order](freightorder.md) | `docs/resources/freightorder/pics/freightorder.png` | Freight Order card with carrier, vehicle, driver, content, and charges visible. |
-| [TMS Setup](setup.md) | `docs/resources/setup/pics/setup3.png` | Main TMS Setup page with core setup groups visible. |
+| [TMS Setup](setup.md) | `docs/resources/setup/pics/setup3.png` | Replacement needed. The existing image shows hidden settings and is no longer embedded in the article. Capture the current visible groups, including Instructions Enabled and the Reports menu; keep credentials hidden. |
 | [Forwarding Order Types](forwardingordertype.md) | `docs/resources/forwardingordertype/pics/fwotype1.png` | Type card showing status profile, stage profile, and default fields. |
 | [Statuses](statuses.md) | `docs/resources/statuses/pics/statuses1.png` | Status profile list or card with action control visible. |
 | [Stages](stages.md) | `docs/resources/stages/pics/stages1.png` | Stage profile with stage lines visible. |

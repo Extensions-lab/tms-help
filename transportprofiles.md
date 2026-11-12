@@ -22,7 +22,7 @@ A profile keeps the classification, source information, and handling requirement
 | Equipment must meet cargo requirements | Maintain explicit Vehicle Unit Type Rules and check the selected equipment before dispatch. |
 | Dangerous-goods information changes | Record SDS and source references, review changes, and replace profiles whose transport context has changed. |
 | Several goods travel together | Check whether configured direct cargo lines have a common Stage profile; review unconfigured goods explicitly. |
-| Carrier documents need dangerous-goods information | Maintain cargo assignments and use **Dangerous Goods Bill of Lading** for actual loaded cargo. |
+| Carrier documents need dangerous-goods information | Select the reviewed profile on the first Freight Order Stage and use **Dangerous Goods Bill of Lading**. |
 
 The responsible specialist must determine the actual classification from the current SDS, applicable regulation, shipment conditions, and carrier requirements. **Transport Data Reviewed** records a company review; it is not regulatory certification. TMS does not calculate a legal classification from an Item description or certify a particular vehicle.
 
@@ -274,18 +274,18 @@ A Conditional rule with nonblank Condition Text asks for confirmation during an 
 
 ## Reports and documents
 
-**Dangerous Goods Bill of Lading** is available in the **Bill of Lading** action group on the Freight Order. Complete **Bill of Lading No.**, load the actual logistic units, and review the first Stage before printing. The report produces one document per Freight Order from actual **Type = Unit** content, including nested Item/Product goods. **Email Dangerous Goods Bill of Lading** prepares the same document through report selections.
+Use **Bill of Lading** on the Freight Order with **TMA DG Bill of Lading** configured in report selections. Complete **Bill of Lading No.** and review the first Stage's selected Transport Profile before printing. The report produces one document per Freight Order from actual loaded **Type = Unit** content, including nested Item/Product goods, or from assigned FWO goods when no units are loaded. Report selections also control email attachments.
 
-The report's profile selection differs from Stage selection:
+The report uses the profile already selected during Stage planning:
 
 | Planning or document | Cargo and profile source |
 |---|---|
 | Stage selection/check | One common profile for configured direct Item/Product lines of the Forwarding Order. |
-| Dangerous Goods Bill of Lading | A separate profile for each loaded Item/Product/Variant/UOM through its assignments, using the first Freight Order Stage's mode, regulation, package, equipment, and assignment date. The Stage's selected profile is not a fallback. |
+| Dangerous Goods Bill of Lading | The Transport Profile selected on the first Freight Order Stage applies to every included Item/Product row, in both LU and FWO modes. Printing does not select profiles from cargo assignments. |
 
 The first Stage is determined by Priority, Forwarding Order No., and Line No., even when that Stage has no loaded units of its own. The report does not compare the transport contexts of later Stages.
 
-For each loaded good, **Default** ranks before nondefault, then higher **Priority**. If several profiles tie for the best rank, printing stops; clarify the assignments. With no relevant assignments, the row has its ordinary description and blank profile/hazardous-material values. With relevant but ineligible assignments, printing stops. A blank hazardous-material field therefore does not prove that the goods are nonregulated.
+Goods without Transport Profile Assignments still receive the selected stage profile's dangerous-goods data. Assignment Variant/UOM, Default, Priority and effective dates do not override that choice during printing. The selected profile must remain unblocked, reviewed, valid, and consistent with the first Stage's mode, regulation and any specified Package Type. A blank Stage Package Type uses the profile's package code. If the first Stage has no selected profile, rows retain their ordinary descriptions and blank profile/hazardous-material values, even when cargo assignments exist. A blank hazardous-material field therefore does not prove that the goods are nonregulated.
 
 For regulated cargo, the report uses the profile's Transport ID, Proper Shipping Name, technical names, ERG, hazard classes, Packing Group, STCC, additional description, and marks. Supported Detail descriptions marked **Print on Transport Document** are included; Conditional Rule text is excluded. Subsidiary hazard classes form part of regulated classification independently of that flag.
 
@@ -375,8 +375,8 @@ The defaults flow is insert-only: if a regulation, mode, package type, profile, 
 | Check Vehicle Unit Type requires another profile | The explicit check requires a profile on every assigned Stage, including Stages left incomplete during planning. |
 | Review disappeared | A source/classification/requirement field or a Detail changed. Recheck and review the profile. |
 | An existing profile cannot be changed or deleted | Check Stage use and references. Copy the profile and use a reviewed successor. |
-| DG Bill of Lading has no dangerous-goods data for an Item | Check that actual loaded goods have eligible cargo assignments. The selected Stage profile is not a report fallback. |
-| DG Bill of Lading reports ambiguous profiles | Give the intended cargo assignment a unique best Default/Priority rank in the first eligible group. |
+| DG Bill of Lading has no dangerous-goods data for an Item | Check the Transport Profile selected on the first Freight Order Stage and its hazardous-material classification. Cargo assignments are not required for printing that profile. |
+| DG Bill of Lading uses an unexpected profile | Check the first Stage in Priority, Forwarding Order No., Line No. order. Its selected profile applies to all cargo; later Stage profiles and assignment rankings do not replace it. |
 | DG Bill of Lading rejects Conditional classification | Resolve the hazardous-material classification for this scenario; the report does not calculate it automatically. |
 | Emergency information is incomplete on the document | Review TMS Setup and the selected report layout. The bundled layout prints provider and primary/international phones. |
 

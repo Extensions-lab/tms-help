@@ -45,7 +45,9 @@ Make sure that:
 - Stage Entries are operational history for execution events.
 - Entry status comes from the stage execution status profile.
 - Attachments linked to an entry are removed when the entry is deleted.
-- Posted Stage Entries are used for read-only history after posting.
+- An attachment stays with its original event when its file or description is updated. The API rejects changing the owning event of an existing attachment.
+- Freight Order posting saves the related execution events as **Posted Stage Entries**, available as read-only trip history even while the related Forwarding Order remains active. Later Forwarding Order posting completes their link to the posted customer job; it does not create another copy of the Freight Order or change the saved event details.
+- When the same order numbers and stage line occur in several historical versions, posting uses the selected trip version to identify its events. It does not reassign events from a previously completed version. An older event without an identifiable version remains unchanged when its history is ambiguous; refreshing stored links does not turn it into an event of the current trip.
 
 ## Troubleshooting
 

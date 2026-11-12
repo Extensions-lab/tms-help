@@ -52,6 +52,18 @@ Enter quantity, price, and amount as they should appear on the target document. 
 
 **Financial Effect** has a separate purpose. Use **Standard** for ordinary billing and **Credit** for a customer credit. Do not select a credit workflow just because a value is negative. See [Quantity, price, and amount signs](settlement.md#quantity-price-and-amount-signs).
 
+## Pricing after splitting a stage
+
+When one Forwarding Order stage is split across several Freight Orders, **Get Price** calculates each **Per Unit** service once for that stage and logistic unit type. Splitting the cargo between carriers or vehicles does not multiply the customer charge. Separate stages are still priced separately, even when they use the same Stage Code.
+
+For example, 10 pallets at 10 per pallet produce a total of **100**, whether the stage is assigned to one Freight Order or split into loads of 5 + 5 or 2 + 3 + 5 pallets.
+
+The calculation uses the Forwarding Order's total quantity, weight, chargeable weight, or volume for the relevant logistic unit type. **Rate Table** thresholds also use this total, so a split does not move each branch into a smaller rate band.
+
+Split branches must have consistent stage codes and applicable pricing rules for **Per Unit** pricing. If these stage codes or pricing rules differ, **Get Price** stops and keeps the existing settlement lines. Review the stage codes, route details, and price list rules before trying again.
+
+**Fixed Amount** prices retain their existing behavior: the applicable fixed charge is generated for each physical branch. Review these charges separately when splitting a stage.
+
 ## Good to know
 
 - Pricing is a starting point for billing. Users still need to review settlement before invoicing.

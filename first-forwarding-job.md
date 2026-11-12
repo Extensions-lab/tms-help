@@ -68,10 +68,13 @@ Expected result: the settlement line stores the linked sales document reference.
 ## Step 5. Complete and review history
 
 1. Attach required files if status control requires them.
-2. Confirm settlement posting controls are satisfied.
-3. Post the Forwarding Order when the job is complete.
-4. Open [Posted Forwarding Order](postedforwardingorder.md).
-5. Review posted parties, content, stages, settlement, and related documents.
+2. Finish and post the linked vendor purchases, and fully allocate the Freight Order's charges to the related Forwarding Order Settlement. Customer income and sales invoicing can be completed later, before closing the Forwarding Order.
+3. Complete the carrier work, open the Freight Order, review its stages, content, charges, instructions, and files, then choose **Post**. If the job uses several Freight Orders, post all of them first.
+4. Open **Posted Freight Orders** and check that the complete trip and its shared carrier files are available. The Forwarding Order is still active at this point, with stages linked to the posted trip.
+5. Complete any remaining customer income and sales invoicing, and confirm the Forwarding Order's settlement and document posting controls are satisfied.
+6. Post the Forwarding Order when the customer job is complete. Its own attachments move with it; its stages refer to the Freight Order history already created.
+7. Open [Posted Forwarding Order](postedforwardingorder.md).
+8. Review posted parties, content, stages, settlement, and related documents.
 
 Expected result: the job is available in posted history for audit and reporting.
 
@@ -83,7 +86,7 @@ Expected result: the job is available in posted history for audit and reporting.
 | Freight Order cannot be created | Check stages, status controls, Freight Order Type, and carrier setup. |
 | Invoice action is disabled | Check status profile, settlement permissions, customer, and service setup. |
 | Invoice creation asks for a unit of measure | Fill **Unit of Measure Code** on every Income line being invoiced, including **Fixed Amount** lines. |
-| Posting is blocked | Check required attachments, posted document control, and settlement posting dates. |
+| Forwarding Order posting is blocked | Post every Freight Order assigned to its stages first. Then check required attachments, posted document control, and settlement posting dates. |
 | Totals are wrong | Review **Financial Effect**, **Pricing Mode**, and [amount signs](settlement.md#quantity-price-and-amount-signs), then check currency and duplicate or missing costs. |
 
 ## Related

@@ -9,14 +9,18 @@ TMS can use **Google Maps** or **Azure Maps** for geocoding, distance and durati
 
 ## Credential model
 
-Each provider has one credential in **TMS Setup**:
+Each provider is configured with one credential in **TMS Setup**:
 
 | Credential | Used by | Security restriction |
 |---|---|---|
 | **Google Api Key** | Business Central service tier and the Google Maps browser control | The value is visible to browser users. Apply API restrictions, quotas, rotation, and monitoring. |
 | **Azure Maps Subscription Key** | Business Central service tier and the Azure Maps browser control | The value is visible to browser users. Configure CORS, quotas, rotation, and monitoring. |
 
-The UI shows one masked value, while the implementation stores that value in two company-scoped encrypted isolated-storage slots: a `SecretText` server slot and a `Text` control-add-in slot. Entering, replacing, or clearing the field updates both slots. During upgrade, a compatible legacy Google key is copied to both missing slots on a best-effort basis. The published plaintext table field remains in the schema and initially retains its value for AppSource compatibility, but is marked obsolete. The first explicit key rotation clears that legacy field to prevent a stale key from being used. Dependent extensions must migrate to the public `HasGoogleApiKey`, `GetGoogleApiKey`, and `SetGoogleApiKey` methods.
+The setup page shows a masked placeholder when a credential exists. TMS stores the value in two company-scoped encrypted isolated-storage slots and uses it internally for server requests and browser visualization. Entering, replacing, or clearing the field updates both slots and requires permission to modify **TMS Setup**. Operations users can continue to use maps without permission to change the shared credential.
+
+During a supported upgrade from legacy Google-key storage, TMS saves and verifies both encrypted slots before clearing the plaintext table value. The obsolete table field remains in the schema for AppSource compatibility. Runtime map operations read isolated storage only and do not fall back to that field; if a key is missing, an administrator must configure it in **TMS Setup**.
+
+Dependent extensions must use the supported business operations of **TMA Map Management**, such as geocoding, distance calculation, and map or route display. Existing provider-specific business functions remain available. Direct credential access is internal to TMS; the obsolete public Google and ABS credential methods remain declared for compatibility but reject calls with an error, including calls that only check whether a key exists.
 
 Because the same value is used by both server and browser operations, encryption protects it only at rest. Users who can inspect browser traffic can extract it.
 

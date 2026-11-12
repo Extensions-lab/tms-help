@@ -49,6 +49,14 @@ Make sure that:
 | **Reports** | Prints cargo and unit details. |
 | **Transport Profiles and Stages** | Reuses existing unit types as Vehicle Unit Types and checks whether the chosen transport equipment is allowed for the cargo scenario. |
 
+For an integration preparing Forwarding Order cargo, use the read-only
+**Logistics Unit Type** API (`logisticsunittypes`). It provides the descriptions
+and characteristics of the types selected on content lines with **Type = Unit
+Type**; use the type's `code` as the line's **No.** The API currently reads the
+shared catalogue without a cargo-specific filter. See
+[Choosing a Logistics Unit Type](api.md#choosing-a-logistics-unit-type-for-forwarding-order-cargo)
+for request examples and its relationship to the equipment API.
+
 ## Vehicle Unit Type, Package Type, and Transport Profiles
 
 **Vehicle Unit Type Code** identifies the type of transport equipment used for a Stage or Freight Order. It refers to the existing Logistic Units type catalogue. A Transport Profile's **Package Type Code** describes how the cargo is presented for transport. For example, cargo may be packaged in drums while the Vehicle Unit Type describes the equipment carrying those drums.

@@ -52,6 +52,7 @@ Make sure that:
 ## Good to know
 
 - Do not delete driver records used on historical Freight Orders. Block them instead.
+- A blocked driver is excluded from Freight Order selection and rejected for new assignments, including automatic carrier or vehicle defaults. Existing assignments remain available, but adding a new stage to that Freight Order requires an unblocked carrier and driver.
 - Keep personal data minimal and aligned with company policy.
 - Driver assignment is operational information. Financial posting is normally driven by carriers, vendors, services, and charges.
 

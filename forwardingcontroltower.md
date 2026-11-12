@@ -9,6 +9,8 @@ Use **Forwarding Control Tower** to monitor active Forwarding Orders from one op
 
 The page combines the main control signals from Forwarding Orders, Freight Orders, stages, attachments, and checklists so dispatchers can quickly see which orders need attention.
 
+By default, the page shows only orders with **Attention Needed** selected. Read **Attention Summary** for the required follow-up. Choose **Filters > Show All** to include orders without an attention flag, or **Needs Attention** to return to the attention filter.
+
 ## Before you start
 
 Make sure that:
@@ -42,7 +44,7 @@ Common reasons include:
 
 ## How to work in this page
 
-1. Open **Forwarding Control Tower**.
+1. Open **Forwarding Control Tower**. Only orders that need attention are shown initially.
 2. Use the predefined views such as **Unplanned**, **Without Freight Order**, **Without Carrier**, **Missing Documents**, or **Open Tasks**.
 3. Select a Forwarding Order.
 4. Review stages and related Freight Orders in the details area.
@@ -55,6 +57,7 @@ Common reasons include:
 
 | View | Shows |
 |---|---|
+| **Needs Attention** | Forwarding Orders with at least one planning, carrier, document, or task gap. This is also the default filter when the page opens. |
 | **Without Freight Order** | Forwarding Orders with stages where execution has not been created or assigned yet. |
 | **Without Carrier** | Forwarding Orders where at least one Freight Order exists, but the carrier is not selected. |
 | **Missing Documents** | Forwarding Orders missing one or more required attachment categories. |
@@ -67,11 +70,13 @@ Common reasons include:
 - Attachment completeness uses the same selected category filters as Attachment Control.
 - Freight Order attachment counts include the Freight Orders assigned to stages of the selected Forwarding Order.
 - Posted Forwarding Orders are not included in this active control view.
+- **Update** recalculates the attention flags and keeps the current filters. With the attention filter active, orders disappear from the list once all monitored gaps are resolved.
 
 ## Troubleshooting
 
 | Problem | What to check |
 |---|---|
+| An active order is missing from the list | The default filter hides orders without an attention flag. Choose **Filters > Show All** and clear any other active view or filters to see them. |
 | A document category is always missing | Open **Attachment Settings** and confirm the category filter. |
 | A Freight Order is not shown in details | Check whether the Freight Order is assigned to a stage on the Forwarding Order. |
 | Carrier is missing even though a carrier exists elsewhere | Open the Freight Order and confirm **Carrier No.** is filled. |

@@ -32,6 +32,10 @@ Make sure that:
 
 TMS shows one field and stores the entered value in separate encrypted server and browser slots. The same value is used by Business Central service-tier requests and the browser map control. Consequently, TMS currently does not support separate IP-restricted and HTTP-referrer-restricted Google keys. Select restrictions that work for both request paths, and use API restrictions, quotas, rotation, monitoring, and billing alerts to limit exposure.
 
+Only users with permission to modify **TMS Setup** can add, replace, or clear the shared key. TMS accesses it internally for normal map operations, so operations users do not need setup-maintenance rights to use maps. After migration, TMS reads the encrypted slots and does not use the obsolete plaintext table field as a fallback.
+
+For dependent AL extensions, use the supported **TMA Map Management** business operations. Existing provider-specific business functions remain available, while the obsolete public `HasGoogleApiKey`, `GetGoogleApiKey`, and `SetGoogleApiKey` methods reject calls with an error. See the [credential model](mapproviders.md#credential-model).
+
 ## What Google Maps supports
 
 | Capability | Use it for |

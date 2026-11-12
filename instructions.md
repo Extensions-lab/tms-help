@@ -132,6 +132,8 @@ To create a local variant:
 5. Change the description, Comment Group, or applicability on that local row when the source needs special handling.
 6. Open **Content**, choose **Edit**, update the text, and choose **Save and Close**.
 
+You can open **Content** or choose **Edit** immediately after selecting the instruction code; there is no need to leave the row first. The instruction row and any pending field changes are saved before the editor opens. Closing the editor without **Save and Close** keeps that row but discards unsaved content edits. This also applies to the master instruction list and the FWO and FO instruction lists.
+
 The copied instruction is independent of the master. Use **Reset from Master** when the local variant must be replaced with the current master description, type, Comment Group, applicability, and content. This discards local changes; it restores the master, not the customer's variant.
 
 ### Example: different arrival rules for one address
@@ -168,6 +170,16 @@ The winning variant supplies its description, type, Comment Group, applicability
 For the FWO customer/address route, TMS uses **Consignee Type = Customer**, **Consignee No.**, and **Unload Address Code**. Setting a Sell-to Customer or Shipper alone does not select that customer's instructions through this route.
 
 Clearing all four applicability flags on an address variant is not a way to suppress a lower-priority instruction. That address variant is skipped, and an eligible Customer or Forwarding Order Type variant with the same code can still apply.
+
+## Copy a Sales Order with instructions
+
+Use the standard **Copy Document** action with **Include Header** selected to copy the source document's saved instructions into the destination Sales Order.
+
+The copy replaces the complete instruction list. Existing destination instructions are deleted, including manual, edited and automatically added rows. Each source instruction retains its description, type, Comment Group, applicability, complete rich text and customization/automatic status. The source document is unchanged. The saved document variants are used, so later changes to the master instructions do not replace the copied text.
+
+If the source has no instructions, the destination's instruction list becomes empty. With **Include Header** cleared, only the document lines are copied and the destination instructions are preserved. **Recalculate Lines** does not change instruction copying.
+
+Posted and archived documents currently do not retain an instruction snapshot. Copying their header therefore leaves the destination without instructions; the current open order's instructions are not treated as historical instructions. Review the destination's **TMS Instructions** after copying from these sources.
 
 ## Work with Forwarding Order instructions
 
@@ -283,7 +295,9 @@ Each named repeater provides its section caption, Source FWO No., Instruction Co
 
 ## Posted instructions
 
-Posting creates read-only instruction snapshots for the Posted Forwarding Order and Posted Freight Order.
+**Freight Order Post** first creates the read-only instruction snapshot for the complete Posted Freight Order. When the trip covers several Forwarding Orders, all of its saved instruction rows remain together with that trip.
+
+Later, **Forwarding Order Post** creates the instruction snapshot for that customer job's Posted Forwarding Order. It retains the links to the Freight Orders already posted and does not recreate or change their instruction snapshots.
 
 The snapshot preserves:
 

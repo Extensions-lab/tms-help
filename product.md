@@ -36,7 +36,7 @@ Make sure that:
 | **Description** | Prints or appears as cargo text. |
 | **Unit data** | Helps calculate totals and documents. |
 | **Weight / Volume** | Supports planning and settlement review. |
-| **Blocked** | Prevents new use while preserving history. |
+| **Blocked** | Prevents selecting the product on new content lines while preserving history. Copying an existing Forwarding Order retains its cargo, including blocked products, and shows a warning in the wizard. |
 | **Transport Profile Count / Has Transport Profiles** | Shows unblocked profile assignments for this Product. These indicators do not confirm that an assignment is current or that its Profile is reviewed and suitable for a particular Stage. |
 
 ## Set up transport requirements for Products and Items

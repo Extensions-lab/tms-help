@@ -7,7 +7,7 @@ description: "Configure Forwarding Order templates for defaults, stages, statuse
 
 Use **Forwarding Order Types** to define how different transportation jobs behave.
 
-A type can represent an import job, export job, domestic move, air freight job, sea freight job, brokerage job, or any other process your company manages.
+A type can represent an import job, export job, domestic move, air freight job, sea freight job, brokerage job, or any other process your company manages. A type with **Financial Correction** enabled creates financial adjustments to a posted Forwarding Order.
 
 ![Forwarding Order Type setup](resources/forwardingordertype/pics/fwotype1.png)
 
@@ -37,6 +37,7 @@ Make sure that:
 |---|---|
 | **Code** | The type users select on the Forwarding Order. |
 | **Description** | Helps users choose the correct process. |
+| **Financial Correction** | Creates a financial correction order with Settlement and a link to the original posted FWO. The order has no cargo, logistic units, transportation plan, or stages. |
 | **Status Profile Code** | Controls allowed actions by status. |
 | **Stage Profile Code** | Controls default transportation legs. |
 | **Default Service Set** | Adds predefined income and cost lines to Settlement, including their Financial Effect and Pricing Mode. |
@@ -44,15 +45,25 @@ Make sure that:
 | **TMS Instructions** | Defines reusable instruction defaults considered when an FWO of this type is created. |
 | **Posting and document settings** | Control completion rules and output. |
 
+## Types for financial corrections
+
+Enable **Financial Correction** on a dedicated type and configure its **No. Series**. Its status rules should allow the Settlement work and posting needed for your adjustments. Select this type in **TMS Setup > Forwarding Orders > Correction FWO Type Code** to use it for **Cancel**, **Correct**, and **Create Corrective Credit Memo** involving a posted FWO. That setup field only accepts types with **Financial Correction** enabled.
+
+The same type can be selected when you create a Forwarding Order manually. In **General > Correction**, choose **Corrects Forwarding Order**, then enter the required Settlement. See [Create a financial correction manually](forwardingorder.md#create-a-financial-correction-manually).
+
+The type's flag is copied into the new FWO and is read-only on its card. Financial orders use the type's numbering and status without generating transportation stages, cargo, logistic units, Service Set lines, or forwarding-agreement charges. Their compact card hides the transportation sections and actions. The type of a financial correction cannot be changed after creation.
+
+The saved flag and original-order reference are retained when the correction is posted. Changing the type setup does not reclassify existing FWOs or rewrite posted history.
+
 ## Choose a default for a party or address
 
 Set **Default FWO Type** on the **Customer Card** or **Vendor Card** when its documents normally require the same process. A default on the selected **Ship-to Address** or **Order Address** takes priority when the document's customer/vendor or address changes.
 
-The suggested type is stored in **FWO Type** on the sales or purchase document. You can change it manually for a particular shipment until a Forwarding Order is linked. Creating the FWO uses this saved choice and applies the type's numbering, status, stage, and settlement defaults.
+The suggested type is stored in **FWO Type** on the sales or purchase document. On unposted source documents it remains an editable default, including after a Forwarding Order is linked. Creating an FWO uses this saved choice and applies the type's numbering, status, stage, and settlement defaults; changing the source default does not change existing FWOs. Posted document fields remain read-only.
 
 For example, a customer can suggest a domestic type with one stage, while its overseas Ship-to Address suggests a multimodal type. Selecting that address fills the document with the multimodal type; you can still choose another type on the document before creating the FWO.
 
-Before an FWO is linked, changing the customer/vendor or address refreshes the suggestion. Later changes to master-data defaults do not update an existing document's type. A blank document field uses the existing TMS Setup and source-specific selection behavior. Posting and archiving preserve the saved type. Once an FWO is linked, the source document's **FWO Type** is read-only and its saved value is preserved when the customer/vendor or address changes. The lock remains after FWO posting.
+Changing the customer/vendor or selected address on an unposted sales or purchase document refreshes the suggestion even when an FWO is already linked. Later changes to master-data defaults do not update an existing document's type. A blank document field uses the existing TMS Setup and source-specific selection behavior. Posting and archiving preserve the saved type; the copied value is read-only on posted documents.
 
 Returns use the same defaulting rules, and their document type can be selected manually. The stage profile is not automatically reversed.
 
@@ -60,7 +71,7 @@ See [TMS Setup](setup.md#default-forwarding-order-type-by-customer-vendor-and-ad
 
 ## Default settlement lines
 
-Use **Default Service Set** when a Forwarding Order Type should create standard Settlement lines automatically.
+Use **Default Service Set** when a transportation Forwarding Order Type should create standard Settlement lines automatically. Financial correction types do not generate these default lines; their Settlement comes from the document-correction action or manual entry.
 
 For every line in the Service Set, define:
 
@@ -85,6 +96,11 @@ You can select the Ordering Party after these defaults have been created. If eve
 | Use attachment requirements | Blocks movement to controlled statuses until required files exist. |
 
 ## Good to know
+
+Integrations can read type descriptions and defaults through
+`forwardingordertypes`, then use `code` as the new order's
+`forwardingOrderTypeCode`. The API also identifies financial correction types and
+the linked stage/status profiles. See [Process setup APIs](api.md#forwarding-order-types-stage-profiles-and-status-profiles).
 
 - Keep type codes stable. They are used in filtering, reporting, and historical documents.
 - Do not create too many types for small differences. Use stages, services, or references when the process is mostly the same.

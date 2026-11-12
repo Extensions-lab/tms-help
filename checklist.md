@@ -35,7 +35,9 @@ Make sure that:
 | **Responsible User** | Shows who owns the task. |
 | **Due Date** | Helps operations follow time-sensitive steps. |
 | **Completed** | Shows whether the task is done. |
-| **Completed By / Completed At** | Supports audit review when available. |
+| **Last Modified By / Last Modified At** | Shows who last changed the checklist item and when. |
+
+Changing the completion status or comment updates **Last Modified By / Last Modified At**. These fields describe the latest change to the item; a later comment also replaces the user and time shown after completion.
 
 ## Good to know
 

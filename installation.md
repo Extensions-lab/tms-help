@@ -28,6 +28,12 @@ You need:
 
 ![Search for TMS](resources/installation/pics/installation2.png)
 
+## New companies
+
+When you create a new empty company and complete Business Central initialization, TMS creates the same baseline data as a fresh installation. This includes TMS and Logistic Units setup, units of measure, number series, Forwarding Order and Freight Order types, stage and status profiles, services, charges, packaging types, transport profile examples, time slots, and default report selections.
+
+Complete the business settings described below before users start working. A company that already has TMS setup keeps its settings when Business Central initialization runs again, including a company copied from an existing configured company.
+
 ## What to do next
 
 1. [Buy licenses](buylicenses.md).

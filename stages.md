@@ -24,6 +24,11 @@ Make sure that:
 
 A **Stage Profile** is a reusable list of stages that can be assigned to a Forwarding Order Type.
 
+Integrations can read profiles through `stageprofiles` and their reusable legs
+through `stagedefinitions`, filtered by `stageProfileCode`. A definition is
+identified by its profile and code together. The existing `stages` API contains
+the actual legs of orders. See [Process setup APIs](api.md#forwarding-order-types-stage-profiles-and-status-profiles).
+
 When users create a Forwarding Order, the stage profile helps create the expected transportation legs automatically.
 
 A **Stage Profile** defines the route/process template. A **Transport Profile** defines one reviewed cargo transport scenario, including dangerous-goods classification and equipment rules. The Stage Profile supplies planning defaults; the planner selects the Transport Profile on each actual Forwarding Order stage after checking its cargo and transport context.
@@ -96,6 +101,16 @@ For configured cargo, TMS uses the effective assignments in the first eligible V
 
 Use the profile and equipment checks as explicit planning steps. They do not create a compliance status, retain a conditional confirmation, or form a general release/posting approval gate.
 
+## Stages after Freight Order posting
+
+Post a Freight Order after completing all work assigned to it, posting its linked purchases, and fully allocating its charges to Forwarding Order Settlement. Its complete stage execution is saved in the Posted Freight Order, including stages from every Forwarding Order on the trip.
+
+A related Forwarding Order may still be active. Its stage lines remain visible and retain the Freight Order number and the link to the exact posted trip. The saved execution details are read-only; the completed trip cannot be reassigned as active execution. Later Forwarding Order posting completes the links to that job's posted version without creating another Freight Order archive or changing its execution snapshot.
+
+Before posting a Forwarding Order, post every Freight Order assigned to its stages. Posting refreshes stored stage links automatically from the related order numbers and stage line. The completed trip stage must exist and be uniquely identifiable in history; absence of the active Freight Order alone is not proof that the trip was posted.
+
+Assign, remove, or transfer stages while the affected Freight Orders are still active. If another user changes their related orders and an operation asks you to retry, refresh the orders and check the current assignment first. If the Freight Order has already been posted, open its history to review the saved execution; that execution cannot be reassigned.
+
 ## Good to know
 
 - Stages are the bridge between customer job planning and carrier execution.
@@ -111,7 +126,8 @@ Use the profile and equipment checks as explicit planning steps. They do not cre
 | Stages do not appear on a new order | Check the Forwarding Order Type and selected stage profile. |
 | Freight Order cannot be created for a stage | Check stage setup, current status, and status action control. |
 | Stage order is wrong | Review sequence values in the stage profile. |
-| Route or map data is incomplete | Check stage origin, destination, and map locations. |
+| **Show stage route** reports a missing location | Open **Stage Card** and fill the **From Location** or **To Location** field named in the message. If the referenced Map Location no longer exists, select an existing one. Then try **Show stage route** again. |
+| **Show stage route** reports missing coordinates | Open the [Map Location card](maplocation.md) for the code named in the message and set its coordinates. Both stage locations need coordinates before the route can be shown. **Stage Card** remains available for filling the missing data. |
 | A Transport Profile is missing from the lookup | Check review/block status, Mode, Regulation, Package Type, Vehicle Unit Type, assignment dates, and Variant/UOM matching. |
 | No common Transport Profile exists | Correct the assignments or separate incompatible cargo into different Forwarding Orders; adding another stage alone does not change which direct cargo lines are checked. |
 | A previously selected profile no longer validates | Master data or assignments may have changed. Review the current source data and repeat the profile and Freight Order equipment checks. |

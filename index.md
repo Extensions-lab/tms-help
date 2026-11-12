@@ -81,6 +81,7 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | Connect a vendor invoice to a planned cost | [Link a purchase line](purchaseassignment.md#link-one-purchase-line-to-an-existing-cost) |
 | Allocate carrier invoices | [Purchase Assignment](purchaseassignment.md), [Charges](charges.md), and [Settlement](settlement.md) |
 | Create customer invoices | [Settlement](settlement.md) |
+| Correct or cancel posted sales and purchase invoices | [Invoice Corrections and Corrective Forwarding Orders](invoice-corrections.md) |
 | Track required files | [Attachment Control](attachmentcontrol.md) |
 | Track operational tasks | [Check List](checklist.md) |
 | Review posted history | [Posted Forwarding Order](postedforwardingorder.md) |
@@ -95,6 +96,7 @@ Do this before configuring advanced price lists, attachment rules, API integrati
 | [Transport Profiles and Dangerous Goods](transportprofiles.md) | Cargo classification, Item/Product assignments, Stage profile selection, conditional rules, and Vehicle Unit Type compatibility |
 | [Stage Entries](stageentries.md) | Execution events, statuses, attachments, images, and map points |
 | [Settlement](settlement.md) | Income, cost, allocation, invoicing, and profit |
+| [Invoice Corrections and Corrective Forwarding Orders](invoice-corrections.md) | Correct, Cancel, editable credits, and financial effects on active and posted FWOs |
 | [Stages](stages.md) | Stage profiles and transportation legs |
 | [Statuses and Status Profiles](statuses.md) | Workflow control and action permissions |
 | [Posted History](postedhistory.md) | Read-only history after posting |
